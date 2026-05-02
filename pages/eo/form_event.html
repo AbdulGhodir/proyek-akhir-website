@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Event Baru</title>
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/eo/form_event.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="top-navbar">
+            <div class="logo">
+                <img src="../../assets/images/logo.png" alt=""
+                    style="width: 1.5rem; height: 1.5rem; object-fit: cover;">
+                <span>Eventify</span>
+            </div>
+
+            <div class="menu">
+                <div class="menu-utama">
+                    <span>Menu Utama</span>
+                    <a href="dashboard.html" class="menu-item">
+                        <i class="icon-menu" data-lucide="layout-dashboard"></i>
+                        Dasboard
+                    </a>
+
+                    <a href="event.html" class="menu-item active">
+                        <i class="icon-menu" data-lucide="calendar-plus"></i>
+                        Manajemen Event
+                    </a>
+                </div>
+
+                <div class="menu-pendaftar">
+                    <span>Pendaftaran & Pembayaran</span>
+                    <a href="verifikasi.html" class="menu-item">
+                        <i class="icon-menu" data-lucide="badge-check"></i>
+                        Verifikasi Pendaftar
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-navbar">
+            <div class="akun">
+                <span class="profile-akun">A</span>
+                <div class="info-akun">
+                    <span class="nama">Abdul Ghodir</span>
+                    <span class="email">eo@eventify.com</span>
+                </div>
+            </div>
+
+            <div class="logout">
+                <a href="/index.html">
+                    <i data-lucide="log-out" style="width: 1rem; height: 1rem;"></i>
+                    <span class="teks">Keluar</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <div class="header">
+            <div class="header-title">
+                <span>Buat Event Baru</span>
+                <span>Lengkapi detail dan rancang form pendaftaran sesuai kebutuhan.</span>
+            </div>
+        </div>
+
+        <div class="form-event">
+            <span>Detail Event</span>
+
+            <div class="detail-form-event">
+                <div class="input-group">
+                    <label for="nama_event">Nama Event</label>
+                    <input type="text" id="nama_event" name="nama_event" placeholder="Contoh: Webinar Cyber Security">
+                </div>
+
+                <div class="input-group">
+                    <label for="deskripsi">Deskripsi</label>
+                    <textarea id="deskripsi" name="deskripsi" placeholder="Jelaskan detail event..."></textarea>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group-row">
+                        <label for="kategori">Kategori</label>
+                        <select name="kategori" id="kategori">
+                            <option value="">Seminar</option>
+                            <option value="">Webinar</option>
+                            <option value="">Volunteer</option>
+                            <option value="">Konser</option>
+                            <option value="">Pameran</option>
+                            <option value="">Lomba</option>
+                            <option value="">Workshop</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group-row">
+                        <label for="tanggal">Tanggal & Waktu</label>
+                        <input type="datetime-local" id="tanggal" name="tanggal">
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group-row">
+                        <label for="harga">Harga</label>
+                        <input type="text" id="harga" name="harga" placeholder="Rp 0 (Gratis) atau Harga">
+                    </div>
+
+                    <div class="input-group-row">
+                        <label for="lokasi">Lokasi / Link Platform</label>
+                        <input type="text" id="lokasi" name="lokasi" placeholder="Contoh: Aula Unila / Link Zoom">
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group-row">
+                        <label for="kuota">Kuota / Kapasitas Peserta</label>
+                        <input type="number" id="kuota" name="kuota" placeholder="Contoh: 150">
+                    </div>
+
+                    <div class="input-group-row">
+                        <label for="gambar">Cover Event</label>
+                        <input type="file" id="gambar" accept="image/*">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-pendaftaran">
+            <div class="header-pendaftaran">
+                <span>Form Pendaftaran</span>
+                <span>Buat kolom pertanyaan yang harus diisi peserta saat mendaftar.</span>
+            </div>
+
+            <div class="detail-form-pendaftaran">
+                <div class="input-group-pendaftaran">
+                    <div class="row-pertanyaan">
+                        <input type="text" name="" id="" placeholder="Masukkan Pertanyaan">
+                        <select>
+                            <option value="">Jawaban Singkat</option>
+                            <option value="">Paragraf</option>
+                            <option value="">Pilihan Ganda</option>
+                            <option value="">Dropdown</option>
+                            <option value="">Tanggal</option>
+                            <option value="">Jam</option>
+                            <option value="">Nomor</option>
+                            <option value="">File Upload</option>
+                        </select>
+                    </div>
+                    <div class="opsi">
+                        <div class="wajib-diisi">
+                            <input type="checkbox" name="wajib" id="wajib">
+                            <label for="wajib">Wajib Diisi</label>
+                        </div>
+                        <i class="icon" data-lucide="trash-2" onclick="this.parentElement.parentElement.remove()"></i>
+                    </div>
+                </div>
+
+                <div class="input-group-pendaftaran">
+                    <div class="row-pertanyaan">
+                        <input type="text" name="" id="" placeholder="Masukkan Pertanyaan">
+                        <select>
+                            <option value="">Jawaban Singkat</option>
+                            <option value="">Paragraf</option>
+                            <option value="">Pilihan Ganda</option>
+                            <option value="">Dropdown</option>
+                            <option value="">Tanggal</option>
+                            <option value="">Jam</option>
+                            <option value="">Nomor</option>
+                            <option value="">File Upload</option>
+                        </select>
+                    </div>
+                    <div class="opsi">
+                        <div class="wajib-diisi">
+                            <input type="checkbox" name="wajib" id="wajib">
+                            <label for="wajib">Wajib Diisi</label>
+                        </div>
+                        <i class="icon" data-lucide="trash-2" onclick="this.parentElement.parentElement.remove()"></i>
+                    </div>
+                </div>
+
+                <button class="tambah-pertanyaan">
+                    <i class="icon" data-lucide="plus-circle"></i>
+                    <span>Tambah Pertanyaan</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="button-submit">
+            <a href="event.html">Batal</a>
+            <button>Simpan</button>
+        </div>
+    </section>
+
+    <script src="../../assets/js/global.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tambahPertanyaan = document.querySelector('.tambah-pertanyaan')
+            
+            const htmlPertanyaan = `
+            <div class="input-group-pendaftaran">
+                    <div class="row-pertanyaan">
+                        <input type="text" name="" id="" placeholder="Masukkan Pertanyaan">
+                        <select>
+                            <option value="">Jawaban Singkat</option>
+                            <option value="">Paragraf</option>
+                            <option value="">Pilihan Ganda</option>
+                            <option value="">Dropdown</option>
+                            <option value="">Tanggal</option>
+                            <option value="">Jam</option>
+                            <option value="">Nomor</option>
+                            <option value="">File Upload</option>
+                        </select>
+                    </div>
+                    <div class="opsi">
+                        <div class="wajib-diisi">
+                            <input type="checkbox" name="wajib" id="wajib">
+                            <label for="wajib">Wajib Diisi</label>
+                        </div>
+                        <i class="icon" data-lucide="trash-2" onclick="this.parentElement.parentElement.remove()"></i>
+                    </div>
+                </div>
+            `;
+
+            tambahPertanyaan.addEventListener('click', () => {
+                tambahPertanyaan.insertAdjacentHTML('beforebegin', htmlPertanyaan);
+                lucide.createIcons();
+            })
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,332 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 15px 50px;
+    background-color: rgba(255, 255, 255, 0.655);
+    box-shadow: 0px 0 10px rgba(128, 128, 128, 0.275);
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #1caae2;
+}
+
+.icon span {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+header .button {
+    display: flex;
+    gap: 15px;
+}
+
+.button-login {
+    padding: 8px 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #1caae2;
+    border: 1px solid #1caae2;
+}
+
+.button-register {
+    padding: 8px 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1caae2;
+    color: white;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.top-content {
+    display: flex;
+    width: 100%;
+    gap: 50px;
+    padding: 95px 50px 50px 50px;
+    background: linear-gradient(to bottom right, #f4f9ff, #1caae24f);
+    min-height: 100vh;
+}
+
+.left-content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+.header-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #0071bc;
+    border-radius: 50px;
+    background-color: #1caae21c;
+    padding: 6px 20px;
+    width: fit-content;
+}
+
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: gray;
+}
+
+.left-content .button {
+    display: flex;
+    gap: 20px;
+}
+
+.left-content .button a,
+.left-content .button button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1caae2;
+    color: white;
+    font-weight: 500;
+}
+
+.left-content .button a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.left-content .button button {
+    background-color: white;
+    border: 1px solid #1caae2;
+    color: #1caae2;
+}
+
+.right-content {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-content img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0px 0 30px #1caae276;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 50px;
+    background: linear-gradient(to bottom, #f4f9ff, #1caae22f);
+}
+
+.preview-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    min-height: 100vh;
+}
+
+.preview-content .content-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 30px;
+}
+
+.preview-content .title {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.preview-content .card {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.preview-content .card .card-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 30%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 40px;
+    border: 1px solid #1caae21c;
+    box-shadow: 0px 0 10px #1caae22b;
+    transition: 0.3s;
+}
+
+.preview-content .card .card-item:hover {
+    transform: translateY(-10px);
+    border: 1px solid #1caae2;
+}
+
+.preview-content .card .card-item .icon {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #1caae21c;
+    color: #1caae2;
+}
+
+.preview-content .card .card-item .title-card {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #333;
+}
+
+.preview-content .card .card-item .desc-card {
+    font-size: 1rem;
+    color: gray;
+    text-align: center;
+}
+
+.preview-event {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview-event-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.preview-event-header a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1caae2;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.preview-event-header .content-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-event-header .content-title span:nth-child(1) {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.preview-event-header .content-title span:nth-child(2) {
+    font-size: 1rem;
+    color: gray;
+}
+
+.preview-event .card {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.preview-event .card .event-card {
+    display: flex;
+    width: 33%;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #1caae21c;
+    box-shadow: 0px 0 10px #1caae22b;
+}
+
+.preview-event .card .event-card img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 20px 20px 0 0;
+}
+
+.event-info {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+}
+
+.event-info .event-type {
+    display: flex;
+    gap: 10px;
+    width: fit-content;
+}
+
+.event-info .event-type .kategori {
+    padding: 5px 15px;
+    border-radius: 15px;
+    background-color: #1caae21c;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #0071bc;
+}
+
+.event-info .event-type .harga {
+    padding: 5px 15px;
+    border-radius: 15px;
+    background-color: #ffc30e15;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #ffc20e;
+}
+
+.event-info .event-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.event-info .event-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.event-info .event-time, .event-info .event-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: gray;
+}
+
+footer {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background-color: #1caae218;
+}
