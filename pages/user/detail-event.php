@@ -172,7 +172,7 @@ $pageTitle = $event['title'] . " | Eventify";
             <strong><?= $event['time']; ?></strong>
           </div>
 
-         <a href="register.php?id=<?= $id; ?>" class="btn-primary">
+         <a href="../user/register-event.php" class="btn-primary">
             Daftar Sekarang
         </a>
         </div>

@@ -19,8 +19,8 @@
         </div>
 
         <div class="button">
-            <a href="pages/auth/login_register.html" class="button-login">Masuk</a>
-            <a href="pages/auth/login_register.html?mode=daftar" class="button-register">Daftar</a>
+            <a href="pages/auth/login_register.php" class="button-login">Masuk</a>
+            <a href="pages/auth/login_register.php?mode=daftar" class="button-register">Daftar</a>
         </div>
     </header>
 
@@ -34,16 +34,16 @@
                 <span class="description">Eventify adalah wadah terpusat untuk menemukan, mendaftar, dan menyelenggarakan kegiatan Volunteer, Seminar, dan Webinar di Kota Bandar Lampung. Mari berkontribusi untuk lingkungan dan masyarakat!</span>
                 
                 <div class="button">
-                    <a href="pages/auth/login_register.html?mode=daftar">
+                    <a href="pages/user/dashboard.php">
                         Mulai Jelajahi
                         <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
                     </a>
-                    <button>Lihat Event</button>
+                    <a href="pages/admin/index.php">Lihat Event</a>
                 </div>
             </div>
 
             <div class="right-content">
-                <img src="/assets/images/volunteer.jpeg" alt="">
+                <img src="assets/images/volunteer.jpeg" alt="">
             </div>
         </div>
 
@@ -86,7 +86,7 @@
 
                 <div class="card">
                     <div class="event-card">
-                        <img src="../../assets/images/image.png" alt="">
+                        <img src="assets/images/image.png" alt="">
                         <div class="event-info">
                             <div class="event-type">
                                 <span class="kategori">Seminar</span>
@@ -107,7 +107,7 @@
                     </div>
                     
                     <div class="event-card">
-                        <img src="../../assets/images/image.png" alt="">
+                        <img src="assets/images/image.png" alt="">
                         <div class="event-info">
                             <div class="event-type">
                                 <span class="kategori">Seminar</span>
@@ -128,7 +128,7 @@
                     </div>
                     
                     <div class="event-card">
-                        <img src="../../assets/images/image.png" alt="">
+                        <img src="assets/images/image.png" alt="">
                         <div class="event-info">
                             <div class="event-type">
                                 <span class="kategori">Seminar</span>

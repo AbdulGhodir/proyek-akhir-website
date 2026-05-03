@@ -19,12 +19,12 @@
             <div class="menu">
                 <div class="menu-utama">
                     <span>Menu Utama</span>
-                    <a href="dashboard.html" class="menu-item">
+                    <a href="dashboard.php" class="menu-item">
                         <i class="icon-menu" data-lucide="layout-dashboard"></i>
                         Dasboard
                     </a>
 
-                    <a href="event.html" class="menu-item active">
+                    <a href="event.php" class="menu-item active">
                         <i class="icon-menu" data-lucide="calendar-plus"></i>
                         Manajemen Event
                     </a>
@@ -32,7 +32,7 @@
                 
                 <div class="menu-pendaftar">
                     <span>Pendaftaran & Pembayaran</span>
-                    <a href="verifikasi.html" class="menu-item">
+                    <a href="verifikasi.php" class="menu-item">
                         <i class="icon-menu" data-lucide="badge-check"></i>
                         Verifikasi Pendaftar
                     </a>
@@ -50,7 +50,7 @@
             </div>
 
             <div class="logout">
-                <a href="/index.html">
+                <a href="/index.php">
                     <i data-lucide="log-out" style="width: 1rem; height: 1rem;"></i>
                     <span class="teks">Keluar</span>
                 </a>
@@ -65,7 +65,7 @@
                 <span>Kelola seluruh event milik anda</span>
             </div>
 
-            <a href="form_event.html" class="buat-event">
+            <a href="form_event.php" class="buat-event">
                 <i class="icon" data-lucide="plus"></i>
                 Buat Event
             </a>
@@ -85,7 +85,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <img src="/assets/images/image.png" alt="">
+                            <img src="../../assets/images/image.png" alt="">
                             <div class="event-info">
                                 <a>Webinar Vibe Coding</a>
                                 <span>Webinar</span>
@@ -110,7 +110,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <img src="/assets/images/image.png" alt="">
+                            <img src="../../assets/images/image.png" alt="">
                             <div class="event-info">
                                 <a>Webinar Vibe Coding</a>
                                 <span>Webinar</span>
@@ -135,7 +135,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <img src="/assets/images/image.png" alt="">
+                            <img src="../../assets/images/image.png" alt="">
                             <div class="event-info">
                                 <a>Webinar Vibe Coding</a>
                                 <span>Webinar</span>

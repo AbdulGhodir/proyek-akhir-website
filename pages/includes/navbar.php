@@ -36,12 +36,12 @@
             <span>Profil Saya</span>
           </a>
 
-          <a href="#">
+          <a href="../user/riwayat-pendaftaran.php">
             <i class='bx bx-receipt'></i>
             <span>Riwayat Pendaftaran</span>
           </a>
 
-          <a href="#">
+          <a href="../../index.php">
             <i class='bx bx-log-out'></i>
             <span>Logout</span>
           </a>

@@ -42,7 +42,7 @@
     
                     <a href="">Lupa Password</a>
                 </div>
-                <a href="/pages/eo/dashboard.html" class="submit-button">Masuk</a>
+                <a href="../eo/dashboard.php" class="submit-button">Masuk</a>
             </form>
         </div>
 
@@ -97,7 +97,7 @@
                     </div>
                 </div>
     
-                <a href="/pages/eo/dashboard.html" class="submit-button">Daftar Sekarang</a>
+                <a href="../eo/dashboard.php" class="submit-button">Daftar Sekarang</a>
             </form>
         </div>
 

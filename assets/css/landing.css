@@ -29,6 +29,14 @@ header .button {
     gap: 15px;
 }
 
+header .button a {
+    transition: 0.3s;
+}
+
+header .button a:hover {
+    transform: scale(1.03);
+}
+
 .button-login {
     padding: 8px 24px;
     border: none;
@@ -95,8 +103,7 @@ section {
     gap: 20px;
 }
 
-.left-content .button a,
-.left-content .button button {
+.left-content .button a {
     padding: 10px 25px;
     border: none;
     border-radius: 8px;
@@ -109,12 +116,17 @@ section {
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: 0.3s;
 }
 
-.left-content .button button {
+.left-content .button a:nth-child(2) {
     background-color: white;
     border: 1px solid #1caae2;
     color: #1caae2;
+}
+
+.left-content .button a:hover{
+    transform: translateY(-2px);
 }
 
 .right-content {
