@@ -1,4 +1,9 @@
 <?php
+require_once '../../config/config.php';
+require_once '../../../koneksi/koneksi.php';
+
+session_start();
+
 $pageTitle = "Riwayat Pendaftaran | Eventify";
 
 $history = [
@@ -8,7 +13,7 @@ $history = [
     'date' => '18 Mei 2026',
     'location' => 'Swiss-Belhotel Lampung',
     'status' => 'Diterima',
-    'image' => '../../assets/images/image.png'
+    'image' => BASEURL . '/assets/images/image.png'
   ],
 
   [
@@ -17,7 +22,7 @@ $history = [
     'date' => '12 Mei 2026',
     'location' => 'Bandar Lampung',
     'status' => 'Menunggu Verifikasi',
-    'image' => '../../assets/images/image.png'
+    'image' => BASEURL . '/assets/images/image.png'
   ],
 
   [
@@ -27,7 +32,7 @@ $history = [
     'location' => 'Pantai Mutun',
     'status' => 'Ditolak',
     'reason' => 'Kuota peserta telah penuh',
-    'image' => '../../assets/images/volunteer.jpeg'
+    'image' => BASEURL . '/assets/images/volunteer.jpeg'
   ],
 
   [
@@ -36,7 +41,7 @@ $history = [
     'date' => '21 Mei 2026',
     'location' => 'Zoom Meeting',
     'status' => 'Diterima',
-    'image' => '../../assets/images/image.png'
+    'image' => BASEURL . '/assets/images/image.png'
   ],
 ];
 ?>
@@ -53,11 +58,11 @@ $history = [
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="../../assets/css/user-style/user-style.css">
+  <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/user-style/user-style.css">
 </head>
 <body>
 
-<?php include('../includes/navbar.php'); ?>
+<?php include 'navbar.php'; ?>
 
 <section class="history-page">
   <div class="container">

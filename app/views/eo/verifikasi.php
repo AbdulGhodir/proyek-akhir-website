@@ -1,62 +1,26 @@
+<?php
+    require_once '../../config/config.php';
+    require_once '../../../koneksi/koneksi.php';
+
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verifikasi Pendaftar</title>
-    <link rel="stylesheet" href="../../assets/css/global.css">
-    <link rel="stylesheet" href="../../assets/css/eo/verifikasi.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/global.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/verifikasi.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/navbar.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <nav>
-        <div class="top-navbar">
-            <div class="logo">
-                <img src="../../assets/images/logo.png" alt="" style="width: 1.5rem; height: 1.5rem; object-fit: cover;">
-                <span>Eventify</span>
-            </div>
-            
-            <div class="menu">
-                <div class="menu-utama">
-                    <span>Menu Utama</span>
-                    <a href="dashboard.php" class="menu-item">
-                        <i class="icon-menu" data-lucide="layout-dashboard"></i>
-                        Dasboard
-                    </a>
-
-                    <a href="event.php" class="menu-item">
-                        <i class="icon-menu" data-lucide="calendar-plus"></i>
-                        Manajemen Event
-                    </a>
-                </div>
-                
-                <div class="menu-pendaftar">
-                    <span>Pendaftaran & Pembayaran</span>
-                    <a href="verifikasi.php" class="menu-item active">
-                        <i class="icon-menu" data-lucide="badge-check"></i>
-                        Verifikasi Pendaftar
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="bottom-navbar">
-            <div class="akun">
-                <span class="profile-akun">A</span>
-                <div class="info-akun">
-                    <span class="nama">Abdul Ghodir</span>
-                    <span class="email">eo@eventify.com</span>
-                </div>
-            </div>
-
-            <div class="logout">
-                <a href="/index.php">
-                    <i data-lucide="log-out" style="width: 1rem; height: 1rem;"></i>
-                    <span class="teks">Keluar</span>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <?php
+        $halamanAktif = 'verifikasi';
+        include 'navbar.php';
+    ?>
 
     <section>
         <div class="header">
@@ -128,34 +92,36 @@
 
     <div class="overlay">
         <div class="jawaban-overlay">
-            <div class="header">
-                <div class="title">
-                    <span>Detail Jawaban Pendaftar</span>
-                    <span>Event: Webinar Coding</span>
+            <div class="content">
+                <div class="header">
+                    <div class="title">
+                        <span>Detail Jawaban Pendaftar</span>
+                        <span>Event: Webinar Coding</span>
+                    </div>
+                    <i data-lucide="x" class="icon"></i>
                 </div>
-                <i data-lucide="x" class="icon"></i>
-            </div>
-
-            <div class="list-jawaban">
-                <div class="jawaban-item">
-                    <span class="pertanyaan">Nama Lengkap</span>
-                    <span class="jawaban">Abdul Somad</span>
-                </div>
-                <div class="jawaban-item">
-                    <span class="pertanyaan">Email</span>
-                    <span class="jawaban">abdul@eventify.com</span>
-                </div>
-                <div class="jawaban-item">
-                    <span class="pertanyaan">Nomor Telepon</span>
-                    <span class="jawaban">08123456789</span>
-                </div>
-                <div class="jawaban-item">
-                    <span class="pertanyaan">Alamat</span>
-                    <span class="jawaban">Jl. Contoh No. 123</span>
-                </div>
-                <div class="jawaban-item">
-                    <span class="pertanyaan">Motivasi</span>
-                    <span class="jawaban">Saya ingin belajar coding</span>
+    
+                <div class="list-jawaban">
+                    <div class="jawaban-item">
+                        <span class="pertanyaan">Nama Lengkap</span>
+                        <span class="jawaban">Abdul Somad</span>
+                    </div>
+                    <div class="jawaban-item">
+                        <span class="pertanyaan">Email</span>
+                        <span class="jawaban">abdul@eventify.com</span>
+                    </div>
+                    <div class="jawaban-item">
+                        <span class="pertanyaan">Nomor Telepon</span>
+                        <span class="jawaban">08123456789</span>
+                    </div>
+                    <div class="jawaban-item">
+                        <span class="pertanyaan">Alamat</span>
+                        <span class="jawaban">Jl. Contoh No. 123</span>
+                    </div>
+                    <div class="jawaban-item">
+                        <span class="pertanyaan">Motivasi</span>
+                        <span class="jawaban">Saya ingin belajar coding</span>
+                    </div>
                 </div>
             </div>
 
@@ -163,11 +129,10 @@
                 <button class="tolak">Tolak</button>
                 <button class="terima">Terima</button>
             </div>
-
         </div>
     </div>
             
-    <script src="../../assets/js/global.js"></script>
+    <script src="<?= BASEURL; ?>/assets/js/global.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const overlay = document.querySelector('.overlay');

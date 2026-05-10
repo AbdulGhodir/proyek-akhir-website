@@ -6,9 +6,9 @@
 
     <p class="nav-label">Menu Admin</p>
     <ul>
-        <li><a href="index.php"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
-        <li><a href="relawan.php"><i class="fa-solid fa-users"></i> Data Relawan</a></li>
-        <li><a href="validasi.php"><i class="fa-solid fa-check-to-slot"></i> Validasi Program</a></li>
+        <li><a href="<?= BASEURL; ?>/app/views/admin/index.php"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+        <li><a href="<?= BASEURL; ?>/app/views/admin/relawan.php"><i class="fa-solid fa-users"></i> Data Relawan</a></li>
+        <li><a href="<?= BASEURL; ?>/app/views/admin/validasi.php"><i class="fa-solid fa-check-to-slot"></i> Validasi Program</a></li>
     </ul>
 
     <div class="profile-footer">
@@ -19,6 +19,6 @@
                 <span style="font-size: 11px; color: #64748b;">admin@eventify.id</span>
             </div>
         </div>
-        <a href="../../index.php" class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
+        <a href="<?= BASEURL; ?>/app/controllers/auth/logout.php" class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
     </div>
 </div>

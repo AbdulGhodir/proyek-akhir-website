@@ -1,3 +1,7 @@
+<?php
+    require_once 'app/config/config.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,19 +12,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/landing.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/global.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/landing.css">
 </head>
 <body>
     <header>
         <div class="icon">
-            <img src="assets/images/logo.png" alt="" style="width: 1.5rem; height: 1.5rem; object-fit: cover;">
-            <span>Eventify</span>
+            <img src="<?= BASEURL; ?>/assets/images/logo.png" alt="" style="width: 1.5rem; height: 1.5rem; object-fit: cover;">
+            <span>ventify</span>
         </div>
 
         <div class="button">
-            <a href="pages/auth/login_register.php" class="button-login">Masuk</a>
-            <a href="pages/auth/login_register.php?mode=daftar" class="button-register">Daftar</a>
+            <a href="<?= BASEURL; ?>/app/views/auth/login_register.php" class="button-login">Masuk</a>
+            <a href="<?= BASEURL; ?>/app/views/auth/login_register.php?mode=daftar" class="button-register">Daftar</a>
         </div>
     </header>
 
@@ -34,16 +38,16 @@
                 <span class="description">Eventify adalah wadah terpusat untuk menemukan, mendaftar, dan menyelenggarakan kegiatan Volunteer, Seminar, dan Webinar di Kota Bandar Lampung. Mari berkontribusi untuk lingkungan dan masyarakat!</span>
                 
                 <div class="button">
-                    <a href="pages/user/dashboard.php">
+                    <a href="<?= BASEURL; ?>/app/views/user/dashboard.php">
                         Mulai Jelajahi
                         <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
                     </a>
-                    <a href="pages/admin/index.php">Lihat Event</a>
+                    <a href="<?= BASEURL; ?>/app/views/admin/index.php">Lihat Event</a>
                 </div>
             </div>
 
             <div class="right-content">
-                <img src="assets/images/volunteer.jpeg" alt="">
+                <img src="<?= BASEURL; ?>/assets/images/volunteer.jpeg" alt="">
             </div>
         </div>
 
@@ -86,7 +90,7 @@
 
                 <div class="card">
                     <div class="event-card">
-                        <img src="assets/images/image.png" alt="">
+                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
                         <div class="event-info">
                             <div class="event-type">
                                 <span class="kategori">Seminar</span>
@@ -107,7 +111,7 @@
                     </div>
                     
                     <div class="event-card">
-                        <img src="assets/images/image.png" alt="">
+                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
                         <div class="event-info">
                             <div class="event-type">
                                 <span class="kategori">Seminar</span>
@@ -128,7 +132,7 @@
                     </div>
                     
                     <div class="event-card">
-                        <img src="assets/images/image.png" alt="">
+                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
                         <div class="event-info">
                             <div class="event-type">
                                 <span class="kategori">Seminar</span>
@@ -156,6 +160,6 @@
         <span>© 2026 Eventify • Kelompok 2 - Pemrograman Website</span>
     </footer>
 
-    <script src="assets/js/global.js"></script>
+    <script src="<?= BASEURL; ?>/assets/js/global.js"></script>
 </body>
 </html>

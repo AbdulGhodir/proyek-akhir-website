@@ -1,62 +1,26 @@
+<?php
+    require_once '../../config/config.php';
+    require_once '../../../koneksi/koneksi.php';
+
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manajemen Event</title>
-    <link rel="stylesheet" href="../../assets/css/global.css">
-    <link rel="stylesheet" href="../../assets/css/eo/event.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/global.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/event.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/navbar.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <nav>
-        <div class="top-navbar">
-            <div class="logo">
-                <img src="../../assets/images/logo.png" alt="" style="width: 1.5rem; height: 1.5rem; object-fit: cover;">
-                <span>Eventify</span>
-            </div>
-            
-            <div class="menu">
-                <div class="menu-utama">
-                    <span>Menu Utama</span>
-                    <a href="dashboard.php" class="menu-item">
-                        <i class="icon-menu" data-lucide="layout-dashboard"></i>
-                        Dasboard
-                    </a>
-
-                    <a href="event.php" class="menu-item active">
-                        <i class="icon-menu" data-lucide="calendar-plus"></i>
-                        Manajemen Event
-                    </a>
-                </div>
-                
-                <div class="menu-pendaftar">
-                    <span>Pendaftaran & Pembayaran</span>
-                    <a href="verifikasi.php" class="menu-item">
-                        <i class="icon-menu" data-lucide="badge-check"></i>
-                        Verifikasi Pendaftar
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="bottom-navbar">
-            <div class="akun">
-                <span class="profile-akun">A</span>
-                <div class="info-akun">
-                    <span class="nama">Abdul Ghodir</span>
-                    <span class="email">eo@eventify.com</span>
-                </div>
-            </div>
-
-            <div class="logout">
-                <a href="/index.php">
-                    <i data-lucide="log-out" style="width: 1rem; height: 1rem;"></i>
-                    <span class="teks">Keluar</span>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <?php
+        $halamanAktif = 'event';
+        include 'navbar.php';
+    ?>
 
     <section>
         <div class="header">
@@ -65,7 +29,7 @@
                 <span>Kelola seluruh event milik anda</span>
             </div>
 
-            <a href="form_event.php" class="buat-event">
+            <a href="<?= BASEURL; ?>/app/views/eo/form_event.php" class="buat-event">
                 <i class="icon" data-lucide="plus"></i>
                 Buat Event
             </a>
@@ -85,7 +49,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <img src="../../assets/images/image.png" alt="">
+                            <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
                             <div class="event-info">
                                 <a>Webinar Vibe Coding</a>
                                 <span>Webinar</span>
@@ -110,7 +74,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <img src="../../assets/images/image.png" alt="">
+                            <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
                             <div class="event-info">
                                 <a>Webinar Vibe Coding</a>
                                 <span>Webinar</span>
@@ -135,7 +99,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <img src="../../assets/images/image.png" alt="">
+                            <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
                             <div class="event-info">
                                 <a>Webinar Vibe Coding</a>
                                 <span>Webinar</span>
@@ -163,6 +127,6 @@
         </div>
     </section>
 
-    <script src="../../assets/js/global.js"></script>
+    <script src="<?= BASEURL; ?>/assets /js/global.js"></script>
 </body>
 </html>

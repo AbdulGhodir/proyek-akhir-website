@@ -15,7 +15,7 @@ header {
 .icon {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 2px;
     color: #1caae2;
 }
 

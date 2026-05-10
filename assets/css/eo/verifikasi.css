@@ -297,12 +297,13 @@ section {
 .jawaban-overlay {
     width: 100%;
     max-width: 600px;
-    height: 90%;
+    max-height: 90%;
     background-color: #fff;
     padding: 35px 30px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 20px;
     transform: translateY(50px);
     opacity: 0;
@@ -314,42 +315,50 @@ section {
     opacity: 1;
 }
 
-.jawaban-overlay .header {
+.jawaban-overlay .content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.jawaban-overlay .content .header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     border-bottom: 1px solid gray;
 }
 
-.jawaban-overlay .header .icon {
+.jawaban-overlay .content .header .icon {
     width: 1.2rem;
     height: 1.2rem;
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.jawaban-overlay .header .icon:hover {
+.jawaban-overlay .content .header .icon:hover {
     transform: scale(1.2) translateY(-2px);
     color: red;
 }
 
-.jawaban-overlay .title {
+.jawaban-overlay .content .title {
     display: flex;
     flex-direction: column;
     padding-bottom: 10px;
 }
 
-.jawaban-overlay .title span:nth-child(1) {
+.jawaban-overlay .content .title span:nth-child(1) {
     font-size: 1.2rem;
     font-weight: 600;
 }
 
-.jawaban-overlay .title span:nth-child(2) {
+.jawaban-overlay .content .title span:nth-child(2) {
     font-size: 0.8rem;
     color: gray;
 }
 
-.jawaban-overlay .list-jawaban {
+.jawaban-overlay .content .list-jawaban {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -357,7 +366,7 @@ section {
     overflow-y: auto;
 }
 
-.jawaban-overlay .jawaban-item {
+.jawaban-overlay .content .jawaban-item {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -367,13 +376,13 @@ section {
     border: 1px solid gray;
 }
 
-.jawaban-overlay .jawaban-item .pertanyaan {
+.jawaban-overlay .content .jawaban-item .pertanyaan {
     font-weight: 700;
     color: gray;
     font-size: 0.8rem;
 }
 
-.jawaban-overlay .jawaban-item .jawaban {
+.jawaban-overlay .content .jawaban-item .jawaban {
     font-weight: 600;
     font-size: 0.95rem;
 }

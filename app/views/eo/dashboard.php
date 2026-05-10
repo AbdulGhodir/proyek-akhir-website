@@ -1,68 +1,32 @@
+<?php
+    require_once '../../config/config.php';
+    require_once '../../../koneksi/koneksi.php';
+
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../../assets/css/global.css">
-    <link rel="stylesheet" href="../../assets/css/eo/dashboard.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/global.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/dashboard.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/navbar.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <nav>
-        <div class="top-navbar">
-            <div class="logo">
-                <img src="../../assets/images/logo.png" alt="" style="width: 1.5rem; height: 1.5rem; object-fit: cover;">
-                <span>Eventify</span>
-            </div>
-            
-            <div class="menu">
-                <div class="menu-utama">
-                    <span>Menu Utama</span>
-                    <a href="dashboard.php" class="menu-item active">
-                        <i class="icon-menu" data-lucide="layout-dashboard"></i>
-                        Dasboard
-                    </a>
-
-                    <a href="event.php" class="menu-item">
-                        <i class="icon-menu" data-lucide="calendar-plus"></i>
-                        Manajemen Event
-                    </a>
-                </div>
-                
-                <div class="menu-pendaftar">
-                    <span>Pendaftaran & Pembayaran</span>
-                    <a href="verifikasi.php" class="menu-item">
-                        <i class="icon-menu" data-lucide="badge-check"></i>
-                        Verifikasi Pendaftar
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="bottom-navbar">
-            <div class="akun">
-                <span class="profile-akun">A</span>
-                <div class="info-akun">
-                    <span class="nama">Abdul Ghodir</span>
-                    <span class="email">eo@eventify.com</span>
-                </div>
-            </div>
-
-            <div class="logout">
-                <a href="/index.php">
-                    <i data-lucide="log-out" style="width: 1rem; height: 1rem;"></i>
-                    <span class="teks">Keluar</span>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <?php
+        $halamanAktif = 'dashboard';
+        include 'navbar.php';
+    ?>
     
     <section>
         <div class="header">
             <div class="welcome-text">
                 <span>Event Organizer</span>
-                <span>Halo, Abdul</span>
+                <span>Halo, <?= $_SESSION['nama_lengkap']; ?></span>
                 <span>Ringkasan event anda di sini</span>
             </div>
             
@@ -107,7 +71,7 @@
             <div class="list-event">
                 <div class="event-item">
                     <div class="img-and-info">
-                        <img src="../../assets/images/image.png" alt="">
+                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
                         <div class="event-info">
                             <span>Seminar Lampung Jaya</span>
                             <span>Seminar - Rp 100.000</span>
@@ -121,7 +85,7 @@
                 
                 <div class="event-item">
                     <div class="img-and-info">
-                        <img src="../../assets/images/image.png" alt="">
+                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
                         <div class="event-info">
                             <span>Konser Musik</span>
                             <span>Konser - Gratis</span>
@@ -135,7 +99,7 @@
                 
                 <div class="event-item">
                     <div class="img-and-info">
-                        <img src="../../assets/images/image.png" alt="">
+                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
                         <div class="event-info">
                             <span>Konser Musik</span>
                             <span>Konser - Gratis</span>
@@ -149,7 +113,7 @@
                 
                 <div class="event-item">
                     <div class="img-and-info">
-                        <img src="../../assets/images/image.png" alt="">
+                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
                         <div class="event-info">
                             <span>Konser Musik</span>
                             <span>Konser - Gratis</span>
@@ -164,7 +128,7 @@
 
     </section>
 
-    <script src="../../assets/js/global.js"></script>
+    <script src="<?= BASEURL; ?>/assets/js/global.js"></script>
     
 </body>
 </html>

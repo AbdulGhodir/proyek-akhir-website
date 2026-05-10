@@ -1,9 +1,17 @@
+<?php
+require_once '../../config/config.php';
+require_once '../../../koneksi/koneksi.php';
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Validasi Program - Voluntix</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../../assets/css/admin/style.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/admin/style.css">
 </head>
 <body>
 

@@ -1,4 +1,9 @@
 <?php
+require_once '../../config/config.php';
+require_once '../../../koneksi/koneksi.php';
+
+session_start();
+
 $id = $_GET['id'] ?? 1;
 
 $events = [
@@ -8,7 +13,7 @@ $events = [
     'price' => 'Gratis',
     'date' => '18 Mei 2026',
     'location' => 'Swiss-Belhotel Lampung',
-    'image' => '../../assets/images/image.png',
+    'image' => BASEURL . '/assets/images/image.png',
   ],
 
   2 => [
@@ -17,7 +22,7 @@ $events = [
     'price' => 'Gratis',
     'date' => '12 Mei 2026',
     'location' => 'Bandar Lampung',
-    'image' => '../../assets/images/image.png',
+    'image' => BASEURL . '/assets/images/image.png',
   ],
 
   3 => [
@@ -26,7 +31,7 @@ $events = [
     'price' => 'Gratis',
     'date' => '15 Mei 2026',
     'location' => 'Pantai Mutun',
-    'image' => '../../assets/images/volunteer.jpeg',
+    'image' => BASEURL . '/assets/images/volunteer.jpeg',
   ],
 
   4 => [
@@ -35,7 +40,7 @@ $events = [
     'price' => 'Rp25.000',
     'date' => '21 Mei 2026',
     'location' => 'Zoom Meeting',
-    'image' => '../../assets/images/image.png',
+    'image' => BASEURL . '/assets/images/image.png',
   ],
 ];
 
@@ -56,11 +61,11 @@ $pageTitle = "Pendaftaran Event | Eventify";
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="../../assets/css/user-style/user-style.css">
+  <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/user-style/user-style.css">
 </head>
 <body>
 
-<?php include('../includes/navbar.php'); ?>
+<?php include 'navbar.php'; ?>
 
 <section class="register-event-page">
   <div class="container">

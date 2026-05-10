@@ -1,4 +1,9 @@
 <?php
+require_once '../../config/config.php';
+require_once '../../../koneksi/koneksi.php';
+
+session_start();
+
 $id = $_GET['id'] ?? 1;
 
 $events = [
@@ -71,11 +76,11 @@ $pageTitle = $event['title'] . " | Eventify";
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="../../assets/css/user-style/user-style.css">
+  <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/user-style/user-style.css">
 </head>
 <body>
 
-<?php include('../includes/navbar.php'); ?>
+<?php include 'navbar.php'; ?>
 
 <section class="detail-page">
   <div class="container">
@@ -172,7 +177,7 @@ $pageTitle = $event['title'] . " | Eventify";
             <strong><?= $event['time']; ?></strong>
           </div>
 
-         <a href="../user/register-event.php" class="btn-primary">
+         <a href="<?= BASEURL; ?>/app/views/user/register-event.php" class="btn-primary">
             Daftar Sekarang
         </a>
         </div>

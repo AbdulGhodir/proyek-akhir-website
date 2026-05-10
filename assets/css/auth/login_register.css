@@ -14,7 +14,7 @@ body {
     position: relative;
     background-color: white;
     display: flex;
-    width: 1000px;
+    width: 1100px;
     height: 600px;
     border-radius: 20px;
     overflow: hidden;
@@ -76,6 +76,66 @@ body {
     font-weight: 800;
 }
 
+.daftar-sebagai {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.daftar-sebagai span {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.pilihan-role {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.pilihan-role .pilihan {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #0071bc0d;
+    border: 1px solid gray;
+    border-radius: 10px;
+    color: gray;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pilihan-role .pilihan:hover {
+    background-color: #0071bc11;
+    color: #1cabe2;
+    border-color: #1cabe2;
+}
+
+.pilihan-role .pilihan.terpilih {
+    background-color: #1caae247;
+    color: #1cabe2;
+    border-color: #1cabe2;
+}
+
+.pilihan-role .pilihan span {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.register-form .nama-instansi {
+    display: none;
+}
+
+.register-form.eo .nama-instansi {
+    display: flex;
+}
+
 .form {
     width: 100%;
     display: flex;
@@ -83,10 +143,22 @@ body {
     gap: 20px;
 }
 
+.row-input {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 .input {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    width: 100%;
+}
+
+.input label {
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
 .input-field {
@@ -125,9 +197,10 @@ body {
     gap: 5px;
 }
 
-.input-password {
+.password-container {
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .submit-button {
@@ -201,18 +274,21 @@ body {
     visibility: hidden;
 }
 
-.right-content .text-title, .left-content .text-title {
+.right-content .text-title,
+.left-content .text-title {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.right-content .title, .left-content .title {
+.right-content .title,
+.left-content .title {
     font-size: 1.5rem;
     font-weight: 800;
 }
 
-.right-content p, .left-content p {
+.right-content p,
+.left-content p {
     font-size: 0.85rem;
 }
 
@@ -246,60 +322,78 @@ body {
 }
 
 @keyframes swapKiri {
-    0%   { left: 50%; width: 50%; }
-    50%  { left: 0%; width: 100%; border-radius: 20px; }
-    100% { left: 0%; width: 50%; border-radius: 20px 50px 50px 20px; }
+    0% {
+        left: 50%;
+        width: 50%;
+    }
+
+    50% {
+        left: 0%;
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    100% {
+        left: 0%;
+        width: 50%;
+        border-radius: 20px 50px 50px 20px;
+    }
 }
 
 @keyframes swapKanan {
-    0%   { left: 0%; width: 50%; }
-    50%  { left: 0%; width: 100%; border-radius: 20px; } 
-    100% { left: 50%; width: 50%; border-radius: 50px 20px 20px 50px; } 
+    0% {
+        left: 0%;
+        width: 50%;
+    }
+
+    50% {
+        left: 0%;
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    100% {
+        left: 50%;
+        width: 50%;
+        border-radius: 50px 20px 20px 50px;
+    }
 }
 
-.daftar-sebagai {
+.notifikasi {
+    position: fixed;
+    top: 30px;
+    background-color: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    left: 50%;
+    transform: translateX(-50%) translateY(-30px);
+    opacity: 0;
+    visibility: hidden;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-}
-
-.pilihan-role {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+    gap: 12px;
     align-items: center;
-    gap: 10px;
-}
-
-.pilihan-role .pilihan {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #0071bc0d;
-    border: 1px solid gray;
+    padding: 10px 20px;
     border-radius: 10px;
-    color: gray;
-    padding: 10px;
-    cursor: pointer;
+    z-index: 1000;
+    border-left: 5px solid red;
+    color: red;
+    font-size: 0.9rem;
     transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
 }
 
-.pilihan-role .pilihan:hover {
-    background-color: #0071bc11;
-    color: #1cabe2;
-    border-color: #1cabe2;
+.notifikasi.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px) translateX(-50%);
 }
 
-.pilihan-role .pilihan.terpilih {
-    background-color: #1caae247;
-    color: #1cabe2;
-    border-color: #1cabe2;
+.notifikasi .icon-notif {
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
-.pilihan-role .pilihan span {
+.notifikasi .notif-message {
     font-size: 0.8rem;
     font-weight: 600;
 }

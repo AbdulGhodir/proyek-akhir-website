@@ -1,8 +1,8 @@
 <nav class="navbar">
   <div class="container nav-wrap">
 
-    <a href="../user/dashboard.php" class="brand">
-      <img src="../../assets/images/logo-eventify.png" alt="Eventify Logo">
+    <a href="<?= BASEURL; ?>/app/views/user/dashboard.php" class="brand">
+      <img src="<?= BASEURL; ?>/assets/images/logo-eventify.png" alt="Eventify Logo">
       <span>Eventify</span>
     </a>
 
@@ -36,12 +36,12 @@
             <span>Profil Saya</span>
           </a>
 
-          <a href="../user/riwayat-pendaftaran.php">
+          <a href="<?= BASEURL; ?>/app/views/user/riwayat-pendaftaran.php">
             <i class='bx bx-receipt'></i>
             <span>Riwayat Pendaftaran</span>
           </a>
 
-          <a href="../../index.php">
+          <a href="<?= BASEURL; ?>/app/controllers/auth/logout.php">
             <i class='bx bx-log-out'></i>
             <span>Logout</span>
           </a>
