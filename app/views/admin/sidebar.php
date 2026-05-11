@@ -1,24 +1,65 @@
-<div class="sideNav">
-    <div class="logo">
-        <img src="https://user10230.na.imgto.link/public/20260503/cuplikan-layar-2026-05-03-215226.avif" alt="logo">
-        <h1>Eventify</h1>
+<?php
+
+$badge_count = 0;
+if (isset($conn)) {
+    $r = $conn->query("SELECT COUNT(*) AS total FROM event WHERE status_publikasi = 'pending'");
+    if ($r)
+        $badge_count = $r->fetch_assoc()['total'];
+}
+
+$admin_nama = $_SESSION['nama_lengkap'] ?? 'Admin';
+$admin_email = $_SESSION['email'] ?? 'admin@eventify.id';
+$admin_init = strtoupper(substr($admin_nama, 0, 1));
+
+
+$current = basename($_SERVER['PHP_SELF']);
+?>
+
+<div class="sidebar">
+
+    <div class="sidebar-brand">
+        <img src="https://user10230.na.imgto.link/public/20260503/cuplikan-layar-2026-05-03-215226.avif"
+            alt="Eventify Logo">
+        <span>Eventify</span>
     </div>
 
-    <p class="nav-label">Menu Admin</p>
-    <ul>
-        <li><a href="<?= BASEURL; ?>/app/views/admin/index.php"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
-        <li><a href="<?= BASEURL; ?>/app/views/admin/relawan.php"><i class="fa-solid fa-users"></i> Data Relawan</a></li>
-        <li><a href="<?= BASEURL; ?>/app/views/admin/validasi.php"><i class="fa-solid fa-check-to-slot"></i> Validasi Program</a></li>
-    </ul>
+    <p class="sidebar-label">Menu Utama</p>
 
-    <div class="profile-footer">
-        <div class="user-card">
-            <div class="avatar"><i class="fa-solid fa-user"></i></div>
-            <div>
-                <p style="font-size: 13px; font-weight: 600;">Admin_Budi</p>
-                <span style="font-size: 11px; color: #64748b;">admin@eventify.id</span>
+    <nav class="sidebar-nav">
+        <a href="<?= BASEURL ?>/app/views/admin/index.php"
+            class="nav-item <?= $current === 'index.php' ? 'active' : '' ?>">
+            <i class='bx bxs-dashboard'></i>
+            Dashboard
+        </a>
+
+        <a href="<?= BASEURL ?>/app/views/admin/manajemen-pengguna.php"
+            class="nav-item <?= $current === 'manajemen-pengguna.php' ? 'active' : '' ?>">
+            <i class='bx bxs-group'></i>
+            Manajemen Pengguna
+        </a>
+
+        <a href="<?= BASEURL ?>/app/views/admin/validasi.php"
+            class="nav-item <?= $current === 'validasi.php' ? 'active' : '' ?>">
+            <i class='bx bxs-check-shield'></i>
+            Validasi Event
+            <?php if ($badge_count > 0): ?>
+                <span class="nav-badge"><?= $badge_count ?></span>
+            <?php endif; ?>
+        </a>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="admin-pill">ADMIN</div>
+        <div class="admin-card">
+            <div class="admin-avatar"><?= $admin_init ?></div>
+            <div class="admin-info">
+                <h4><?= htmlspecialchars($admin_nama) ?></h4>
+                <p><?= htmlspecialchars($admin_email) ?></p>
             </div>
         </div>
-        <a href="<?= BASEURL; ?>/app/controllers/auth/logout.php" class="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar</a>
+        <a href="<?= BASEURL ?>/app/controllers/auth/logout.php" class="logout-btn">
+            <i class='bx bx-log-out'></i>
+            Keluar
+        </a>
     </div>
 </div>
