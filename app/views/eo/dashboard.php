@@ -1,8 +1,8 @@
 <?php
-    require_once '../../config/config.php';
-    require_once '../../../koneksi/koneksi.php';
-
-    session_start();
+    /** @var int $totalEventAktif */
+    /** @var int $totalEventPending */
+    /** @var int $totalPendaftar */
+    /** @var array $listEvent */
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +40,7 @@
             <div class="total-item">
                 <i class="icon" data-lucide="calendar"></i>
                 <div class="total-info">
-                    <span>2</span>
+                    <span><?= $totalEventAktif ?></span>
                     <span>Event Aktif</span>
                 </div>
             </div>
@@ -48,7 +48,7 @@
             <div class="total-item">
                 <i class="icon" data-lucide="clock"></i>
                 <div class="total-info">
-                    <span>2</span>
+                    <span><?= $totalEventPending ?></span>
                     <span>Menunggu Validasi</span>
                 </div>
             </div>
@@ -56,7 +56,7 @@
             <div class="total-item">
                 <i class="icon" data-lucide="users"></i>
                 <div class="total-info">
-                    <span>100</span>
+                    <span><?= $totalPendaftar ?></span>
                     <span>Pendaftar</span>
                 </div>
             </div>
@@ -69,59 +69,31 @@
             </div>
 
             <div class="list-event">
-                <div class="event-item">
-                    <div class="img-and-info">
-                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
-                        <div class="event-info">
-                            <span>Seminar Lampung Jaya</span>
-                            <span>Seminar - Rp 100.000</span>
-                        </div>
-                    </div>
+                <?php if (count($listEvent) > 0) : ?>
+                    <?php foreach (array_slice($listEvent, 0, 4) as $event): ?>
+                        <div class="event-item">
+                            <div class="img-and-info">
+                                <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
+                                <div class="event-info">
+                                    <span><?= $event['judul'] ?></span>
+                                    <span><?= $event['kategori'] . " - Rp " . $event['biaya'] ?></span>
+                                </div>
+                            </div>
 
-                    <span class="status pending">Pending</span>
-                </div>
-
-                <hr>
-                
-                <div class="event-item">
-                    <div class="img-and-info">
-                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
-                        <div class="event-info">
-                            <span>Konser Musik</span>
-                            <span>Konser - Gratis</span>
+                            <?php if ($event['status_publikasi'] == "Pending") : ?>
+                                <span class="status pending"><?= $event['status_publikasi'] ?></span>
+                            <?php elseif ($event['status_publikasi'] == "Dipublikasikan") : ?>
+                                <span class="status published"><?= $event['status_publikasi'] ?></span>
+                            <?php elseif ($event['status_publikasi'] == "Ditolak") : ?>
+                                <span class="status rejected"><?= $event['status_publikasi'] ?></span>
+                            <?php endif; ?>
                         </div>
-                    </div>
 
-                    <span class="status published">Dipublikasi</span>
-                </div>
-                
-                <hr>
-                
-                <div class="event-item">
-                    <div class="img-and-info">
-                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
-                        <div class="event-info">
-                            <span>Konser Musik</span>
-                            <span>Konser - Gratis</span>
-                        </div>
-                    </div>
-                    
-                    <span class="status rejected">Ditolak</span>
-                </div>
-                
-                <hr>
-                
-                <div class="event-item">
-                    <div class="img-and-info">
-                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
-                        <div class="event-info">
-                            <span>Konser Musik</span>
-                            <span>Konser - Gratis</span>
-                        </div>
-                    </div>
-
-                    <span class="status rejected">Ditolak</span>
-                </div>
+                        <hr>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <span class="tidak-ada">Belum ada event</span>
+                <?php endif; ?>
             </div>
 
         </div>

@@ -26,6 +26,7 @@
             if (password_verify($password, $hashed_password)) {
                 $_SESSION['id'] = $id;
                 $_SESSION['nama_lengkap'] = $nama_lengkap;
+                $_SESSION['role'] = $role;
                 
                 if ($role == "Admin") {
                     echo 'login_berhasil_admin';

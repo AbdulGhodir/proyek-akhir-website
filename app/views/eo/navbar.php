@@ -8,12 +8,12 @@
         <div class="menu">
             <div class="menu-utama">
                 <span>Menu Utama</span>
-                <a href="<?= BASEURL; ?>/app/views/eo/dashboard.php" class="menu-item <?php echo ($halamanAktif == 'dashboard') ? 'active' : ''; ?>">
+                <a href="<?= BASEURL; ?>/app/controllers/eo/dashboard.php" class="menu-item <?php echo ($halamanAktif == 'dashboard') ? 'active' : ''; ?>">
                     <i class="icon-menu" data-lucide="layout-dashboard"></i>
                     Dasboard
                 </a>
 
-                <a href="<?= BASEURL; ?>/app/views/eo/event.php" class="menu-item <?php echo ($halamanAktif == 'event') ? 'active' : ''; ?>">
+                <a href="<?= BASEURL; ?>/app/controllers/eo/event.php" class="menu-item <?php echo ($halamanAktif == 'event') ? 'active' : ''; ?>">
                     <i class="icon-menu" data-lucide="calendar-plus"></i>
                     Manajemen Event
                 </a>
@@ -21,7 +21,7 @@
             
             <div class="menu-pendaftar">
                 <span>Pendaftaran & Pembayaran</span>
-                <a href="<?= BASEURL; ?>/app/views/eo/verifikasi.php" class="menu-item <?php echo ($halamanAktif == 'verifikasi') ? 'active' : '' ?>">
+                <a href="<?= BASEURL; ?>/app/controllers/eo/verifikasi.php" class="menu-item <?php echo ($halamanAktif == 'verifikasi') ? 'active' : '' ?>">
                     <i class="icon-menu" data-lucide="badge-check"></i>
                     Verifikasi Pendaftar
                 </a>

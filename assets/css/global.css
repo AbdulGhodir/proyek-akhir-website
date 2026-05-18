@@ -14,3 +14,11 @@ button {
     border: none;
     background-color: #1caae2;
 }
+
+input {
+    border: 1px solid gray;
+}
+
+input:focus {
+    border: 1px solid #1caae2;
+}

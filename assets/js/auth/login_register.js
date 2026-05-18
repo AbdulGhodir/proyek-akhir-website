@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tampilkanNotifikasi('Login berhasil, Selamat Datang Event Organizer!', 'sukses');
                 setTimeout(() => {
                     submitBtn.disabled = false;
-                    window.location.href = BASEURL + '/app/views/eo/dashboard.php';
+                    window.location.href = BASEURL + '/app/controllers/eo/dashboard.php';
                 }, 2000);
             } else if (hasil.trim() === 'login_berhasil_admin') {
                 tampilkanNotifikasi('Login berhasil, Selamat Datang Admin!', 'sukses');

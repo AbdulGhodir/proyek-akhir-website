@@ -180,6 +180,12 @@ section {
     color: gray;
 }
 
+.form-event-baru {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 .form-event, .form-pendaftaran {
     display: flex;
     flex-direction: column;
@@ -189,7 +195,7 @@ section {
     border-radius: 20px;
 }
 
-.form-event span, .form-pendaftaran span:nth-child(1) {
+.header-form {
     font-size: 1.2rem;
     font-weight: 600;
 }
@@ -302,19 +308,80 @@ section {
     flex: 1;
     padding: 10px;
     border-radius: 8px;
-    border: 1px solid gray;
     outline: none;
 }
 
-.row-pertanyaan select {
+.row-pertanyaan .dropdown-tipe-pertanyaan {
     width: 175px;
     padding: 10px;
     border-radius: 8px;
-    border: 1px solid gray;
     outline: none;
 }
 
-.opsi {
+.opsi-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 25px;
+    width: 50%;
+    border-radius: 10px;
+    border: 1px dashed gray;
+    display: none;
+}
+
+.opsi-dropdown.active {
+    display: flex;
+}
+
+.opsi-dropdown span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.input-opsi-dropdown-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-opsi-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.input-opsi-dropdown-item input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.input-opsi-dropdown-item .icon {
+    width: 2rem;
+    height: 2rem;
+    color: red;
+    cursor: pointer;
+    border-radius: 7px;
+    padding: 8px;
+    background-color: rgba(255, 0, 0, 0.116);
+}
+
+.tambah-opsi {
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    width: fit-content;
+    color: #1caae2;
+    cursor: pointer;
+    background-color: transparent;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.bottom-menu-form {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -322,7 +389,7 @@ section {
     justify-content: space-between;
 }
 
-.opsi .icon {
+.bottom-menu-form .icon {
     width: 2rem;
     height: 2rem;
     color: red;
@@ -331,7 +398,7 @@ section {
     padding: 8px;
 }
 
-.opsi .icon:hover {
+.bottom-menu-form .icon:hover {
     background-color: #ff00001c;
 }
 

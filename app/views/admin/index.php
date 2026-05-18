@@ -7,7 +7,7 @@ session_start();
 $q_users = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'User'");
 $total_users = $q_users ? $q_users->fetch_assoc()['total'] : 0;
 
-$q_new = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'User' AND created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)");
+$q_new = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'User'");
 $new_users = ($q_new && $q_new->num_rows) ? $q_new->fetch_assoc()['total'] : 0;
 
 $q_eo = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'EO'");
@@ -17,16 +17,17 @@ $q_pend = $conn->query("SELECT COUNT(*) AS total FROM event WHERE status_publika
 $total_pending = $q_pend ? $q_pend->fetch_assoc()['total'] : 0;
 
 $q_feed = $conn->query("
-    SELECT e.id_event, e.judul, e.kategori, e.created_at, e.cover_image,
+    SELECT e.id_event, e.judul, k.kategori, e.created_at, e.cover_image,
            u.nama_lengkap, u.nama_organisasi
     FROM event e
     JOIN users u ON e.id_user = u.id
+    JOIN kategori k ON e.id_kategori = k.id_kategori
     WHERE e.status_publikasi = 'pending'
     ORDER BY e.created_at DESC
     LIMIT 5
 ");
 
-$q_pulse = $conn->query("SELECT kategori, COUNT(*) AS total FROM event GROUP BY kategori ORDER BY total DESC");
+$q_pulse = $conn->query("SELECT kategori, COUNT(*) AS total FROM kategori GROUP BY kategori ORDER BY total DESC");
 $pulse_data = [];
 $pulse_max = 1;
 if ($q_pulse) {
