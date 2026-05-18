@@ -18,9 +18,7 @@ $current = basename($_SERVER['PHP_SELF']);
 <div class="sidebar">
 
     <div class="sidebar-brand">
-        <img src="https://user10230.na.imgto.link/public/20260503/cuplikan-layar-2026-05-03-215226.avif"
-            alt="Eventify Logo">
-        <span>Eventify</span>
+        <?php include '../components/logo.php'; ?>
     </div>
 
     <p class="sidebar-label">Menu Utama</p>

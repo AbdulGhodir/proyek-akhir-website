@@ -1,10 +1,7 @@
 <nav class="navbar">
   <div class="container nav-wrap">
-
-    <a href="<?= BASEURL; ?>/app/views/user/dashboard.php" class="brand">
-      <img src="<?= BASEURL; ?>/assets/images/logo-eventify.png" alt="Eventify Logo">
-      <span>Eventify</span>
-    </a>
+    
+  <?php include '../components/logo.php'; ?>
 
     <div class="search-box">
       <i class='bx bx-search'></i>
@@ -18,15 +15,15 @@
       </button>
 
       <div class="profile">
-
-        <div class="avatar">
-          <span>I</span>
-        </div>
-
-        <div class="profile-info">
-          <h4>Indri</h4>
-          <p>Pengguna</p>
-        </div>
+        
+      <div class="avatar">
+        <span><?= strtoupper(substr($_SESSION['nama_lengkap'], 0, 1)); ?></span>
+      </div>
+      
+      <div class="profile-info">
+        <h4><?= $_SESSION['nama_lengkap']; ?></h4>
+        <p><?= $_SESSION['role']; ?></p>
+      </div>
 
         <i class='bx bx-chevron-down'></i>
 

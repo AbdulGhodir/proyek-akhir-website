@@ -1,8 +1,7 @@
 <nav>
     <div class="top-navbar">
         <div class="logo">
-            <img src="<?= BASEURL; ?>/assets/images/logo.png" alt="" style="width: 1.5rem; height: 1.5rem; object-fit: cover;">
-            <span>Eventify</span>
+            <?php include '../components/logo.php'; ?>
         </div>
         
         <div class="menu">

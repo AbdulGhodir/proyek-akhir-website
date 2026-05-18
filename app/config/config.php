@@ -1,3 +1,3 @@
 <?php
-define('BASEURL', 'http://localhost/proyek-akhir-website');
+    define('BASEURL', 'http://proyek-akhir-website.test');
 ?>
