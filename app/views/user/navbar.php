@@ -1,10 +1,7 @@
 <nav class="navbar">
   <div class="container nav-wrap">
-
-    <a href="<?= BASEURL; ?>/app/views/user/dashboard.php" class="brand">
-      <img src="<?= BASEURL; ?>/assets/images/logo-eventify.png" alt="Eventify Logo">
-      <span>Eventify</span>
-    </a>
+    
+  <?php include '../components/logo.php'; ?>
 
     <div class="search-box">
       <i class='bx bx-search'></i>

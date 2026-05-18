@@ -17,10 +17,7 @@
 </head>
 <body>
     <header>
-        <div class="icon">
-            <img src="<?= BASEURL; ?>/assets/images/logo.png" alt="" style="width: 1.5rem; height: 1.5rem; object-fit: cover;">
-            <span>ventify</span>
-        </div>
+        <?php include 'app/views/components/logo.php'; ?>
 
         <div class="button">
             <a href="<?= BASEURL; ?>/app/views/auth/login_register.php" class="button-login">Masuk</a>
