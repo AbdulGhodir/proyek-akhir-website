@@ -1,8 +1,12 @@
 <?php
     require_once '../../config/config.php';
     require_once '../../../koneksi/koneksi.php';
+    require_once '../../models/EventModel.php';
     
-    session_start();
+    if (!isset($_SESSION['id']) || $_SESSION['role'] != 'EO') {
+        header("Location: " . BASEURL . "/app/controllers/auth/login.php");
+        exit();
+    }
     
     if (isset($_POST['tambah_event_baru'])) {
         $eventOrganizerID = $_SESSION['id'];
@@ -13,17 +17,28 @@
         $biaya = $_POST['biaya'];
         $lokasi = $_POST['lokasi'];
         $kuota = $_POST['kuota'];
+        $benefit = $_POST['benefit'] == NULL ? NULL : $_POST['benefit'];
         $status = 'pending';
 
-        $query = $conn->prepare("
-            INSERT INTO `event`(`id_user`, `id_kategori`, `judul`, `waktu_pelaksanaan`, `biaya`, `lokasi`, `kuota`, `deskripsi`, `status_publikasi`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ");
-        $query->bind_param("iissisiss", $eventOrganizerID, $kategori, $nama_event, $tanggal, $biaya, $lokasi, $kuota, $deskripsi, $status);
-        $query->execute();
+        $nama_img = $_FILES['cover_img']['name'];
+        $ukuran_img = $_FILES['cover_img']['size'];
+        $tmp_img = $_FILES['cover_img']['tmp_name'];
+        $error_img = $_FILES['cover_img']['error'];
 
-        $idEvent = $conn->insert_id;
-        $query->close();
-        
+        if ($error_img === 0) {
+            $ekstensi_file = pathinfo($nama_img, PATHINFO_EXTENSION);
+            $nama_file_baru = uniqid() . '_' . time() . '.' . $ekstensi_file;
+
+            $folder_tujuan = '../../../assets/images/uploads/' . $nama_file_baru;
+
+            if (move_uploaded_file($tmp_img, $folder_tujuan)) {
+                insertDataEvent($conn, $eventOrganizerID, $kategori, $nama_event, $tanggal, $biaya, $lokasi, $kuota, $deskripsi, $benefit, $nama_file_baru, $status);
+            } else {
+                echo "Maaf, terjadi kesalahan saat mengunggah file Anda.";
+            }
+        }
+
+        $idEvent = $conn->insert_id;        
 
         $listPertanyaan = [];
         $tipePertanyaan = [];
@@ -33,8 +48,6 @@
         $tipePertanyaan = $_POST['tipe_pertanyaan'];
         $opsiDropdown = $_POST['opsi'];
 
-        $query_form = $conn->prepare("INSERT INTO `event_form`(`id_event`, `pertanyaan`, `tipe_input`, `opsi_pilihan`, `wajib_diisi`) VALUES (?, ?, ?, ?, ?)");
-
         for ($i = 0; $i < count($listPertanyaan); $i++) {
             $statusPertanyaan = isset($_POST['wajib'][$i]) ? 1 : 0;
             $dropdownValue = NULL;
@@ -42,13 +55,12 @@
                 $dropdownValue = implode(",", $opsiDropdown[$i]);                
             }
 
-            $query_form->bind_param("isssi", $idEvent, $listPertanyaan[$i], $tipePertanyaan[$i], $dropdownValue, $statusPertanyaan);
-            $query_form->execute();
+            insertDataForm($conn, $idEvent, $listPertanyaan[$i], $tipePertanyaan[$i], $dropdownValue, $statusPertanyaan);
         }
-
-        $query_form->close();
-
-        echo "sukses";
+        echo "<script>alert('Event berhasil ditambahkan!')</script>";
+        header("Location: " . BASEURL . "/app/controllers/eo/event.php");
+        exit();
     }
 
+    require_once '../../views/eo/form_event.php';
 ?>

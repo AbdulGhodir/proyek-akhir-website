@@ -30,7 +30,7 @@
                 <span>Ringkasan event anda di sini</span>
             </div>
             
-            <a href="form_event.php">
+            <a href="<?= BASEURL; ?>/app/controllers/eo/form_event.php">
                 <i class="icon" data-lucide="plus"></i>
                 Buat Event Baru
             </a>
@@ -73,7 +73,7 @@
                     <?php foreach (array_slice($listEvent, 0, 4) as $event): ?>
                         <div class="event-item">
                             <div class="img-and-info">
-                                <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
+                                <img src="<?= BASEURL; ?>/assets/images/uploads/<?= $event['cover_image']; ?>" alt="">
                                 <div class="event-info">
                                     <span><?= $event['judul'] ?></span>
                                     <span><?= $event['kategori'] . " - Rp " . $event['biaya'] ?></span>

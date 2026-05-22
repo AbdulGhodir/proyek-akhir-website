@@ -1,7 +1,7 @@
 <nav>
     <div class="top-navbar">
         <div class="logo">
-            <?php include '../components/logo.php'; ?>
+            <?php include '../../views/components/logo.php'; ?>
         </div>
         
         <div class="menu">

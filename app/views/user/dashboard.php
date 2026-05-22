@@ -1,10 +1,5 @@
 <?php
-require_once '../../config/config.php';
-require_once '../../../koneksi/koneksi.php';
-
-session_start();
-
-$pageTitle = "Dashboard Pengguna | Eventify";
+/** @var string $pageTitle */
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +102,7 @@ $pageTitle = "Dashboard Pengguna | Eventify";
             </span>
           </div>
 
-          <a href="<?= BASEURL; ?>/app/views/user/detail-event.php?id=1" class="feature-btn">
+          <a href="<?= BASEURL; ?>/app/controllers/user/detail-event.php?id=1" class="feature-btn">
             Lihat Detail Event
           </a>
 
@@ -168,7 +163,7 @@ $pageTitle = "Dashboard Pengguna | Eventify";
               <span><i class='bx bx-buildings'></i> Radisson Lampung Kedaton</span>
             </div>
 
-            <a href="<?= BASEURL; ?>/app/views/user/detail-event.php?id=2" class="btn-primary">
+            <a href="<?= BASEURL; ?>/app/controllers/user/detail-event.php?id=2" class="btn-primary">
               Lihat Detail
             </a>
           </div>
@@ -193,7 +188,7 @@ $pageTitle = "Dashboard Pengguna | Eventify";
               <span><i class='bx bx-buildings'></i> Green Lampung</span>
             </div>
 
-          <a href="<?= BASEURL; ?>/app/views/user/detail-event.php?id=3" class="btn-primary">
+          <a href="<?= BASEURL; ?>/app/controllers/user/detail-event.php?id=3" class="btn-primary">
               Lihat Detail
             </a>
           </div>
@@ -218,7 +213,7 @@ $pageTitle = "Dashboard Pengguna | Eventify";
               <span><i class='bx bx-buildings'></i> TechTalk ID</span>
             </div>
 
-            <a href="<?= BASEURL; ?>/app/views/user/detail-event.php?id=4" class="btn-primary">
+            <a href="<?= BASEURL; ?>/app/controllers/user/detail-event.php?id=4" class="btn-primary">
               Lihat Detail
             </a>
           </div>

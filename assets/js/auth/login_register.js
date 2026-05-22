@@ -11,10 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let swapped = false;
 
-    const urlParams = new URLSearchParams(window.location.search);
-    
-    if (urlParams.get('mode') === 'daftar') {
-        card.classList.add('swapped');
+    if (card.classList.contains('swapped')) {
         kotakBiru.classList.add('swapped');
         swapped = true;
     }
@@ -25,13 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     swapToLeftBtn.addEventListener('click', () => {
         if (!swapped) {
-            window.history.pushState({}, '', '?mode=daftar');
             card.classList.add('animated-left');
             card.classList.add('swapped');
             
             setTimeout(() => {
                 card.classList.remove('animated-left');
                 kotakBiru.classList.add('swapped');
+                window.location.href = BASEURL + '/app/controllers/auth/register.php';
                 
                 swapped = true;
             }, 1400);
@@ -40,13 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     swapToRightBtn.addEventListener('click', () => {
         if (swapped) {
-            window.history.pushState({}, '', window.location.pathname);
             card.classList.add('animated-right');
             card.classList.remove('swapped');
             
             setTimeout(() => {
                 card.classList.remove('animated-right');
                 kotakBiru.classList.remove('swapped');
+                window.location.href = BASEURL + '/app/controllers/auth/login.php';
                 
                 swapped = false;
             }, 1400);
@@ -128,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             body: dataForm
         })
         .then(response => response.text())
-        .then(hasil => {
+        .then(hasil => {            
             if (hasil.trim() === 'email_terdaftar') {
                 tampilkanNotifikasi('Email sudah terdaftar!', 'error');
                 setTimeout(() => {
@@ -158,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const submitBtn = document.getElementById('btn-masuk');
         submitBtn.disabled = true;
-
+        
         const dataForm = new FormData(formLogin);
         dataForm.append('masuk', 'true');
 
@@ -172,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tampilkanNotifikasi('Login berhasil, Selamat Datang!', 'sukses');
                 setTimeout(() => {
                     submitBtn.disabled = false;
-                    window.location.href = BASEURL + '/app/views/user/dashboard.php';
+                    window.location.href = BASEURL + '/app/controllers/user/dashboard.php';
                 }, 2000);
             } else if (hasil.trim() === 'login_berhasil_eo') {
                 tampilkanNotifikasi('Login berhasil, Selamat Datang Event Organizer!', 'sukses');

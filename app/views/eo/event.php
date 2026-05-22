@@ -1,8 +1,5 @@
 <?php
-    require_once '../../config/config.php';
-    require_once '../../../koneksi/koneksi.php';
-
-    session_start();
+    /** @var array $listEvent */
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +26,7 @@
                 <span>Kelola seluruh event milik anda</span>
             </div>
 
-            <a href="<?= BASEURL; ?>/app/views/eo/form_event.php" class="buat-event">
+            <a href="<?= BASEURL; ?>/app/controllers/eo/form_event.php" class="buat-event">
                 <i class="icon" data-lucide="plus"></i>
                 Buat Event
             </a>
@@ -47,86 +44,58 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
-                            <div class="event-info">
-                                <a>Webinar Vibe Coding</a>
-                                <span>Webinar</span>
-                            </div>
-                        </td>
-                        <td>22 Mei 2026 pukul 09.00</td>
-                        <td>Rp 750.000</td>
-                        <td>
-                            <span class="status published">Dipublikasikan</span>
-                        </td>
-                        <td>
-                            <div class="tombol-aksi">
-                                <button class="btn-edit">
-                                    <i class="icon" data-lucide="edit"></i>
-                                </button>
-                                
-                                <button class="btn-delete">
-                                    <i class="icon" data-lucide="trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
-                            <div class="event-info">
-                                <a>Webinar Vibe Coding</a>
-                                <span>Webinar</span>
-                            </div>
-                        </td>
-                        <td>22 Mei 2026 pukul 09.00</td>
-                        <td>Rp 750.000</td>
-                        <td>
-                            <span class="status published">Dipublikasikan</span>
-                        </td>
-                        <td>
-                            <div class="tombol-aksi">
-                                <button class="btn-edit">
-                                    <i class="icon" data-lucide="edit"></i>
-                                </button>
-                                
-                                <button class="btn-delete">
-                                    <i class="icon" data-lucide="trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
-                            <div class="event-info">
-                                <a>Webinar Vibe Coding</a>
-                                <span>Webinar</span>
-                            </div>
-                        </td>
-                        <td>22 Mei 2026 pukul 09.00</td>
-                        <td>Rp 750.000</td>
-                        <td>
-                            <span class="status published">Dipublikasikan</span>
-                        </td>
-                        <td>
-                            <div class="tombol-aksi">
-                                <button class="btn-edit">
-                                    <i class="icon" data-lucide="edit"></i>
-                                </button>
-                                
-                                <button class="btn-delete">
-                                    <i class="icon" data-lucide="trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    <?php foreach ($listEvent as $event) : ?>
+                        <tr>
+                            <td>
+                                <img src="<?= BASEURL; ?>/assets/images/uploads/<?= $event['cover_image'] ?>" alt="">
+                                <div class="event-info">
+                                    <a><?= $event['judul'] ?></a>
+                                    <span><?= $event['kategori'] ?></span>
+                                </div>
+                            </td>
+                            <td><?= formatTanggalIndo($event['waktu_pelaksanaan']) ?></td>
+                            <td><?= formatRupiah($event['biaya']) ?></td>
+                            <td>
+                                <?php if ($event['status_publikasi'] == "Pending") : ?>
+                                    <span class="status pending"><?= $event['status_publikasi'] ?></span>
+                                <?php elseif ($event['status_publikasi'] == "Dipublikasikan") : ?>
+                                    <span class="status published"><?= $event['status_publikasi'] ?></span>
+                                <?php elseif ($event['status_publikasi'] == "Ditolak") : ?>
+                                    <span class="status rejected"><?= $event['status_publikasi'] ?></span>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <div class="tombol-aksi">
+                                    <button class="btn-edit">
+                                        <i class="icon" data-lucide="edit"></i>
+                                    </button>
+                                    
+                                    <button class="btn-delete" data-id="<?= $event['id_event'] ?>" data-nama="<?= $event['judul'] ?>">
+                                        <i class="icon" data-lucide="trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
                 </tbody>
             </table>
         </div>
     </section>
 
+    <div class="overlay" id="modal">
+        <div class="konfirmasi-hapus">
+            <h2>Hapus Event</h2>
+            <span>Apakah anda yakin ingin menghapus event <strong id="namaEvent"></strong>?</span>
+            <form action="<?= BASEURL; ?>/app/controllers/eo/event.php" method="POST" class="tombol-konfirmasi">
+                <input type="hidden" name="id" id="idEvent">
+
+                <button type="button" class="btn-batal" id="btnBatal">Batal</button>
+                <button type="submit" class="btn-hapus" name="hapus_event">Hapus</button>
+            </form>
+        </div>
+    </div>
+
     <script src="<?= BASEURL; ?>/assets /js/global.js"></script>
+    <script src="<?= BASEURL; ?>/assets/js/eo/event.js"></script>
 </body>
 </html>

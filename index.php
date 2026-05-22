@@ -20,8 +20,8 @@
         <?php include 'app/views/components/logo.php'; ?>
 
         <div class="button">
-            <a href="<?= BASEURL; ?>/app/views/auth/login_register.php" class="button-login">Masuk</a>
-            <a href="<?= BASEURL; ?>/app/views/auth/login_register.php?mode=daftar" class="button-register">Daftar</a>
+            <a href="<?= BASEURL; ?>/app/controllers/auth/login.php" class="button-login">Masuk</a>
+            <a href="<?= BASEURL; ?>/app/controllers/auth/register.php" class="button-register">Daftar</a>
         </div>
     </header>
 

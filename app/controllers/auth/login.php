@@ -1,28 +1,38 @@
 <?php
     require_once '../../config/config.php';
     require_once '../../../koneksi/koneksi.php';
+    require_once '../../models/UserModel.php';
     
-    session_start();
+    if (isset($_SESSION['id'])) {
+        if ($_SESSION['role'] == "Admin") {
+            header("Location: " . BASEURL . "/app/views/admin/index.php");
+            exit();
+        }
+        
+        if ($_SESSION['role'] == "EO") {
+            header("Location: " . BASEURL . "/app/controllers/eo/dashboard.php");
+            exit();
+        }
+
+        if ($_SESSION['role'] == "User") {
+            header("Location: " .   BASEURL . "/app/controllers/user/dashboard.php");
+            exit();
+        }
+    }
     
     if (isset($_POST['masuk'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $stmt = $conn->prepare("SELECT id, nama_lengkap, nama_organisasi, password, role FROM users WHERE email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $stmt->store_result();
+        $user = getDataUserByEmail($conn, $email);
 
-        if ($stmt->num_rows > 0) {
-            $id = "";
-            $nama_lengkap = "";
-            $nama_organisasi = "";
-            $hashed_password = "";
-            $role = "";
-            
-            $stmt->bind_result($id, $nama_lengkap, $nama_organisasi, $hashed_password, $role);
-            $stmt->fetch();
-
+        if ($user) {
+            $id = $user['id'];
+            $nama_lengkap = $user['nama_lengkap'];
+            $nama_organisasi = $user['nama_organisasi'];
+            $hashed_password = $user['password'];
+            $role = $user['role'];
+                        
             if (password_verify($password, $hashed_password)) {
                 $_SESSION['id'] = $id;
                 $_SESSION['nama_lengkap'] = $nama_lengkap;
@@ -39,20 +49,17 @@
 
                 if ($role == "User") {
                     echo 'login_berhasil_user';
-                }
-
-                $stmt->close();
-                exit();
-                
+                }        
             } else {
                 echo 'login_gagal';
-                $stmt->close();
-                exit();
             }
         } else {
             echo 'login_gagal';
-            $stmt->close();
-            exit();
         }
+
+        exit();
     }
+
+    $mode = "login";
+    require_once '../../views/auth/login_register.php';
 ?>

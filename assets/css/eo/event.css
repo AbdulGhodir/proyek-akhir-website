@@ -324,3 +324,80 @@ td .btn-edit .icon {
 td .btn-delete .icon {
     color: #EF4444;
 }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000068;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.konfirmasi-hapus {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    gap: 30px;
+}
+
+.konfirmasi-hapus h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.konfirmasi-hapus span {
+    font-size: 0.9rem;
+}
+
+.tombol-konfirmasi {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.tombol-konfirmasi button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.tombol-konfirmasi .btn-batal {
+    background-color: #f4f9ff;
+    color: #1caae2;
+    box-shadow: 0px 2px 5px #0000001c;
+    transition: 0.2s ease-in-out;
+}
+
+.tombol-konfirmasi .btn-batal:hover {
+    transform: scale(1.1);
+}
+
+.tombol-konfirmasi .btn-hapus {
+    background-color: #EF4444;
+    color: #fff;
+    box-shadow: 0px 2px 5px #0000001c;
+    transition: 0.2s ease-in-out;
+}
+
+.tombol-konfirmasi .btn-hapus:hover {
+    transform: scale(1.1);
+}

@@ -1,8 +1,5 @@
 <?php
-    require_once '../../config/config.php';
-    require_once '../../../koneksi/koneksi.php';
-
-    session_start();
+    /** @var array $listPendaftaran */
 ?>
 
 <!DOCTYPE html>
@@ -49,42 +46,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <span>Abdul Somad</span>
-                            <span>abdul@email.com</span>
-                        </td>
-                        <td>Webinar Coding</td>
-                        <td>Senin, 02 Juni 2025<br>09.00 WIB</td>
-                        <td>
-                            <span class="status confirmed">Terverifikasi</span>
-                        </td>
-                        <td><button class="lihat-jawaban">Lihat Jawaban</button></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>Abdul Somad</span>
-                            <span>abdul@email.com</span>
-                        </td>
-                        <td>Webinar Coding</td>
-                        <td>Senin, 02 Juni 2025<br>09.00 WIB</td>
-                        <td>
-                            <span class="status confirmed">Terverifikasi</span>
-                        </td>
-                        <td><button class="lihat-jawaban">Lihat Jawaban</button></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>Abdul Somad</span>
-                            <span>abdul@email.com</span>
-                        </td>
-                        <td>Webinar Coding</td>
-                        <td>Senin, 02 Juni 2025<br>09.00 WIB</td>
-                        <td>
-                            <span class="status confirmed">Terverifikasi</span>
-                        </td>
-                        <td><button class="lihat-jawaban">Lihat Jawaban</button></td>
-                    </tr>
+                    <?php foreach ($listPendaftaran as $pendaftaran) : ?>
+                        <tr>
+                            <td>
+                                <span><?= $pendaftaran['nama_lengkap']; ?></span>
+                                <span><?= $pendaftaran['email']; ?></span>
+                            </td>
+                            <td><?= $pendaftaran['nama_event']; ?></td>
+                            <td><?= formatTanggalIndo($pendaftaran['tanggal_daftar']); ?></td>
+                            <td>
+                                <?php 
+                                    if ($pendaftaran['status_pendaftaran'] == 'menunggu') {
+                                        echo '<span class="status pending">Pending</span>';
+                                    } elseif ($pendaftaran['status_pendaftaran'] == 'diterima') {
+                                        echo '<span class="status confirmed">Terverifikasi</span>';
+                                    } elseif ($pendaftaran['status_pendaftaran'] == 'ditolak') {
+                                        echo '<span class="status rejected">Ditolak</span>';
+                                    }
+                                ?>
+                            </td>
+                            <td><button class="lihat-jawaban" data-id-pendaftaran="<?= $pendaftaran['id_pendaftaran']; ?>" data-status-pendaftaran="<?= $pendaftaran['status_pendaftaran']; ?>">Lihat Jawaban</button></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
@@ -101,28 +84,7 @@
                     <i data-lucide="x" class="icon"></i>
                 </div>
     
-                <div class="list-jawaban">
-                    <div class="jawaban-item">
-                        <span class="pertanyaan">Nama Lengkap</span>
-                        <span class="jawaban">Abdul Somad</span>
-                    </div>
-                    <div class="jawaban-item">
-                        <span class="pertanyaan">Email</span>
-                        <span class="jawaban">abdul@eventify.com</span>
-                    </div>
-                    <div class="jawaban-item">
-                        <span class="pertanyaan">Nomor Telepon</span>
-                        <span class="jawaban">08123456789</span>
-                    </div>
-                    <div class="jawaban-item">
-                        <span class="pertanyaan">Alamat</span>
-                        <span class="jawaban">Jl. Contoh No. 123</span>
-                    </div>
-                    <div class="jawaban-item">
-                        <span class="pertanyaan">Motivasi</span>
-                        <span class="jawaban">Saya ingin belajar coding</span>
-                    </div>
-                </div>
+                <div class="list-jawaban"></div>
             </div>
 
             <div class="button">
@@ -133,15 +95,50 @@
     </div>
             
     <script src="<?= BASEURL; ?>/assets/js/global.js"></script>
+    <script>const BASEURL = "<?= BASEURL; ?>";</script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const overlay = document.querySelector('.overlay');
             const close = document.querySelector('.jawaban-overlay .icon');
             const lihatJawaban = document.querySelectorAll('.lihat-jawaban');
+            const listJawaban = document.querySelector('.list-jawaban');
+            const buttonKeputusan = document.querySelector('.jawaban-overlay .button');
 
             lihatJawaban.forEach(button => {
                 button.addEventListener('click', () => {
-                    overlay.classList.add('active');
+                    const idPendaftaran = button.getAttribute('data-id-pendaftaran');
+                    const statusPendaftaran = button.getAttribute('data-status-pendaftaran');
+
+                    if (statusPendaftaran != 'menunggu') {
+                        buttonKeputusan.classList.add('hidden');
+                    } else {
+                        buttonKeputusan.classList.remove('hidden');
+                    }
+
+                    listJawaban.innerHTML = '';
+
+                    let formData = new FormData();
+                    formData.append('lihat_jawaban', 'true');
+                    formData.append('id_pendaftaran', idPendaftaran);
+
+                    fetch(BASEURL + '/app/controllers/eo/verifikasi.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(jawaban => {
+                            listJawaban.innerHTML += `
+                                <div class="jawaban-item">
+                                    <span class="pertanyaan">${jawaban.pertanyaan}</span>
+                                    <span class="jawaban">${jawaban.jawaban}</span>
+                                </div>
+                            `;
+                        });
+
+                        overlay.classList.add('active');
+                    })
+                    .catch(error => console.error('Error:', error));
                 });
             });
 

@@ -1,10 +1,3 @@
-<?php
-    require_once '../../config/config.php';
-    require_once '../../../koneksi/koneksi.php';
-
-    session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,24 +25,24 @@
             </div>
         </div>
 
-        <form class="form-event-baru" action="<?= BASEURL; ?>/app/controllers/eo/form_event.php" method="POST">
+        <form class="form-event-baru" action="<?= BASEURL; ?>/app/controllers/eo/form_event.php" method="POST" enctype="multipart/form-data">
             <div class="form-event">
                 <span class="header-form">Detail Event</span>
     
                 <div class="detail-form-event">
                     <div class="input-group">
-                        <label for="nama_event">Nama Event</label>
+                        <label for="nama_event" class="wajib-diisi">Nama Event</label>
                         <input type="text" id="nama_event" name="nama_event" placeholder="Contoh: Webinar Cyber Security" required>
                     </div>
     
                     <div class="input-group">
-                        <label for="deskripsi">Deskripsi</label>
+                        <label for="deskripsi" class="wajib-diisi">Deskripsi</label>
                         <textarea id="deskripsi" name="deskripsi" placeholder="Jelaskan detail event..." required></textarea>
                     </div>
     
                     <div class="input-row">
                         <div class="input-group-row">
-                            <label for="kategori">Kategori</label>
+                            <label for="kategori" class="wajib-diisi">Kategori</label>
                             <select name="kategori" id="kategori" required>
                                 <option value="1">Volunteer</option>
                                 <option value="2">Seminar</option>
@@ -60,32 +53,38 @@
                         </div>
     
                         <div class="input-group-row">
-                            <label for="tanggal">Tanggal & Waktu</label>
+                            <label for="tanggal" class="wajib-diisi">Tanggal & Waktu</label>
                             <input type="datetime-local" id="tanggal" name="tanggal" required>
                         </div>
                     </div>
     
                     <div class="input-row">
                         <div class="input-group-row">
-                            <label for="harga">Biaya</label>
+                            <label for="harga" class="wajib-diisi">Biaya</label>
                             <input type="text" id="biaya" name="biaya" placeholder="Rp 0 (Gratis) atau Harga" required>
                         </div>
     
                         <div class="input-group-row">
-                            <label for="lokasi">Lokasi / Link Platform</label>
+                            <label for="lokasi" class="wajib-diisi">Lokasi / Link Platform</label>
                             <input type="text" id="lokasi" name="lokasi" placeholder="Contoh: Aula Unila / Link Zoom" required>
                         </div>
                     </div>
     
                     <div class="input-row">
                         <div class="input-group-row">
-                            <label for="kuota">Kuota / Kapasitas Peserta</label>
-                            <input type="number" id="kuota" name="kuota" placeholder="Contoh: 150" required>
+                            <label for="benefit">Benefit</label>
+                            <textarea name="benefit" id="benefit" placeholder="Contoh: E-sertifikat, Doorprize, dll"></textarea>
                         </div>
-    
-                        <div class="input-group-row">
-                            <label for="gambar">Cover Event</label>
-                            <input type="file" id="gambar" accept="image/*">
+                        <div class="input-group-column">
+                            <div class="input-group">
+                                <label for="kuota" class="wajib-diisi">Kuota / Kapasitas Peserta</label>
+                                <input type="number" id="kuota" name="kuota" placeholder="Contoh: 150" required>
+                            </div>
+        
+                            <div class="input-group">
+                                <label for="cover_img" class="wajib-diisi">Cover Event</label>
+                                <input type="file" name="cover_img" id="cover_img" accept="image/*" required>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -100,7 +99,7 @@
                 <div class="detail-form-pendaftaran">
                     <div class="input-group-pendaftaran">
                         <div class="row-pertanyaan">
-                            <input type="text" name="pertanyaan[0]" placeholder="Masukkan Pertanyaan">
+                            <input type="text" name="pertanyaan[0]" placeholder="Masukkan Pertanyaan" required>
                             <select name="tipe_pertanyaan[0]" class="dropdown-tipe-pertanyaan" onchange="aktifkanOpsiDropdown(this)">
                                 <option value="teks">Jawaban Singkat</option>
                                 <option value="paragraf">Paragraf</option>
@@ -115,11 +114,11 @@
                             <span>Masukkan Pilihan:</span>
                             <div class="input-opsi-dropdown-group">
                                 <div class="input-opsi-dropdown-item">
-                                    <input type="text" name="opsi[0][]" value="Opsi 1">
+                                    <input type="text" name="opsi[0][]" value="Opsi 1" required>
                                     <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove()"></i>
                                 </div>
                                 <div class="input-opsi-dropdown-item">
-                                    <input type="text" name="opsi[0][]" value="Opsi 2">
+                                    <input type="text" name="opsi[0][]" value="Opsi 2" required>
                                     <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove()"></i>
                                 </div>
                             </div>
@@ -127,9 +126,9 @@
                         </div>
     
                         <div class="bottom-menu-form">
-                            <div class="wajib-diisi">
+                            <div class="checkbox-wajib">
                                 <input type="checkbox" name="wajib[0]">
-                                <label for="wajib">Wajib Diisi</label>
+                                <label for="wajib" class="wajib-diisi">Wajib Diisi</label>
                             </div>
                             <i class="icon" data-lucide="trash-2" onclick="this.parentElement.parentElement.remove()"></i>
                         </div>

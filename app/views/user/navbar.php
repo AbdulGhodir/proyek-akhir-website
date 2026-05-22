@@ -1,7 +1,7 @@
 <nav class="navbar">
   <div class="container nav-wrap">
     
-  <?php include '../components/logo.php'; ?>
+  <?php include '../../views/components/logo.php'; ?>
 
     <div class="search-box">
       <i class='bx bx-search'></i>
@@ -33,7 +33,7 @@
             <span>Profil Saya</span>
           </a>
 
-          <a href="<?= BASEURL; ?>/app/views/user/riwayat-pendaftaran.php">
+          <a href="<?= BASEURL; ?>/app/controllers/user/riwayat-pendaftaran.php">
             <i class='bx bx-receipt'></i>
             <span>Riwayat Pendaftaran</span>
           </a>

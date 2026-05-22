@@ -272,6 +272,16 @@ section {
     color: #10B981;
 }
 
+.status.pending {
+    background-color: #F59E0B1c;
+    color: #F59E0B;
+}
+
+.status.rejected {
+    background-color: #EF44441c;
+    color: #EF4444;
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -391,6 +401,10 @@ section {
     display: flex;
     justify-content: flex-end;
     gap: 15px;
+}
+
+.jawaban-overlay .button.hidden {
+    display: none;
 }
 
 .jawaban-overlay .button .tolak, 

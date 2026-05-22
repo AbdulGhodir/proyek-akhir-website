@@ -224,6 +224,19 @@ section {
     gap: 5px;
 }
 
+.input-group-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.wajib-diisi::after {
+    content: " *";
+    color: red;
+    font-weight: 700;
+}
+
 .form-event input {
     padding: 10px;
     border-radius: 8px;
@@ -253,18 +266,19 @@ section {
     outline: none;
     resize: vertical;
     min-height: 100px;
+    height: 100%;
 }
 
 .form-event textarea:focus {
     border: 1px solid #1caae2;
 }
 
-.form-event input[id="gambar"] {
+.form-event input[id="cover_img"] {
     border-radius: 10px;
     border: 1px solid gray;
     font-size: 0.85rem;
     cursor: pointer;
-    padding: 6px;
+    padding: 7px;
 }
 
 .form-event label {
@@ -402,13 +416,13 @@ section {
     background-color: #ff00001c;
 }
 
-.wajib-diisi {
+.checkbox-wajib {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.wajib-diisi label {
+.checkbox-wajib label {
     font-size: 0.85rem;
     font-weight: 600;
     color: #333;
