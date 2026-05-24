@@ -29,30 +29,30 @@
       <div class="detail-info">
 
         <div class="detail-badges">
-          <span class="badge blue"><?= $event['type']; ?></span>
-          <span class="badge yellow"><?= $event['price']; ?></span>
+          <span class="badge blue"><?= $event['kategori']; ?></span>
+          <span class="badge yellow"><?= formatRupiah($event['biaya']); ?></span>
         </div>
 
-        <h1><?= $event['title']; ?></h1>
+        <h1><?= $event['judul']; ?></h1>
 
         <p class="detail-subtitle">
-          <?= $event['desc']; ?>
+          <?= $event['deskripsi']; ?>
         </p>
 
         <div class="detail-meta">
           <span>
             <i class='bx bx-calendar'></i>
-            <?= $event['date']; ?>
+            <?= formatTanggalIndo($event['waktu_pelaksanaan']); ?>
           </span>
 
           <span>
             <i class='bx bx-time-five'></i>
-            <?= $event['time']; ?>
+            <?= date('H:i', strtotime($event['waktu_pelaksanaan'])) . ' WIB'; ?>
           </span>
 
           <span>
             <i class='bx bx-map'></i>
-            <?= $event['location']; ?>
+            <?= $event['lokasi']; ?>
           </span>
 
           <span>
@@ -67,7 +67,7 @@
         class="detail-banner"
         style="background-image:
         linear-gradient(rgba(0,0,0,.18), rgba(0,0,0,.18)),
-        url('<?= $event['image']; ?>');"
+        url('<?= BASEURL . '/assets/images/uploads/' . $event['cover_image']; ?>');"
       ></div>
 
     </div>
@@ -79,7 +79,7 @@
         <div class="detail-card">
           <h2>Tentang Event</h2>
 
-          <p><?= $event['desc']; ?></p>
+          <p><?= $event['deskripsi']; ?></p>
 
         </div>
 
@@ -103,22 +103,22 @@
 
           <div class="register-info">
             <span>Biaya</span>
-            <strong><?= $event['price']; ?></strong>
+            <strong><?= formatRupiah($event['biaya']); ?></strong>
           </div>
 
           <div class="register-info">
             <span>Tanggal</span>
-            <strong><?= $event['date']; ?></strong>
+            <strong><?= formatTanggalIndo($event['waktu_pelaksanaan']); ?></strong>
           </div>
 
           <div class="register-info">
             <span>Waktu</span>
-            <strong><?= $event['time']; ?></strong>
+            <strong><?= date('H:i', strtotime($event['waktu_pelaksanaan'])) . ' WIB'; ?></strong>
           </div>
-
-         <a href="<?= BASEURL; ?>/app/controllers/user/register-event.php" class="btn-primary">
+          
+          <a href="<?= BASEURL; ?>/app/controllers/user/register-event.php?id=<?= $event['id_event']; ?>" class="btn-primary">
             Daftar Sekarang
-        </a>
+          </a>
         </div>
         
         <div class="organizer-card">
@@ -126,10 +126,10 @@
 
             <div class="organizer-box">
                 <div class="organizer-logo">
-                    <?= $event['logo']; ?>
+                    <?= strtoupper(substr($event['nama_lengkap'], 0, 1)); ?>
                 </div>
                 <div>
-                    <h4><?= $event['organizer']; ?></h4>
+                    <h4><?= $event['nama_lengkap']; ?></h4>
                     <p>Terverifikasi</p>
                 </div>
             </div>

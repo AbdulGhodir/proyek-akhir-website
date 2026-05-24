@@ -1,5 +1,6 @@
 <?php
-    define('BASEURL', 'http://proyek-akhir-website.test');
+    // define('BASEURL', 'http://proyek-akhir-website.test');
+    define('BASEURL', 'http://localhost/proyek-akhir-website');
 
     if (session_status() == PHP_SESSION_NONE) {
         session_start();

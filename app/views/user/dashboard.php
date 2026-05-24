@@ -144,82 +144,39 @@
 
       <div class="event-grid">
 
-        <div class="event-card">
-          <div class="event-thumb thumb-1"></div>
+  <?php foreach ($events as $event) : ?>
+    <div class="event-card">
 
-          <div class="event-body">
-            <div class="badges">
-              <span class="badge blue">Seminar</span>
-              <span class="badge yellow">Gratis</span>
-            </div>
+      <div
+        class="event-thumb"
+        style="background-image: url('<?= BASEURL; ?>/assets/images/uploads/<?= $event['cover_image']; ?>');"
+      ></div>
 
-            <h3 class="event-title">
-              Digital Marketing for Beginner
-            </h3>
-
-            <div class="meta">
-              <span><i class='bx bx-calendar'></i> 12 Mei 2026</span>
-              <span><i class='bx bx-map'></i> Bandar Lampung</span>
-              <span><i class='bx bx-buildings'></i> Radisson Lampung Kedaton</span>
-            </div>
-
-            <a href="<?= BASEURL; ?>/app/controllers/user/detail-event.php?id=2" class="btn-primary">
-              Lihat Detail
-            </a>
-          </div>
+      <div class="event-body">
+        <div class="badges">
+          <span class="badge blue"><?= $event['kategori']; ?></span>
+          <span class="badge yellow"><?= formatRupiah($event['biaya']); ?></span>
         </div>
 
-        <div class="event-card">
-          <div class="event-thumb thumb-2"></div>
+        <h3 class="event-title">
+          <?= $event['judul']; ?>
+        </h3>
 
-          <div class="event-body">
-            <div class="badges">
-              <span class="badge blue">Volunteer</span>
-              <span class="badge yellow">Gratis</span>
-            </div>
-
-            <h3 class="event-title">
-              Coastal Cleanup Movement
-            </h3>
-
-            <div class="meta">
-              <span><i class='bx bx-calendar'></i> 15 Mei 2026</span>
-              <span><i class='bx bx-map'></i> Pantai Mutun</span>
-              <span><i class='bx bx-buildings'></i> Green Lampung</span>
-            </div>
-
-          <a href="<?= BASEURL; ?>/app/controllers/user/detail-event.php?id=3" class="btn-primary">
-              Lihat Detail
-            </a>
-          </div>
+        <div class="meta">
+          <span><i class='bx bx-calendar'></i> <?= formatTanggalIndo($event['waktu_pelaksanaan']); ?></span>
+          <span><i class='bx bx-map'></i> <?= $event['lokasi']; ?></span>
+          <span><i class='bx bx-buildings'></i> <?= $event['nama_lengkap']; ?></span>
         </div>
 
-        <div class="event-card">
-          <div class="event-thumb thumb-3"></div>
-
-          <div class="event-body">
-            <div class="badges">
-              <span class="badge blue">Webinar</span>
-              <span class="badge yellow">Rp25.000</span>
-            </div>
-
-            <h3 class="event-title">
-              AI For Student Career
-            </h3>
-
-            <div class="meta">
-              <span><i class='bx bx-calendar'></i> 21 Mei 2026</span>
-              <span><i class='bx bx-map'></i> Zoom Meeting</span>
-              <span><i class='bx bx-buildings'></i> TechTalk ID</span>
-            </div>
-
-            <a href="<?= BASEURL; ?>/app/controllers/user/detail-event.php?id=4" class="btn-primary">
-              Lihat Detail
-            </a>
-          </div>
-        </div>
-
+        <a href="<?= BASEURL; ?>/app/controllers/user/detail-event.php?id=<?= $event['id_event']; ?>" class="btn-primary">
+          Lihat Detail
+        </a>
       </div>
+
+    </div>
+  <?php endforeach; ?>
+
+</div>
 
     </div>
   </section>
