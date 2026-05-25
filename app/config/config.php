@@ -16,7 +16,8 @@
         $tahun = date('Y', $timestamp);
         $jam_menit = date('H:i', $timestamp);
 
-        return $hari . ' ' . $bulan[$bulan_angka] . ' ' . $tahun . ' pukul ' . $jam_menit;
+        // return $hari . ' ' . $bulan[$bulan_angka] . ' ' . $tahun . ' pukul ' . $jam_menit;
+        return $hari . ' ' . $bulan[$bulan_angka] . ' ' . $tahun;
     }
 
     function formatRupiah($angka) {
@@ -24,7 +25,7 @@
         return "Gratis";
     }
     
-    $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
+    $hasil_rupiah = "Rp" . number_format($angka, 0, ',', '.') . ",-";
     return $hasil_rupiah;
 }
 ?>
