@@ -1121,3 +1121,108 @@ button,input{
     font-size:22px;
   }
 }
+/* =========================================
+   E-TICKET PAGE STYLES
+   ========================================= */
+.ticket-page {
+    padding: 40px 0 80px;
+}
+.ticket-container {
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+}
+.btn-back-ticket {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    color: var(--primary-dark);
+    font-weight: 700;
+    transition: 0.2s;
+}
+.btn-back-ticket:hover {
+    transform: translateX(-4px);
+}
+.ticket-card {
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    display: flex;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+}
+.ticket-info {
+    padding: 32px;
+    flex: 2;
+}
+.ticket-info h2 {
+    color: var(--primary-dark);
+    margin: 0 0 16px 0;
+    font-size: 24px;
+    font-weight: 800;
+}
+.ticket-info p {
+    color: var(--text);
+    margin: 10px 0;
+    font-size: 15px;
+}
+.ticket-info p strong {
+    color: var(--muted);
+    display: inline-block;
+    width: 80px;
+}
+.ticket-qr-section {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--white);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+.ticket-qr-box {
+    background: var(--white);
+    color: var(--primary-dark);
+    padding: 20px;
+    border-radius: 12px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    font-size: 16px;
+    box-shadow: var(--shadow-sm);
+}
+.ticket-code-text {
+    margin: 0;
+    font-family: monospace;
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+.ticket-error {
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+.ticket-error h3 {
+    color: #991B1B;
+    margin-top: 0;
+    font-size: 20px;
+}
+.ticket-error p {
+    color: var(--muted);
+}
+
+/* Responsif untuk HP */
+@media (max-width: 768px) {
+    .ticket-card {
+        flex-direction: column;
+    }
+    .ticket-info {
+        padding: 24px;
+    }
+    .ticket-qr-section {
+        padding: 30px;
+    }
+}

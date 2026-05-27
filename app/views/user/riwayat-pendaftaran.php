@@ -81,13 +81,13 @@
           <div class="history-action">
 
             <?php if($item['status'] == 'Diterima'): ?>
-              <button class="btn-primary">Lihat Tiket</button>
+              <a href="<?= BASEURL; ?>/app/views/user/tiket_detail.php?id=<?= $item['id_pendaftaran'] ?? ''; ?>" class="btn-primary" style="text-decoration: none; width: max-content; padding: 0 24px; display: inline-flex; align-items: center;">Lihat Tiket</a>
 
             <?php elseif($item['status'] == 'Menunggu Verifikasi'): ?>
-              <button class="btn-secondary">Sedang Diverifikasi</button>
+              <button class="btn-secondary" disabled>Sedang Diverifikasi</button>
 
             <?php else: ?>
-              <button class="btn-danger">Pendaftaran Ditolak</button>
+              <button class="btn-danger" disabled>Pendaftaran Ditolak</button>
             <?php endif; ?>
 
           </div>
