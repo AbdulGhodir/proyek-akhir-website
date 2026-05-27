@@ -1223,3 +1223,248 @@ button,input{
         padding: 30px;
     }
 }
+.profile-page {
+    padding: 40px 0 80px;
+}
+
+.profile-container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.profile-card.shopee-style {
+    background: var(--white, #ffffff);
+    border-radius: 8px;
+    padding: 32px 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border: 1px solid var(--line, #E2E8F0);
+}
+
+.profile-header-text h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: var(--text, #333);
+}
+
+.profile-header-text p {
+    font-size: 14px;
+    color: var(--muted, #64748B);
+    margin-bottom: 16px;
+}
+
+.profile-header-text hr {
+    border: none;
+    border-top: 1px solid var(--line, #E2E8F0);
+    margin-bottom: 32px;
+}
+
+.profile-form-container {
+    display: flex;
+    gap: 40px;
+}
+
+.profile-form-left {
+    flex: 2;
+    padding-right: 40px;
+    border-right: 1px solid var(--line, #E2E8F0);
+}
+
+.profile-form-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+}
+
+.form-group-inline {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 20px;
+}
+
+.form-group-inline label:first-child {
+    width: 120px;
+    text-align: right;
+    color: var(--muted, #64748B);
+    font-size: 14px;
+}
+
+.form-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--line, #E2E8F0);
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    color: var(--text, #333);
+}
+
+.form-input:focus {
+    border-color: var(--primary, #0071BC);
+}
+
+.form-input:disabled {
+    background: #F8FAFC;
+    color: #94A3B8;
+    cursor: not-allowed;
+}
+
+.email-display, .add-link {
+    flex: 1;
+    font-size: 14px;
+}
+
+.email-display span {
+    margin-right: 12px;
+}
+
+.email-display a, .add-link {
+    color: var(--primary, #0071BC);
+    text-decoration: none;
+}
+
+.radio-group {
+    flex: 1;
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.btn-simpan {
+    padding: 10px 24px;
+    margin-left: 140px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.avatar-preview {
+    width: 120px;
+    height: 120px;
+    background: var(--primary, #0071BC);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.btn-outline {
+    background: white;
+    border: 1px solid var(--line, #E2E8F0);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--muted, #64748B);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.btn-outline:hover {
+    background: #F8FAFC;
+}
+
+.avatar-hint {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted, #64748B);
+    line-height: 1.6;
+}
+
+.interest-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex: 1;
+}
+
+.interest-chips input {
+    display: none;
+}
+
+.interest-chips .chip span {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #F1F5F9;
+    border: 1px solid var(--line, #E2E8F0);
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #475569;
+}
+
+.interest-chips input:checked + span {
+    background: var(--primary, #0071BC);
+    color: white;
+    border-color: var(--primary, #0071BC);
+}
+
+.form-group-inline label i {
+    font-size: 18px;
+    vertical-align: middle;
+    color: #0077B5;
+}
+
+@media (max-width: 768px) {
+    .profile-form-container {
+        flex-direction: column-reverse;
+    }
+    
+    .profile-form-left {
+        border-right: none;
+        padding-right: 0;
+    }
+    
+    .form-group-inline {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .form-group-inline label:first-child {
+        text-align: left;
+        width: 100%;
+    }
+    
+    .btn-simpan {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+.toast-notification {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #10B981;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    transition: top 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 9999;
+}
+.toast-notification.show {
+    top: 40px;
+}
+.toast-notification i {
+    font-size: 24px;
+}
