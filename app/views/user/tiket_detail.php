@@ -1,17 +1,13 @@
 <?php
-// Wajib ditaruh paling atas agar Navbar bisa membaca data user yang sedang login!
 session_start(); 
 
-// Tampilkan error di layar 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Atasi masalah BASEURL yang hilang karena bypass Controller
 if (!defined('BASEURL')) {
     define('BASEURL', 'http://localhost/proyek-akhir-website'); 
 }
 
-// Koneksi Database Eventify
 $host = "localhost";
 $username = "root";
 $password = "";
@@ -22,7 +18,6 @@ $id_pendaftaran = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $tiket = null;
 
 if ($id_pendaftaran > 0 && !$conn->connect_error) {
-    // Cari data tiket di database (Sekarang di-JOIN ke tabel users untuk ambil nama)
     $query = "SELECT p.id_pendaftaran, u.nama_lengkap, e.judul AS acara, e.waktu_pelaksanaan AS tanggal, e.lokasi 
               FROM pendaftaran p
               JOIN event e ON p.id_event = e.id_event
@@ -35,7 +30,7 @@ if ($id_pendaftaran > 0 && !$conn->connect_error) {
         $row = mysqli_fetch_assoc($result);
         
         $tiket = [
-            'nama' => $row['nama_lengkap'], // Nama sudah dinamis dari database!
+            'nama' => $row['nama_lengkap'],
             'acara' => $row['acara'],
             'tanggal' => date('d F Y, H:i', strtotime($row['tanggal'])) . ' WIB',
             'lokasi' => $row['lokasi'],
@@ -44,10 +39,8 @@ if ($id_pendaftaran > 0 && !$conn->connect_error) {
     }
 }
 
-// Jika ID dari database tidak ketemu, pakai data dummy agar UI tetap bisa dilihat
 if (!$tiket) {
     $tiket = [
-        // Ambil nama dari session jika ada, kalau tidak pakai "Peserta Eventify"
         'nama' => isset($_SESSION['user']['nama_lengkap']) ? $_SESSION['user']['nama_lengkap'] : 'Peserta Eventify',
         'acara' => 'Tech Future Summit 2026',
         'tanggal' => '18 Mei 2026, 09:00 WIB',
