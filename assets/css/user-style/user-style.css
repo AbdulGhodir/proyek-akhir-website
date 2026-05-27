@@ -1121,9 +1121,7 @@ button,input{
     font-size:22px;
   }
 }
-/* =========================================
-   E-TICKET PAGE STYLES
-   ========================================= */
+
 .ticket-page {
     padding: 40px 0 80px;
 }
@@ -1214,7 +1212,6 @@ button,input{
     color: var(--muted);
 }
 
-/* Responsif untuk HP */
 @media (max-width: 768px) {
     .ticket-card {
         flex-direction: column;
