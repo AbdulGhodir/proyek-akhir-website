@@ -22,24 +22,14 @@
     if (isset($_POST['tolak'])) {
         $idPendaftaran = $_POST['id_pendaftaran'];
         updateStatusPendaftaran($conn, $idPendaftaran, 'ditolak');
-        
-        $URL = BASEURL . "/app/controllers/eo/verifikasi.php";
-        if (isset($_GET['id_event']) && $_GET['id_event']) {
-            $URL .= "?id_event=" . $_GET['id_event'];
-        }
-        header("Location: " . $URL);
+        echo "<script>alert('Pendaftaran berhasil ditolak!'); window.history.back();</script>";
         exit();
     }
 
     if (isset($_POST['terima'])) {
         $idPendaftaran = $_POST['id_pendaftaran'];
         updateStatusPendaftaran($conn, $idPendaftaran, 'diterima');
-        
-        $URL = BASEURL . "/app/controllers/eo/verifikasi.php";
-        if (isset($_GET['id_event']) && $_GET['id_event']) {
-            $URL .= "?id_event=" . $_GET['id_event'];
-        }
-        header("Location: " . $URL);
+        echo "<script>alert('Pendaftaran berhasil diterima!'); window.history.back();</script>";
         exit();
     }
     

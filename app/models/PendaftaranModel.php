@@ -69,4 +69,21 @@
         $query->bind_param("iis", $idUser, $idEvent, $status);
         $query->execute();
     }
+
+    function cekStatusPendaftaran(mysqli $conn, int $idUser, int $idEvent) {
+        $query = $conn->prepare("
+            SELECT
+                status_pendaftaran
+            FROM
+                pendaftaran
+            WHERE
+                id_user = ? AND id_event = ?
+        ");
+        $query->bind_param("ii", $idUser, $idEvent);
+        $query->execute();
+        $result = $query->get_result();
+        $data = $result->fetch_assoc();
+        
+        return $data;
+    }
 ?>

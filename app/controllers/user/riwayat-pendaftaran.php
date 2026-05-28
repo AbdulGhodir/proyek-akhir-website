@@ -2,6 +2,11 @@
 require_once '../../config/config.php';
 require_once '../../../koneksi/koneksi.php';
 
+if (!isset($_SESSION['id']) || $_SESSION['role'] != 'User') {
+    header("Location: " . BASEURL . "/app/controllers/auth/login.php");
+    exit();
+}
+
 $pageTitle = "Riwayat Pendaftaran | Eventify";
 
 $history = [

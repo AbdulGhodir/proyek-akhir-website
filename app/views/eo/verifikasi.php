@@ -94,7 +94,7 @@
             </div>
 
             <div class="button" id="button-keputusan">
-                <form method="POST" action="verifikasi.php">
+                <form method="POST">
                     <input type="hidden" name="id_pendaftaran" value="<?= $pendaftaran['id_pendaftaran']; ?>">
                     <button class="tolak" name="tolak">Tolak</button>
                 </form>

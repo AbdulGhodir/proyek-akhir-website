@@ -15,11 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $pageTitle; ?></title>
 
-  <link
-    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-    rel="stylesheet"
-  >
-
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/user-style/user-style.css">
 </head>
 <body>
@@ -67,20 +63,17 @@
         <div class="summary-content">
           <span class="badge blue"><?= $event['kategori']; ?></span>
           <span class="badge yellow"><?= formatRupiah($event['biaya']); ?></span>
-          
+
           <h3><?= $event['judul']; ?></h3>
-          
+
           <div class="summary-meta">
             <p><i class='bx bx-calendar'></i> <?= date('d M Y', strtotime($event['waktu_pelaksanaan'])); ?></p>
             <p><i class='bx bx-map'></i> <?= $event['lokasi']; ?></p>
             <p><i class='bx bx-check-circle'></i> Menunggu Submit</p>
-          </div>
-          
-          <button class="btn-primary full-btn" name="daftar-event"> Submit Pendaftaran </button>
+          </div>         
+          <button class="btn-primary full-btn" name="daftar_event"> Submit Pendaftaran </button>
         </div>
       </aside>
-    </form>
-
   </div>
 </section>
 

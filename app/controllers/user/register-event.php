@@ -3,15 +3,12 @@ require_once '../../config/config.php';
 require_once '../../../koneksi/koneksi.php';
 require_once '../../models/EventModel.php';
 require_once '../../models/EventFormModel.php';
+require_once '../../models/PendaftaranModel.php';
+require_once '../../models/JawabanModel.php';
 
-if (isset($_POST['daftar_event'])) {
-    $idFormDijawab = $_POST['id_form'];
-    $jawaban = $_POST['jawaban'];
-
-    for ($i=0; $i < count($idFormDijawab); $i++) {
-        echo "ID Form: " . $idFormDijawab[$i] . "<br>";
-        echo "Jawaban: " . $jawaban[$i] . "<br>";
-    }
+if (!isset($_SESSION['id']) || $_SESSION['role'] != 'User') {
+    header("Location: " . BASEURL . "/app/controllers/auth/login.php");
+    exit();
 }
 
 $id = $_GET['id'] ?? 0;
@@ -21,6 +18,24 @@ $event = getEventById($conn, (int)$id);
 if (!$event) {
     echo "Event tidak ditemukan.";
     exit;
+}
+
+if (isset($_POST['daftar_event'])) {
+    $idUser = $_SESSION['id'];
+    $status = "menunggu";
+
+    $idFormDijawab = $_POST['id_form'];
+    $jawaban = $_POST['jawaban'];
+
+    insertDataPendaftar($conn, $idUser, $event['id_event'], $status);
+    $idPendaftaran = $conn->insert_id;
+
+    for ($i=0; $i < count($idFormDijawab); $i++) {
+        insertJawabanPendaftar($conn, $idPendaftaran, $idFormDijawab[$i], $jawaban[$i]);
+    }
+
+    header("Location: " . BASEURL . "/app/controllers/user/detail-event.php?id=" . $event['id_event']);
+    exit();
 }
 
 $pageTitle = "Pendaftaran Event | Eventify";

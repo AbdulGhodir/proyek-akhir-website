@@ -1,6 +1,7 @@
 <?php
 /** @var string $pageTitle */
 /** @var array $event */
+/** @var string $terdaftar */
 ?>
 
 <!DOCTYPE html>
@@ -116,9 +117,23 @@
             <strong><?= date('H:i', strtotime($event['waktu_pelaksanaan'])) . ' WIB'; ?></strong>
           </div>
           
-          <a href="<?= BASEURL; ?>/app/controllers/user/register-event.php?id=<?= $event['id_event']; ?>" class="btn-primary">
-            Daftar Sekarang
-          </a>
+          <?php if ($terdaftar == 'belum terdaftar'): ?>
+            <a href="<?= BASEURL; ?>/app/controllers/user/register-event.php?id=<?= $event['id_event']; ?>" class="btn-primary">
+              Daftar Sekarang
+            </a>
+          <?php elseif ($terdaftar == 'menunggu'): ?>
+            <span style="display: block; color: #ff9800; font-weight: bold; text-align: center;">
+              Sudah Terdaftar (Menunggu Verifikasi)
+            </span>
+          <?php elseif ($terdaftar == 'diterima'): ?>
+            <span style="display: block; color: #28c76f; font-weight: bold; text-align: center;">
+              Sudah Terdaftar (Diterima)
+            </span>
+          <?php elseif ($terdaftar == 'ditolak'): ?>
+            <span style="display: block; color: #ff0000; font-weight: bold; text-align: center;">
+              Sudah Terdaftar (Ditolak)
+            </span>
+          <?php endif; ?>
         </div>
         
         <div class="organizer-card">

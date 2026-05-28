@@ -106,8 +106,7 @@
             insertDataForm($conn, $idEvent, $listPertanyaan[$i], $tipePertanyaan[$i], $dropdownValue, $statusPertanyaan);
         }
 
-        echo "<script>alert('Event berhasil ditambahkan!')</script>";
-        header("Location: " . BASEURL . "/app/controllers/eo/event.php");
+        echo "<script>alert('Event berhasil ditambahkan!'); window.location.href = '" . BASEURL . "/app/controllers/eo/event.php';</script>";
         exit();
     }
 
@@ -140,8 +139,7 @@
             }
         }
 
-        echo "<script>alert('Event berhasil diedit!')</script>";
-        header("Location: " . BASEURL . "/app/controllers/eo/event.php");
+        echo "<script>alert('Event berhasil diedit!'); window.location.href = '" . BASEURL . "/app/controllers/eo/event.php';</script>";
         exit();
     }
 
