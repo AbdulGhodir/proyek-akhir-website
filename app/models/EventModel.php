@@ -1,17 +1,18 @@
 <?php
-    function getAllEvent(mysqli $conn) {
-        $query = $conn->prepare("
-            SELECT event.*, users.nama_lengkap, kategori.kategori
-            FROM `event`
-            JOIN users ON event.id_user = users.id
-            JOIN kategori ON event.id_kategori = kategori.id_kategori
-        ");
-        $query->execute();
-        $result = $query->get_result();
-        $data = $result->fetch_all(MYSQLI_ASSOC);
-        
-        return $data;
-    }
+function getAllEvent(mysqli $conn) {
+    $query = $conn->prepare("
+        SELECT event.*, users.nama_lengkap, kategori.kategori
+        FROM `event`
+        JOIN users ON event.id_user = users.id
+        JOIN kategori ON event.id_kategori = kategori.id_kategori
+        ORDER BY event.waktu_pelaksanaan ASC
+    ");
+    $query->execute();
+    $result = $query->get_result();
+    $data = $result->fetch_all(MYSQLI_ASSOC);
+    
+    return $data;
+}
 
     function getDataEventByID(mysqli $conn, int $idEvent) {
         $query = $conn->prepare("
@@ -84,6 +85,7 @@
         $query->execute();
     }
 
+
     function updateDataEvantByID(mysqli $conn, int $idEvent, int $kategori, string $namaEvent, string $tanggal, int $biaya, string $lokasi, int $kuota, string $deskripsi, string $benefit=NULL, string $gambar) {
         $query = $conn->prepare("
             UPDATE `event`
@@ -92,5 +94,21 @@
         ");
         $query->bind_param("issisisssi", $kategori, $namaEvent, $tanggal, $biaya, $lokasi, $kuota, $deskripsi, $benefit, $gambar, $idEvent);
         $query->execute();
+    }
+
+    function getEventById(mysqli $conn, int $idEvent) {
+        $query = $conn->prepare("
+            SELECT event.*, users.nama_lengkap, kategori.kategori
+            FROM `event`
+            JOIN users ON event.id_user = users.id
+            JOIN kategori ON event.id_kategori = kategori.id_kategori
+            WHERE event.id_event = ?
+        ");
+
+        $query->bind_param("i", $idEvent);
+        $query->execute();
+
+        $result = $query->get_result();
+        return $result->fetch_assoc();
     }
 ?>

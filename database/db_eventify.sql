@@ -39,9 +39,9 @@ CREATE TABLE `event` (
   `deskripsi` text NOT NULL,
   `benefit` text,
   `cover_image` varchar(255) DEFAULT NULL,
-  `status_publikasi` enum('Pending','Dipublikasikan','Ditolak') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'Pending',
+  `status_publikasi` enum('Pending','Dipublikasikan','Ditolak') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'Pending',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `event`
@@ -65,10 +65,10 @@ CREATE TABLE `event_form` (
   `id_form` int NOT NULL,
   `id_event` int NOT NULL,
   `pertanyaan` varchar(255) NOT NULL,
-  `tipe_input` enum('teks','paragraf','dropdown','tanggal','angka','file') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `tipe_input` enum('teks','paragraf','dropdown','tanggal','angka','file') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `opsi_pilihan` text,
   `wajib_diisi` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `event_form`
@@ -106,7 +106,7 @@ CREATE TABLE `jawaban_pendaftar` (
   `id_pendaftaran` int NOT NULL,
   `id_form` int NOT NULL,
   `jawaban_teks` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jawaban_pendaftar`
@@ -134,7 +134,7 @@ INSERT INTO `jawaban_pendaftar` (`id`, `id_pendaftaran`, `id_form`, `jawaban_tek
 CREATE TABLE `kategori` (
   `id_kategori` int NOT NULL,
   `kategori` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kategori`
@@ -160,7 +160,7 @@ CREATE TABLE `pendaftaran` (
   `bukti_pembayaran` varchar(255) DEFAULT NULL,
   `status_pendaftaran` enum('menunggu','diterima','ditolak') DEFAULT 'menunggu',
   `tanggal_daftar` datetime DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pendaftaran`
@@ -182,9 +182,9 @@ CREATE TABLE `users` (
   `nama_lengkap` varchar(100) NOT NULL,
   `nama_organisasi` varchar(100) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `role` enum('Admin','EO','User') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `role` enum('Admin','EO','User') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`

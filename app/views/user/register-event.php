@@ -32,7 +32,6 @@
 
     <div class="register-event-layout">
 
-      <!-- LEFT -->
       <div class="register-event-form card-white">
 
         <div class="form-row">
@@ -83,30 +82,24 @@
 
       </div>
 
-      <!-- RIGHT -->
-      <aside class="register-event-summary card-white">
-
-        <img src="<?= $event['image']; ?>" alt="<?= $event['title']; ?>">
+       <aside class="register-event-summary card-white">
+        <img src="<?= BASEURL; ?>/assets/images/uploads/<?= $event['cover_image']; ?>" alt="<?= $event['judul']; ?>">
 
         <div class="summary-content">
-          <span class="badge blue"><?= $event['type']; ?></span>
-          <span class="badge yellow"><?= $event['price']; ?></span>
-
-          <h3><?= $event['title']; ?></h3>
-
+          <span class="badge blue"><?= $event['kategori']; ?></span>
+          <span class="badge yellow"><?= formatRupiah($event['biaya']); ?></span>
+          
+          <h3><?= $event['judul']; ?></h3>
+          
           <div class="summary-meta">
-            <p><i class='bx bx-calendar'></i> <?= $event['date']; ?></p>
-            <p><i class='bx bx-map'></i> <?= $event['location']; ?></p>
+            <p><i class='bx bx-calendar'></i> <?= date('d M Y', strtotime($event['waktu_pelaksanaan'])); ?></p>
+            <p><i class='bx bx-map'></i> <?= $event['lokasi']; ?></p>
             <p><i class='bx bx-check-circle'></i> Menunggu Submit</p>
           </div>
-
-          <button class="btn-primary full-btn">
-            Submit Pendaftaran
-          </button>
+          
+          <button class="btn-primary full-btn"> Submit Pendaftaran </button>
         </div>
-
       </aside>
-
     </div>
 
   </div>
