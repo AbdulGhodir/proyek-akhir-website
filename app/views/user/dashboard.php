@@ -147,6 +147,29 @@
             }
         });
     }
+
+    function searchEvent() {
+        let input = document.getElementById('searchInput');
+        let filter = input.value.toLowerCase();
+        let cards = document.querySelectorAll('.event-card');
+
+        cards.forEach(card => {
+            let cardText = card.innerText.toLowerCase();
+
+            if (cardText.includes(filter)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        if (filter.length > 0) {
+            document.querySelector('.event-grid').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }
+    }
   </script>
 </body>
 </html>

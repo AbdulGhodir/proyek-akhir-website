@@ -5,7 +5,7 @@
 
     <div class="search-box">
       <i class='bx bx-search'></i>
-      <input type="text" placeholder="Cari seminar, webinar, volunteer...">
+      <input type="text" id="searchInput" onkeyup="searchEvent()" placeholder="Cari seminar, webinar, volunteer...">
     </div>
 
     <div class="nav-right">
