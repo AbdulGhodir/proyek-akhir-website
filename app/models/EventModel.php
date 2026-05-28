@@ -48,7 +48,23 @@ function getAllEvent(mysqli $conn) {
             FROM `event`
             JOIN users ON event.id_user = users.id
             JOIN kategori ON event.id_kategori = kategori.id_kategori
-            WHERE id_user = ?
+            WHERE event.id_user = ?
+        ");
+        $query->bind_param("i", $idUser);
+        $query->execute();
+        $result = $query->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        
+        return $data;
+    }
+
+    function getAllDataEventDipublikasikanByEO(mysqli $conn, int $idUser) {
+        $query = $conn->prepare("
+            SELECT event.*, users.nama_lengkap, kategori.kategori
+            FROM `event`
+            JOIN users ON event.id_user = users.id
+            JOIN kategori ON event.id_kategori = kategori.id_kategori
+            WHERE event.id_user = ? AND event.status_publikasi = 'Dipublikasikan'
         ");
         $query->bind_param("i", $idUser);
         $query->execute();
@@ -110,5 +126,22 @@ function getAllEvent(mysqli $conn) {
 
         $result = $query->get_result();
         return $result->fetch_assoc();
+    }
+
+    function getEventTerbaru(mysqli $conn) {
+        $query = $conn->prepare("
+            SELECT event.*, users.nama_lengkap, kategori.kategori
+            FROM `event`
+            JOIN users ON event.id_user = users.id
+            JOIN kategori ON event.id_kategori = kategori.id_kategori
+            WHERE event.status_publikasi = 'Dipublikasikan'
+            ORDER BY event.created_at DESC
+            LIMIT 3
+        ");
+        $query->execute();
+        $result = $query->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        
+        return $data;
     }
 ?>

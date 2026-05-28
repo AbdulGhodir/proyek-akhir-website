@@ -1,5 +1,6 @@
 <?php
     /** @var array $listPendaftaran */
+    /** @var array $listEvent */
 ?>
 
 <!DOCTYPE html>
@@ -26,12 +27,17 @@
                 <span>Verifikasi pendaftaran dan pembayaran</span>
             </div>
 
-            <select class="filter-event" name="filter-event" id="filter-event">
-                <option value="">Semua Event</option>
-                <option value="">Webinar Vibe Coding</option>
-                <option value="">Seminar Hasil</option>
-                <option value="">Konser Naruto Shippuden</option>
-            </select>
+            <form method="GET" id="form-filter">
+                <select class="filter-event" name="id_event" id="filter-event" onchange="this.form.submit()">
+                    <option value="">Semua Event</option>
+                    <?php foreach ($listEvent as $event) : ?>
+                        <option value="<?= $event['id_event'] ?>" 
+                            <?= (isset($_GET['id_event']) && $_GET['id_event'] == $event['id_event']) ? 'selected' : '' ?>>
+                            <?= $event['judul'] ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </form>
         </div>
 
         <div class="daftar-pendaftar">
@@ -87,9 +93,15 @@
                 <div class="list-jawaban"></div>
             </div>
 
-            <div class="button">
-                <button class="tolak">Tolak</button>
-                <button class="terima">Terima</button>
+            <div class="button" id="button-keputusan">
+                <form method="POST" action="verifikasi.php">
+                    <input type="hidden" name="id_pendaftaran" value="<?= $pendaftaran['id_pendaftaran']; ?>">
+                    <button class="tolak" name="tolak">Tolak</button>
+                </form>
+                <form method="POST" action="verifikasi.php">
+                    <input type="hidden" name="id_pendaftaran" value="<?= $pendaftaran['id_pendaftaran']; ?>">
+                    <button class="terima" name="terima">Terima</button>
+                </form>
             </div>
         </div>
     </div>
@@ -108,6 +120,7 @@
                 button.addEventListener('click', () => {
                     const idPendaftaran = button.getAttribute('data-id-pendaftaran');
                     const statusPendaftaran = button.getAttribute('data-status-pendaftaran');
+                    const buttonKeputusan = document.getElementById('button-keputusan');
 
                     if (statusPendaftaran != 'menunggu') {
                         buttonKeputusan.classList.add('hidden');
@@ -115,6 +128,9 @@
                         buttonKeputusan.classList.remove('hidden');
                     }
 
+                    buttonKeputusan.querySelectorAll('input[name="id_pendaftaran"]').forEach(input => {
+                        input.value = idPendaftaran;
+                    });
                     listJawaban.innerHTML = '';
 
                     let formData = new FormData();

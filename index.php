@@ -1,5 +1,5 @@
 <?php
-    require_once 'app/config/config.php';
+    require_once 'app/controllers/landing.php';
 ?>
 
 <!DOCTYPE html>
@@ -35,11 +35,11 @@
                 <span class="description">Eventify adalah wadah terpusat untuk menemukan, mendaftar, dan menyelenggarakan kegiatan Volunteer, Seminar, dan Webinar di Kota Bandar Lampung. Mari berkontribusi untuk lingkungan dan masyarakat!</span>
                 
                 <div class="button">
-                    <a href="<?= BASEURL; ?>/app/views/user/dashboard.php">
+                    <a href="<?= BASEURL; ?>/app/controllers/user/dashboard.php">
                         Mulai Jelajahi
                         <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
                     </a>
-                    <a href="<?= BASEURL; ?>/app/views/admin/index.php">Lihat Event</a>
+                    <a href="<?= BASEURL; ?>/app/controllers/user/dashboard.php">Lihat Event</a>
                 </div>
             </div>
 
@@ -79,75 +79,35 @@
             <div class="preview-event">
                 <div class="preview-event-header">
                     <div class="content-title">
-                        <span>Event-Event Terdekat</span>
+                        <span>Event-Event Terbaru</span>
                         <span>Jangan sampai ketinggalan acara-acara seru di Bandar Lampung!</span>
                     </div>
                     <a href="">Lihat Semua <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i></a>
                 </div>
 
                 <div class="card">
-                    <div class="event-card">
-                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
-                        <div class="event-info">
-                            <div class="event-type">
-                                <span class="kategori">Seminar</span>
-                                <span class="harga">Gratis</span>
-                            </div>
-                            <span class="event-title">Seminar Startup Lampung 2026</span>
-                            <div class="event-detail">
-                                <div class="event-time">
-                                    <i data-lucide="calendar" style="width: 1rem; height: 1rem;"></i>
-                                    <span>15 Agustus 2026 pukul 09.00</span>
+                    <?php foreach ($eventTerbaru as $event): ?>
+                        <div class="event-card">
+                            <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
+                            <div class="event-info">
+                                <div class="event-type">
+                                    <span class="kategori"><?= $event['kategori']; ?></span>
+                                    <span class="harga"><?php if ($event['biaya'] == 0) { echo "Gratis"; } else { echo formatRupiah($event['biaya']); } ?></span>
                                 </div>
-                                <div class="event-location">
-                                    <i data-lucide="map-pin" style="width: 1rem; height: 1rem;"></i>
-                                    <span>GSG Universitas Lampung</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-card">
-                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
-                        <div class="event-info">
-                            <div class="event-type">
-                                <span class="kategori">Seminar</span>
-                                <span class="harga">Gratis</span>
-                            </div>
-                            <span class="event-title">Seminar Startup Lampung 2026</span>
-                            <div class="event-detail">
-                                <div class="event-time">
-                                    <i data-lucide="calendar" style="width: 1rem; height: 1rem;"></i>
-                                    <span>15 Agustus 2026 pukul 09.00</span>
-                                </div>
-                                <div class="event-location">
-                                    <i data-lucide="map-pin" style="width: 1rem; height: 1rem;"></i>
-                                    <span>GSG Universitas Lampung</span>
+                                <span class="event-title"><?= $event['judul']; ?></span>
+                                <div class="event-detail">
+                                    <div class="event-time">
+                                        <i data-lucide="calendar" style="width: 1rem; height: 1rem;"></i>
+                                        <span><?= formatTanggalIndo($event['waktu_pelaksanaan']); ?></span>
+                                    </div>
+                                    <div class="event-location">
+                                        <i data-lucide="map-pin" style="width: 1rem; height: 1rem;"></i>
+                                        <span><?= $event['lokasi']; ?></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="event-card">
-                        <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
-                        <div class="event-info">
-                            <div class="event-type">
-                                <span class="kategori">Seminar</span>
-                                <span class="harga">Gratis</span>
-                            </div>
-                            <span class="event-title">Seminar Startup Lampung 2026</span> 
-                            <div class="event-detail">
-                                <div class="event-time">
-                                    <i data-lucide="calendar" style="width: 1rem; height: 1rem;"></i>
-                                    <span>15 Agustus 2026 pukul 09.00</span>
-                                </div>
-                                <div class="event-location">
-                                    <i data-lucide="map-pin" style="width: 1rem; height: 1rem;"></i>
-                                    <span>GSG Universitas Lampung</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

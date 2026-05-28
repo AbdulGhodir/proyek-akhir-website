@@ -1,7 +1,11 @@
 <?php
 /** @var string $pageTitle */
 /** @var array $event */
-/** @var bool $isPaid */
+/** @var array $listPertanyaan */
+/** @var array $tipePertanyaan */
+/** @var array $opsiDropdown */
+/** @var array $wajibDiisi */
+/** @var array $idForm */
 ?>
 
 <!DOCTYPE html>
@@ -30,59 +34,34 @@
       <p>Lengkapi data diri untuk mengikuti event pilihanmu.</p>
     </div>
 
-    <div class="register-event-layout">
-
+    <form class="register-event-layout" method="POST">
       <div class="register-event-form card-white">
-
-        <div class="form-row">
+        <?php for($i = 0; $i < count($listPertanyaan); $i++): ?>
           <div class="form-group">
-            <label>Nama Lengkap</label>
-            <input type="text" placeholder="Masukkan nama lengkap">
+            <label class="<?= $wajibDiisi[$i] == true ? 'wajib' : ''; ?>"><?= $listPertanyaan[$i]; ?></label>
+            <input type="hidden" value="<?= $idForm[$i]; ?>" name="id_form[]">
+            <?php if($tipePertanyaan[$i] == 'teks'): ?>
+              <input type="text" name="jawaban[]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?> placeholder="Masukkan Jawaban">
+            <?php elseif($tipePertanyaan[$i] == 'paragraf'): ?>
+              <textarea rows="4" name="jawaban[]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?> placeholder="Masukkan Jawaban"></textarea>
+            <?php elseif($tipePertanyaan[$i] == 'angka'): ?>
+              <input type="number" name="jawaban[]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?> placeholder="Masukkan Jawaban">
+            <?php elseif($tipePertanyaan[$i] == 'tanggal'): ?>
+              <input type="date" name="jawaban[]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?> placeholder="Masukkan Jawaban">
+            <?php elseif($tipePertanyaan[$i] == 'file'): ?>
+              <input type="hidden" name="jawaban[]" id="<?= $listPertanyaan[$i]; ?>">
+            <?php elseif($tipePertanyaan[$i] == 'dropdown'): ?>
+              <select name="jawaban[]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?>>
+                <?php foreach($opsiDropdown[$i] as $option): ?>
+                  <option value="<?= $option; ?>"><?= $option; ?></option>
+                <?php endforeach; ?>
+              </select>
+            <?php endif; ?>
           </div>
-
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" placeholder="Masukkan email aktif">
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label>No. HP</label>
-            <input type="text" placeholder="08xxxxxxxxxx">
-          </div>
-
-          <div class="form-group">
-            <label>Instansi / Kampus</label>
-            <input type="text" placeholder="Contoh: Universitas Lampung">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Motivasi Mengikuti Event</label>
-          <textarea rows="6" placeholder="Tulis alasan kamu mengikuti event ini..."></textarea>
-        </div>
-
-        <?php if($isPaid): ?>
-        <div class="payment-box">
-          <h3>Pembayaran</h3>
-
-          <div class="payment-info">
-            <span>Bank BCA</span>
-            <strong>1234567890</strong>
-            <small>a.n Eventify Bandar Lampung</small>
-          </div>
-
-          <div class="form-group">
-            <label>Upload Bukti Transfer</label>
-            <input type="file">
-          </div>
-        </div>
-        <?php endif; ?>
-
+        <?php endfor; ?>
       </div>
 
-       <aside class="register-event-summary card-white">
+      <aside class="register-event-summary card-white">
         <img src="<?= BASEURL; ?>/assets/images/uploads/<?= $event['cover_image']; ?>" alt="<?= $event['judul']; ?>">
 
         <div class="summary-content">
@@ -97,10 +76,10 @@
             <p><i class='bx bx-check-circle'></i> Menunggu Submit</p>
           </div>
           
-          <button class="btn-primary full-btn"> Submit Pendaftaran </button>
+          <button class="btn-primary full-btn" name="daftar-event"> Submit Pendaftaran </button>
         </div>
       </aside>
-    </div>
+    </form>
 
   </div>
 </section>
