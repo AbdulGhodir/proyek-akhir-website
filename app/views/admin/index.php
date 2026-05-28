@@ -1,7 +1,6 @@
 <?php
 require_once '../../config/config.php';
 require_once '../../../koneksi/koneksi.php';
-session_start();
 
 
 $q_users = $conn->query("SELECT COUNT(*) AS total FROM users WHERE role = 'User'");

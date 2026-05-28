@@ -1,7 +1,6 @@
 <?php
 require_once '../../config/config.php';
 require_once '../../../koneksi/koneksi.php';
-session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: ' . BASEURL . 'app/views/admin/validasi.php');

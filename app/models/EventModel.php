@@ -13,6 +13,20 @@
         return $data;
     }
 
+    function getDataEventByID(mysqli $conn, int $idEvent) {
+        $query = $conn->prepare("
+            SELECT *
+            FROM `event`
+            WHERE id_event = ?
+        ");
+        $query->bind_param("i", $idEvent);
+        $query->execute();
+        $result = $query->get_result();
+        $data = $result->fetch_assoc();
+        
+        return $data;
+    }
+
     function getTotalEvent(mysqli $conn, int $idUser, string $status = '%') {
         $query = $conn->prepare("
             SELECT COUNT(id_event) AS total_event
@@ -43,7 +57,7 @@
         return $data;
     }
 
-    function insertDataEvent(mysqli $conn, int $eventOrganizerID, int $kategori, string $namaEvent, string $tanggal, int $biaya, string $lokasi, int $kuota, string $deskripsi, string $benefit=NULL, string $gambar=NULL, string $status) {
+    function insertDataEvent(mysqli $conn, int $eventOrganizerID, int $kategori, string $namaEvent, string $tanggal, int $biaya, string $lokasi, int $kuota, string $deskripsi, string $benefit=NULL, string $gambar, string $status) {
         $query = $conn->prepare("
             INSERT INTO `event`(`id_user`, `id_kategori`, `judul`, `waktu_pelaksanaan`, `biaya`, `lokasi`, `kuota`, `deskripsi`, `benefit`, `cover_image`, `status_publikasi`)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -67,6 +81,16 @@
             WHERE id_event = ?
         ");
         $query->bind_param("i", $id);
+        $query->execute();
+    }
+
+    function updateDataEvantByID(mysqli $conn, int $idEvent, int $kategori, string $namaEvent, string $tanggal, int $biaya, string $lokasi, int $kuota, string $deskripsi, string $benefit=NULL, string $gambar) {
+        $query = $conn->prepare("
+            UPDATE `event`
+            SET `id_kategori`= ?,`judul`= ?,`waktu_pelaksanaan`= ?,`biaya`= ?,`lokasi`= ?,`kuota`= ?,`deskripsi`= ?,`benefit`= ?,`cover_image`= ?
+            WHERE id_event = ?
+        ");
+        $query->bind_param("issisisssi", $kategori, $namaEvent, $tanggal, $biaya, $lokasi, $kuota, $deskripsi, $benefit, $gambar, $idEvent);
         $query->execute();
     }
 ?>

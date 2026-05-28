@@ -1,7 +1,6 @@
 <?php
 require_once '../../config/config.php';
 require_once '../../../koneksi/koneksi.php';
-session_start();
 
 $tab = $_GET['tab'] ?? 'pending';
 $allowed = ['pending', 'dipublikasi', 'ditolak'];

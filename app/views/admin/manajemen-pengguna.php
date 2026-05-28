@@ -1,7 +1,6 @@
 <?php
 require_once '../../config/config.php';
 require_once '../../../koneksi/koneksi.php';
-session_start();
 
 $search = trim($_GET['q'] ?? '');
 $filter = $_GET['filter'] ?? 'semua';   // semua | user | eo
