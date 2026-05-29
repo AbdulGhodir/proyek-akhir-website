@@ -25,6 +25,10 @@
 <section class="register-event-page">
   <div class="container">
 
+    <a href="<?= BASEURL; ?>/app/controllers/user/dashboard.php" class="btn-back">
+        <i class='bx bx-arrow-back'></i> Kembali ke Beranda
+    </a>
+
     <div class="section-head">
       <h2>Pendaftaran Event</h2>
       <p>Lengkapi data diri untuk mengikuti event pilihanmu.</p>

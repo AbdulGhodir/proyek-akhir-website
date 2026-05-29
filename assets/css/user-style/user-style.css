@@ -1595,3 +1595,31 @@ button,input{
 .notif-footer:hover {
     background: #F8FAFC;
 }
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    margin-bottom: 24px;
+    background-color: #ffffff;
+    color: var(--primary, #0071BC);
+    border: 1px solid #e2e8f0;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.btn-back i {
+    font-size: 18px;
+}
+
+.btn-back:hover {
+    background-color: var(--primary, #0071BC);
+    color: #ffffff;
+    border-color: var(--primary, #0071BC);
+    box-shadow: 0 4px 12px rgba(0, 113, 188, 0.2);
+}

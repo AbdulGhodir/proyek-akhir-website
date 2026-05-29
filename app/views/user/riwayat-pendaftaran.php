@@ -19,6 +19,10 @@
 <section class="history-page">
   <div class="container">
 
+    <a href="<?= BASEURL; ?>/app/controllers/user/dashboard.php" class="btn-back">
+        <i class='bx bx-arrow-back'></i> Kembali ke Beranda
+    </a>
+
     <div class="section-head">
       <h2>Riwayat Pendaftaran</h2>
       <p>Lihat status event yang pernah kamu daftar.</p>

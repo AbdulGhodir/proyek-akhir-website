@@ -42,6 +42,11 @@ $linkedin = $_SESSION['linkedin'] ?? '';
 
 <section class="profile-page">
     <div class="container profile-container">
+        
+        <a href="<?= BASEURL; ?>/app/controllers/user/dashboard.php" class="btn-back">
+            <i class='bx bx-arrow-back'></i> Kembali ke Beranda
+        </a>
+
         <div class="profile-card shopee-style">
             
             <div class="profile-header-text">

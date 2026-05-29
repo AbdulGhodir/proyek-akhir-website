@@ -11,11 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= $pageTitle; ?></title>
 
-  <link
-    href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-    rel="stylesheet"
-  >
-
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/user-style/user-style.css">
 </head>
 <body>
@@ -24,6 +20,10 @@
 
 <section class="detail-page">
   <div class="container">
+
+    <a href="<?= BASEURL; ?>/app/controllers/user/dashboard.php" class="btn-back">
+        <i class='bx bx-arrow-back'></i> Kembali ke Beranda
+    </a>
 
     <div class="detail-hero">
 
