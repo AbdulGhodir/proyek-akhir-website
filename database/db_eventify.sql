@@ -39,6 +39,7 @@ CREATE TABLE `event` (
   `deskripsi` text NOT NULL,
   `benefit` text,
   `cover_image` varchar(255) DEFAULT NULL,
+  `alasan_penolakan` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `status_publikasi` enum('Pending','Dipublikasikan','Ditolak') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT 'Pending',
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -183,7 +184,8 @@ CREATE TABLE `users` (
   `nama_organisasi` varchar(100) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `role` enum('Admin','EO','User') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+  `role` enum('Admin','EO','User') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `status` enum('aktif','suspended') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'aktif'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

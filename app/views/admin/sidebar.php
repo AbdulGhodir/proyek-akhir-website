@@ -1,16 +1,24 @@
 <?php
 
-$badge_count = 0;
-if (isset($conn)) {
-    $r = $conn->query("SELECT COUNT(*) AS total FROM event WHERE status_publikasi = 'pending'");
-    if ($r)
-        $badge_count = $r->fetch_assoc()['total'];
-}
 
 $admin_nama = $_SESSION['nama_lengkap'] ?? 'Admin';
-$admin_email = $_SESSION['email'] ?? 'admin@eventify.id';
-$admin_init = strtoupper(substr($admin_nama, 0, 1));
+$admin_init = strtoupper(substr($admin_nama, 0, 2));
 
+
+$admin_email = 'admin@eventify.id';
+if (isset($conn) && isset($_SESSION['id'])) {
+    $re = $conn->query("SELECT email FROM users WHERE id = " . (int)$_SESSION['id']);
+    if ($re && $re->num_rows > 0) {
+        $admin_email = $re->fetch_assoc()['email'];
+    }
+}
+
+
+$sidebar_pending = 0;
+if (isset($conn)) {
+    $rp = $conn->query("SELECT COUNT(*) AS t FROM event WHERE status_publikasi = 'Pending'");
+    if ($rp) $sidebar_pending = (int)$rp->fetch_assoc()['t'];
+}
 
 $current = basename($_SERVER['PHP_SELF']);
 ?>
@@ -24,8 +32,8 @@ $current = basename($_SERVER['PHP_SELF']);
     <p class="sidebar-label">Menu Utama</p>
 
     <nav class="sidebar-nav">
-        <a href="<?= BASEURL ?>/app/views/admin/index.php"
-            class="nav-item <?= $current === 'index.php' ? 'active' : '' ?>">
+        <a href="<?= BASEURL ?>/app/views/admin/dashboard.php"
+            class="nav-item <?= $current === 'dashboard.php' ? 'active' : '' ?>">
             <i class='bx bxs-dashboard'></i>
             Dashboard
         </a>
@@ -38,16 +46,16 @@ $current = basename($_SERVER['PHP_SELF']);
 
         <a href="<?= BASEURL ?>/app/views/admin/validasi.php"
             class="nav-item <?= $current === 'validasi.php' ? 'active' : '' ?>">
-            <i class='bx bxs-check-shield'></i>
+            <i class='bx bx-check-shield'></i>
             Validasi Event
-            <?php if ($badge_count > 0): ?>
-                <span class="nav-badge"><?= $badge_count ?></span>
+            <?php if ($sidebar_pending > 0): ?>
+                <span class="nav-badge"><?= $sidebar_pending ?></span>
             <?php endif; ?>
         </a>
     </nav>
 
     <div class="sidebar-footer">
-        <div class="admin-pill">ADMIN</div>
+        <div class="admin-pill">ADMINISTRATOR</div>
         <div class="admin-card">
             <div class="admin-avatar"><?= $admin_init ?></div>
             <div class="admin-info">
@@ -60,4 +68,5 @@ $current = basename($_SERVER['PHP_SELF']);
             Keluar
         </a>
     </div>
+
 </div>

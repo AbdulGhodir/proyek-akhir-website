@@ -18,7 +18,7 @@
         $lokasi = $_POST['lokasi'];
         $kuota = $_POST['kuota'];
         $benefit = $_POST['benefit'] == NULL ? NULL : $_POST['benefit'];
-        $status = 'pending';
+        $status = 'Pending'; 
 
         $nama_img = $_FILES['cover_img']['name'];
         $ukuran_img = $_FILES['cover_img']['size'];

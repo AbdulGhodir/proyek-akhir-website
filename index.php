@@ -39,7 +39,7 @@
                         Mulai Jelajahi
                         <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
                     </a>
-                    <a href="<?= BASEURL; ?>/app/views/admin/index.php">Lihat Event</a>
+                    <a href="<?= BASEURL; ?>/app/views/admin/dashboard.php">Lihat Event</a>
                 </div>
             </div>
 

@@ -5,7 +5,7 @@
     
     if (isset($_SESSION['id'])) {
         if ($_SESSION['role'] == "Admin") {
-            header("Location: " . BASEURL . "/app/views/admin/index.php");
+            header("Location: " . BASEURL . "/app/views/admin/dashboard.php");
             exit();
         }
         

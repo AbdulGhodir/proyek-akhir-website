@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tampilkanNotifikasi('Login berhasil, Selamat Datang Admin!', 'sukses');
                 setTimeout(() => {
                     submitBtn.disabled = false;
-                    window.location.href = BASEURL + '/app/views/admin/index.php';
+                    window.location.href = BASEURL + '/app/views/admin/dashboard.php';
                 }, 2000);
             } else if (hasil.trim() === 'login_gagal') {
                 tampilkanNotifikasi('Email atau Password salah!', 'error');

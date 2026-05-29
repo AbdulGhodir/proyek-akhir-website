@@ -1,16 +1,21 @@
 <?php
 require_once '../../config/config.php';
 require_once '../../../koneksi/koneksi.php';
-session_start();
+
+if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'Admin') {
+    header('Location: ' . BASEURL . '/app/views/auth/login.php');
+    exit;
+}
 
 $search = trim($_GET['q'] ?? '');
-$filter = $_GET['filter'] ?? 'semua';   // semua | user | eo
+$filter = $_GET['filter'] ?? 'semua';
+
+$flash = $_SESSION['flash'] ?? null;
+unset($_SESSION['flash']);
 
 $where = "WHERE role != 'Admin'";
-if ($filter === 'user')
-    $where .= " AND role = 'User'";
-if ($filter === 'eo')
-    $where .= " AND role = 'EO'";
+if ($filter === 'user') $where .= " AND role = 'User'";
+if ($filter === 'eo')   $where .= " AND role = 'EO'";
 if ($search !== '') {
     $s = $conn->real_escape_string($search);
     $where .= " AND (nama_lengkap LIKE '%$s%' OR email LIKE '%$s%' OR nama_organisasi LIKE '%$s%')";
@@ -18,9 +23,9 @@ if ($search !== '') {
 
 $q_users = $conn->query("SELECT * FROM users $where ORDER BY id DESC");
 
-$c_all = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role != 'Admin'")->fetch_assoc()['t'];
+$c_all  = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role != 'Admin'")->fetch_assoc()['t'];
 $c_user = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'User'")->fetch_assoc()['t'];
-$c_eo = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fetch_assoc()['t'];
+$c_eo   = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fetch_assoc()['t'];
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -31,30 +36,6 @@ $c_eo = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fetch
     <title>Manajemen Pengguna | Eventify Admin</title>
     <meta name="description" content="Kelola pengguna dan event organizer di platform Eventify.">
     <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/admin/admin-style.css">
-    <style>
-        .status-badge.aktif {
-            background: #DCFCE7;
-            color: #166534;
-        }
-
-        .status-badge.suspended {
-            background: #FEE2E2;
-            color: #991B1B;
-        }
-
-        .status-badge {
-            padding: 3px 12px;
-            border-radius: 999px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        .action-group {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-        }
-    </style>
 </head>
 
 <body>
@@ -63,13 +44,20 @@ $c_eo = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fetch
 
     <main class="main">
 
+        <?php if ($flash): ?>
+            <div class="flash-toast flash-<?= $flash['type'] ?>" id="flashToast">
+                <i class='bx <?= $flash['type'] === 'success' ? 'bx-check-circle' : 'bx-error-circle' ?>'></i>
+                <?= htmlspecialchars($flash['msg']) ?>
+            </div>
+        <?php endif; ?>
+
         <div class="page-header">
             <h1>Manajemen Pengguna</h1>
-            <p>Kelola akun pengguna dan event organizer terdaftar.</p>
+            <p>Kelola akun pengguna dan event organizer terdaftar di platform.</p>
         </div>
 
         <div class="toolbar">
-            <!-- Search -->
+          
             <form method="GET" action="" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
                 <input type="hidden" name="filter" value="<?= htmlspecialchars($filter) ?>">
                 <div class="search-wrap">
@@ -107,7 +95,7 @@ $c_eo = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fetch
                             <th>Pengguna</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Status</th>
+                            <th>Event</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -119,59 +107,58 @@ $c_eo = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fetch
                                 $init = strtoupper(substr($u['nama_lengkap'], 0, 1));
                                 $av_cls = $is_eo ? 'eo' : 'user';
                                 $role_badge = $is_eo ? 'yellow' : 'blue';
-                                $status = $u['status'] ?? 'aktif';
-                                ?>
-                                <tr>
-                                    <td style="color:var(--muted);font-size:13px;"><?= $no++ ?></td>
-                                    <td>
-                                        <div class="av-cell">
-                                            <div class="av-init <?= $av_cls ?>"><?= $init ?></div>
-                                            <div>
-                                                <div class="av-name"><?= htmlspecialchars($u['nama_lengkap']) ?></div>
-                                                <?php if ($u['nama_organisasi']): ?>
-                                                    <div class="av-org"><?= htmlspecialchars($u['nama_organisasi']) ?></div>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td style="font-size:13px;color:var(--muted);"><?= htmlspecialchars($u['email']) ?></td>
-                                    <td><span class="badge <?= $role_badge ?>"><?= $u['role'] ?></span></td>
-                                    <td>
-                                        <span class="status-badge <?= $status ?>">
-                                            <?= ucfirst($status) ?>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <div class="action-group">
 
-                                            <form method="POST" action="<?= BASEURL ?>/app/controllers/admin/suspend-user.php"
-                                                onsubmit="return confirm('<?= $status === 'aktif' ? 'Suspend' : 'Aktifkan' ?> pengguna ini?')">
-                                                <input type="hidden" name="id" value="<?= $u['id'] ?>">
-                                                <input type="hidden" name="status" value="<?= $status ?>">
-                                                <input type="hidden" name="redirect"
-                                                    value="<?= BASEURL ?>/app/views/admin/manajemen-pengguna.php?filter=<?= $filter ?>">
-                                                <button type="submit"
-                                                    class="btn <?= $status === 'aktif' ? 'btn-warn' : 'btn-ghost' ?>"
-                                                    title="<?= $status === 'aktif' ? 'Suspend' : 'Aktifkan' ?>">
-                                                    <i
-                                                        class='bx <?= $status === 'aktif' ? 'bx-pause-circle' : 'bx-play-circle' ?>'></i>
-                                                    <?= $status === 'aktif' ? 'Suspend' : 'Aktifkan' ?>
-                                                </button>
-                                            </form>
-
-                                            <form method="POST" action="<?= BASEURL ?>/app/controllers/admin/delete-user.php"
-                                                onsubmit="return confirm('Hapus pengguna ini secara permanen?')">
-                                                <input type="hidden" name="id" value="<?= $u['id'] ?>">
-                                                <input type="hidden" name="redirect"
-                                                    value="<?= BASEURL ?>/app/views/admin/manajemen-pengguna.php?filter=<?= $filter ?>">
-                                                <button type="submit" class="btn btn-danger" title="Hapus">
-                                                    <i class='bx bx-trash'></i>
-                                                </button>
-                                            </form>
+                             
+                                $ev_count = 0;
+                                if ($is_eo) {
+                                    $qe = $conn->query("SELECT COUNT(*) AS t FROM event WHERE id_user = " . (int)$u['id']);
+                                    if ($qe) $ev_count = $qe->fetch_assoc()['t'];
+                                }
+                            ?>
+                            <tr>
+                                <td style="color:var(--muted);font-size:13px;"><?= $no++ ?></td>
+                                <td>
+                                    <div class="av-cell">
+                                        <div class="av-init <?= $av_cls ?>"><?= $init ?></div>
+                                        <div>
+                                            <div class="av-name"><?= htmlspecialchars($u['nama_lengkap']) ?></div>
+                                            <?php if ($u['nama_organisasi']): ?>
+                                                <div class="av-org"><?= htmlspecialchars($u['nama_organisasi']) ?></div>
+                                            <?php endif; ?>
                                         </div>
-                                    </td>
-                                </tr>
-                            <?php endwhile; else: ?>
+                                    </div>
+                                </td>
+                                <td style="font-size:13px;color:var(--muted);"><?= htmlspecialchars($u['email']) ?></td>
+                                <td>
+                                    <span class="badge <?= $role_badge ?>"><?= $u['role'] ?></span>
+                                </td>
+                                <td>
+                                    <?php if ($is_eo): ?>
+                                        <a href="<?= BASEURL ?>/app/views/admin/validasi.php?tab=Pending"
+                                            style="font-size:13px;color:var(--primary);font-weight:600;">
+                                            <?= $ev_count ?> event
+                                        </a>
+                                    <?php else: ?>
+                                        <span style="font-size:13px;color:var(--muted);">—</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <div class="action-group">
+                                  
+                                        <form method="POST"
+                                            action="<?= BASEURL ?>/app/controllers/admin/delete-user.php"
+                                            onsubmit="return confirm('Hapus pengguna <?= htmlspecialchars(addslashes($u['nama_lengkap'])) ?> secara permanen? Semua data terkait akan ikut terhapus.')">
+                                            <input type="hidden" name="id" value="<?= $u['id'] ?>">
+                                            <input type="hidden" name="redirect"
+                                                value="<?= BASEURL ?>/app/views/admin/manajemen-pengguna.php?filter=<?= $filter ?>">
+                                            <button type="submit" class="btn btn-danger" title="Hapus Pengguna">
+                                                <i class='bx bx-trash'></i> Hapus
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endwhile; else: ?>
                             <tr>
                                 <td colspan="6">
                                     <div class="empty-state">
@@ -187,6 +174,11 @@ $c_eo = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fetch
         </div>
 
     </main>
+
+    <script>
+        const toast = document.getElementById('flashToast');
+        if (toast) setTimeout(() => toast.style.opacity = '0', 3500);
+    </script>
 </body>
 
 </html>

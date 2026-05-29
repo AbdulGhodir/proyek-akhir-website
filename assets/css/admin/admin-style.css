@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
 
 :root {
@@ -766,20 +766,24 @@ tbody td {
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: .25s;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .ev-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px) scale(1.005);
   box-shadow: var(--shadow-md);
 }
 
 .ev-thumb {
   height: 160px;
-  background: linear-gradient(135deg, #1CABE2, #0071BC);
   background-size: cover;
   background-position: center;
   position: relative;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ev-card:hover .ev-thumb {
+  transform: scale(1.05);
 }
 
 .ev-thumb-badges {
@@ -788,10 +792,13 @@ tbody td {
   left: 12px;
   display: flex;
   gap: 6px;
+  z-index: 2;
 }
 
 .ev-body {
   padding: 18px;
+  position: relative;
+  z-index: 1;
 }
 
 .ev-title {
@@ -840,6 +847,8 @@ tbody td {
   display: flex;
   align-items: center;
   gap: 8px;
+  position: relative;
+  z-index: 1;
 }
 
 .ev-footer .btn {
@@ -850,11 +859,29 @@ tbody td {
 .ev-footer .btn-approve {
   background: linear-gradient(135deg, #22C55E, #16A34A);
   color: white;
+  box-shadow: 0 4px 10px rgba(34, 197, 94, 0.2);
+  transition: all 0.22s ease;
+}
+
+.ev-footer .btn-approve:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(34, 197, 94, 0.35);
+  filter: brightness(1.05);
 }
 
 .ev-footer .btn-reject {
-  background: #FEE2E2;
+  background: #FEF2F2;
   color: var(--danger);
+  border: 1px solid #FEE2E2;
+  transition: all 0.22s ease;
+}
+
+.ev-footer .btn-reject:hover {
+  background: var(--danger);
+  color: white;
+  border-color: var(--danger);
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.25);
+  transform: translateY(-1px);
 }
 
 .drawer-overlay {
@@ -1100,3 +1127,375 @@ tbody td {
     font-size: 22px;
   }
 }
+
+/* ============================================================
+   FLASH TOAST NOTIFICATION
+   ============================================================ */
+.flash-toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, .18);
+  animation: slideInRight .35s cubic-bezier(.4, 0, .2, 1);
+  transition: opacity .4s;
+  max-width: 380px;
+}
+
+.flash-toast i {
+  font-size: 20px;
+}
+
+.flash-success {
+  background: linear-gradient(135deg, #22C55E, #16A34A);
+  color: white;
+}
+
+.flash-error {
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+  color: white;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   ALASAN PENOLAKAN BOX
+   ============================================================ */
+.alasan-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #991B1B;
+}
+
+.alasan-box i {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--danger);
+}
+
+/* ============================================================
+   EVENT CARD STATUS OVERLAY
+   ============================================================ */
+.ev-status-overlay {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  backdrop-filter: blur(8px);
+}
+
+.ev-status-overlay.status-pub {
+  background: rgba(34, 197, 94, .85);
+  color: white;
+}
+
+.ev-status-overlay.status-tol {
+  background: rgba(239, 68, 68, .85);
+  color: white;
+}
+
+/* ============================================================
+   PLATFORM PULSE
+   ============================================================ */
+.pulse-list {
+  padding: 16px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pulse-row {}
+
+.pulse-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.pulse-header span:last-child {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.pulse-track {
+  height: 8px;
+  background: var(--line);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.pulse-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1CABE2, #0071BC);
+  border-radius: 99px;
+  transition: width .6s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* ============================================================
+   ACTION GROUP (manajemen pengguna)
+   ============================================================ */
+.action-group {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   STAT CARD IMPROVEMENTS
+   ============================================================ */
+.stat-card {
+  cursor: default;
+}
+
+.stat-card.urgent {
+  border-left-color: var(--danger);
+  background: linear-gradient(135deg, #FFF5F5, #FFFFFF);
+}
+
+/* ============================================================
+   EVENT CARD VISUAL UPGRADE
+   ============================================================ */
+.ev-card {
+  border: 1px solid var(--line);
+  position: relative;
+}
+
+.ev-card:hover {
+  border-color: rgba(28, 171, 226, .3);
+}
+
+.ev-thumb {
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+/* ============================================================
+   DRAWER UPGRADE
+   ============================================================ */
+.drawer-content h2 {
+  color: var(--text);
+}
+
+.drawer-section h4 {
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 6px;
+  display: inline-block;
+}
+
+/* ============================================================
+   TABLE UPGRADE (manajemen pengguna)
+   ============================================================ */
+.table-wrap {
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+thead th:first-child {
+  border-radius: 0;
+}
+
+thead th:last-child {
+  border-radius: 0;
+}
+
+tbody tr {
+  transition: background .15s, transform .15s;
+}
+
+tbody tr:hover {
+  background: linear-gradient(90deg, #F0F9FF, #F8FAFF);
+  transform: none;
+}
+
+/* ============================================================
+   HERO BANNER UPGRADE
+   ============================================================ */
+.hero-banner {
+  background: linear-gradient(135deg, #03254C 0%, #0B74B9 60%, #1CABE2 100%);
+}
+
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  left: -80px;
+  bottom: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .03);
+}
+
+/* ============================================================
+   BTN UPGRADE
+   ============================================================ */
+.btn-approve {
+  background: linear-gradient(135deg, #22C55E, #16A34A);
+  color: white;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, .3);
+}
+
+.btn-approve:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(34, 197, 94, .4);
+}
+
+.btn-reject {
+  background: linear-gradient(135deg, #FEE2E2, #FECACA);
+  color: var(--danger);
+  border: 1px solid #FECACA;
+}
+
+.btn-reject:hover {
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+  color: white;
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+.btn-warn {
+  background: linear-gradient(135deg, #FFF3CD, #FDE68A);
+  color: #92400E;
+  border: 1px solid #FDE68A;
+}
+
+.btn-warn:hover {
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  color: white;
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   FILTER PILL UPGRADE
+   ============================================================ */
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .2s cubic-bezier(.4, 0, .2, 1);
+}
+
+.filter-pill i {
+  font-size: 15px;
+}
+
+.filter-pill.active {
+  background: linear-gradient(135deg, #1CABE2, #0071BC);
+  box-shadow: 0 4px 12px rgba(28, 171, 226, .35);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   PAGE HEADER UPGRADE
+   ============================================================ */
+.page-header h1 {
+  background: linear-gradient(135deg, #062A45, #0B74B9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   BADGE UPGRADE
+   ============================================================ */
+.badge {
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+/* ============================================================
+   CARD HEAD BORDER
+   ============================================================ */
+.card-head {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 16px;
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   NAV ITEM HOVER UPGRADE
+   ============================================================ */
+.nav-item:hover {
+  background: linear-gradient(90deg, #EBF6FF, #F0F9FF);
+  transform: translateX(3px);
+}
+
+.nav-item.active {
+  background: linear-gradient(90deg, #DFF5FF, #EBF6FF);
+  box-shadow: inset 0 0 0 1px rgba(28, 171, 226, .15);
+}
+
+/* ============================================================
+   LOGOUT BTN UPGRADE
+   ============================================================ */
+.logout-btn {
+  border: 1px solid #FECACA;
+}
+
+.logout-btn:hover {
+  background: var(--danger);
+  color: white;
+  border-color: var(--danger);
+  transform: translateX(3px);
+}
+
+/* ============================================================
+   SEARCH WRAP UPGRADE
+   ============================================================ */
+.search-wrap input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(28, 171, 226, .15);
+}
+
+/* ============================================================
+   EMPTY STATE UPGRADE
+   ============================================================ */
+.empty-state i {
+  opacity: .25;
+  background: linear-gradient(135deg, #1CABE2, #0071BC);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   SPIN KEYFRAMES (untuk drawer loader)
+   ============================================================ */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
