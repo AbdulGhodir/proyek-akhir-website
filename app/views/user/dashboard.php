@@ -1,5 +1,6 @@
 <?php
 /** @var string $pageTitle */
+/** @var array $events */
 ?>
 
 <!DOCTYPE html>
@@ -17,32 +18,23 @@
   <section class="hero">
     <div class="container">
       <div class="hero-card">
+
         <div class="hero-content">
-          <div class="hero-badge">
-            <i class='bx bxs-badge-check'></i>
-            Platform Event Terpusat Bandar Lampung
-          </div>
           <h1>Temukan Event Terbaik Untuk Upgrade Dirimu!</h1>
-          <p>Ikuti seminar, webinar, dan volunteer yang sudah tervalidasi dan terpercaya hanya di Eventify!</p>
+          <p>Ikuti seminar, webinar, volunteer, maupun konser yang sudah tervalidasi dan terpercaya hanya di Eventify!</p>
+
           <div class="hero-chips">
             <button onclick="filterEvent('seminar')">Seminar</button>
             <button onclick="filterEvent('webinar')">Webinar</button>
             <button onclick="filterEvent('volunteer')">Volunteer</button>
+            <button onclick="filterEvent('konser')">Konser</button>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="filters">
-    <div class="container">
-      <div class="filter-wrap">
-        <button class="filter-pill active" onclick="filterEvent('semua')">Semua</button>
-        <button class="filter-pill" onclick="filterEvent('seminar')">Seminar</button>
-        <button class="filter-pill" onclick="filterEvent('webinar')">Webinar</button>
-        <button class="filter-pill" onclick="filterEvent('volunteer')">Volunteer</button>
-        <button class="filter-pill" onclick="filterEvent('gratis')">Gratis</button>
-        <button class="filter-pill" onclick="filterEvent('berbayar')">Berbayar</button>
+        <div class="hero-logo-box">
+          <img src="<?= BASEURL; ?>/assets/images/logo.png" alt="Eventify Logo">
+        </div>
+
       </div>
     </div>
   </section>
@@ -92,6 +84,16 @@
           <h2>Jelajahi Event</h2>
           <p>Pilih event sesuai minatmu</p>
         </div>
+      </div>
+
+      <div class="filter-wrap-dashboard">
+        <button class="filter-pill active" onclick="filterEvent('semua')">Semua</button>
+        <button class="filter-pill" onclick="filterEvent('seminar')">Seminar</button>
+        <button class="filter-pill" onclick="filterEvent('webinar')">Webinar</button>
+        <button class="filter-pill" onclick="filterEvent('volunteer')">Volunteer</button>
+        <button class="filter-pill" onclick="filterEvent('konser')">Konser</button>
+        <button class="filter-pill" onclick="filterEvent('gratis')">Gratis</button>
+        <button class="filter-pill" onclick="filterEvent('berbayar')">Berbayar</button>
       </div>
 
       <div class="event-grid">

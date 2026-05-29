@@ -37,91 +37,72 @@
 
     <div class="history-list">
 
-      <?php foreach($history as $item): 
-        $status_asli = $item['status'];
-        $status_filter = strtolower($status_asli); 
-        
-        $statusClass = '';
-        if($status_asli == 'Diterima'){
-          $statusClass = 'status-success';
-        } elseif($status_asli == 'Menunggu Verifikasi'){
-          $statusClass = 'status-warning';
-        } else {
-          $statusClass = 'status-danger';
-        }
-      ?>
-      
-      <div class="history-card" data-status="<?= $status_filter; ?>">
+<?php foreach($history as $item): 
+  $status_asli = $item['status_pendaftaran'];
 
-        <img src="<?= $item['image']; ?>" alt="<?= $item['title']; ?>">
+  if ($status_asli == 'diterima') {
+    $status_text = 'Diterima';
+    $status_filter = 'diterima';
+    $statusClass = 'status-success';
+  } elseif ($status_asli == 'menunggu') {
+    $status_text = 'Menunggu Verifikasi';
+    $status_filter = 'menunggu verifikasi';
+    $statusClass = 'status-warning';
+  } else {
+    $status_text = 'Ditolak';
+    $status_filter = 'ditolak';
+    $statusClass = 'status-danger';
+  }
 
-        <div class="history-content">
-          <div class="history-top">
-            <span class="badge blue"><?= $item['type']; ?></span>
-            <span class="status-badge <?= $statusClass; ?>">
-              <?= $status_asli; ?>
-            </span>
-          </div>
+  $gambar = !empty($item['cover_image'])
+      ? BASEURL . '/assets/images/uploads/' . $item['cover_image']
+      : BASEURL . '/assets/images/image.png';
+?>
 
-          <h3><?= $item['title']; ?></h3>
+<div 
+  class="history-card" 
+  data-status="<?= $status_filter; ?>"
+  data-search="<?= strtolower($item['judul'] . ' ' . $item['kategori'] . ' ' . $item['lokasi'] . ' ' . $status_text); ?>"
+>
 
-          <div class="history-meta">
-            <p><i class='bx bx-calendar'></i> <?= $item['date']; ?></p>
-            <p><i class='bx bx-map'></i> <?= $item['location']; ?></p>
-          </div>
+  <img src="<?= $gambar; ?>" alt="<?= $item['judul']; ?>">
 
-          <?php if(isset($item['reason'])): ?>
-            <div class="reject-note">
-              <?= $item['reason']; ?>
-            </div>
-          <?php endif; ?>
+  <div class="history-content">
+    <div class="history-top">
+      <span class="badge blue"><?= $item['kategori']; ?></span>
+      <span class="status-badge <?= $statusClass; ?>">
+        <?= $status_text; ?>
+      </span>
+    </div>
 
-          <div class="history-action">
-            <?php if($status_asli == 'Diterima'): ?>
-              <a href="<?= BASEURL; ?>/app/views/user/tiket_detail.php?id=<?= $item['id_pendaftaran'] ?? ''; ?>" class="btn-primary" style="text-decoration: none; width: max-content; padding: 0 24px; display: inline-flex; align-items: center;">Lihat Tiket</a>
-            <?php elseif($status_asli == 'Menunggu Verifikasi'): ?>
-              <button class="btn-secondary" disabled>Sedang Diverifikasi</button>
-            <?php else: ?>
-              <button class="btn-danger" disabled>Pendaftaran Ditolak</button>
-            <?php endif; ?>
-          </div>
+    <h3><?= $item['judul']; ?></h3>
 
-        </div>
-      </div>
-      <?php endforeach; ?>
+    <div class="history-meta">
+      <p><i class='bx bx-calendar'></i> <?= formatTanggalIndo($item['waktu_pelaksanaan']); ?></p>
+      <p><i class='bx bx-map'></i> <?= $item['lokasi']; ?></p>
+    </div>
+
+    <div class="history-action">
+      <?php if($status_asli == 'diterima'): ?>
+        <a href="<?= BASEURL; ?>/app/views/user/tiket_detail.php?id=<?= $item['id_pendaftaran']; ?>" class="btn-primary" style="text-decoration: none; width: max-content; padding: 0 24px; display: inline-flex; align-items: center;">Lihat Tiket</a>
+      <?php elseif($status_asli == 'menunggu'): ?>
+        <button class="btn-secondary" disabled>Sedang Diverifikasi</button>
+      <?php else: ?>
+        <button class="btn-danger" disabled>Pendaftaran Ditolak</button>
+      <?php endif; ?>
+    </div>
+
+  </div>
+</div>
+
+<?php endforeach; ?>
 
     </div>
 
   </div>
 </section>
 
-<script>
-  function filterRiwayat(status) {
-      const cards = document.querySelectorAll('.history-card');
-      const pills = document.querySelectorAll('.filter-pill');
-
-      pills.forEach(btn => {
-          btn.classList.remove('active');
-          if (btn.innerText.toLowerCase() === status || (status === 'semua' && btn.innerText === 'Semua')) {
-              btn.classList.add('active');
-          }
-      });
-
-      cards.forEach(card => {
-          const statusCard = card.getAttribute('data-status').toLowerCase();
-
-          if (status === 'semua') {
-              card.style.display = '';
-          } else {
-              if (statusCard === status) {
-                  card.style.display = '';
-              } else {
-                  card.style.display = 'none';
-              }
-          }
-      });
-  }
-</script>
+<script src="<?= BASEURL; ?>/assets/js/user/riwayat_pendaftaran.js"></script>
 
 </body>
 </html>
