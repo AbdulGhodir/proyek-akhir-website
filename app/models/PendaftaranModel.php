@@ -86,4 +86,27 @@
         
         return $data;
     }
+
+    function getRiwayatPendaftaranByUser(mysqli $conn, int $idUser) {
+        $query = $conn->prepare("
+            SELECT 
+                pendaftaran.*,
+                event.judul,
+                event.waktu_pelaksanaan,
+                event.lokasi,
+                event.cover_image,
+                kategori.kategori
+            FROM pendaftaran
+            JOIN event ON pendaftaran.id_event = event.id_event
+            JOIN kategori ON event.id_kategori = kategori.id_kategori
+            WHERE pendaftaran.id_user = ?
+            ORDER BY pendaftaran.tanggal_daftar DESC
+        ");
+        
+        $query->bind_param("i", $idUser);
+        $query->execute();
+        
+        $result = $query->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 ?>
