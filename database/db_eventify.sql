@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 29, 2026 at 04:05 AM
+-- Generation Time: May 29, 2026 at 06:15 AM
 -- Server version: 8.0.30
--- PHP Version: 8.3.26
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,17 +48,17 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`id_event`, `id_user`, `id_kategori`, `judul`, `waktu_pelaksanaan`, `biaya`, `lokasi`, `kuota`, `deskripsi`, `benefit`, `cover_image`, `status_publikasi`, `created_at`) VALUES
-(101, 21, 3, ' Webinar Nasional Teknologi AI', '2005-10-19 23:56:00', 50000000, 'GSG Unila', 1, 'Seminar interaktif yang membahas perkembangan AI di industri masa depan dan bagaimana mahasiswa bisa beradaptasi.', 'Uang Tunai 1000M', '6a13158339f45_1779635587.png', 'Dipublikasikan', '2026-05-17 16:34:20'),
-(102, 102, 3, 'Webinar UI/UX Design Fundamental', '2026-08-20 19:00:00', 0, 'Zoom Meeting', 300, 'Belajar dasar UI/UX untuk pemula bersama expert dari industri teknologi.', 'Ilmu bermanfaat, Grup Telegram Komunitas', 'webinar_uiux.jpg', 'Dipublikasikan', '2026-05-17 16:34:20'),
-(103, 103, 1, 'Volunteer Aksi Bersih Pantai Mutun', '2026-09-01 07:00:00', 0, 'Pantai Mutun, Pesawaran', 50, 'Aksi nyata membersihkan sampah plastik di pesisir pantai bersama pemuda-pemudi peduli lingkungan.', 'Sertifikat Relawan, Makan Siang, Transportasi', 'volunteer_pantai.jpg', 'Dipublikasikan', '2026-05-17 16:34:20'),
-(104, 103, 4, 'Konser Amal Musik Indie', '2026-10-10 18:30:00', 100000, 'Lapangan PKOR Way Halim', 500, 'Konser penggalangan dana untuk korban bencana alam dengan menghadirkan band indie lokal.', 'Tiket Konser Fisik, Donasi', 'konser_amal.jpg', 'Dipublikasikan', '2026-05-17 16:34:20'),
-(127, 21, 4, 'Lampung Vest', '2006-07-12 20:16:00', 300000, 'Lapangan GSG', 1000, 'Acara menyenangkan dengan banyak kegiatan seru di Lampung dengan tamu Artis terkenal yaitu Hindia dan Yungkai', 'Saliman dengan Yungkai', '6a0c64fadbfde_1779197178.jpg', 'Dipublikasikan', '2026-05-19 13:26:18'),
-(130, 21, 2, 'Seminar Nasional Cyber Security 2026', '2026-11-10 08:00:00', 75000, 'Gedung Serba Guna Unila', 200, 'Seminar membahas tren keamanan siber di era digital bersama praktisi industri teknologi terkemuka.', 'Sertifikat, Seminar Kit, Makan Siang, Relasi', '6a184ee604b1f_1779977958.jpg', 'Dipublikasikan', '2026-05-19 14:49:22'),
-(131, 21, 5, 'Hackathon Mahasiswa Nasional (HACKNAS)', '2026-12-01 08:00:00', 150000, 'Lab Komputer Universitas Lampung', 50, 'Kompetisi membuat aplikasi inovatif penyelesaian masalah sosial dalam waktu 48 jam non-stop.', 'Uang Tunai Jutaan Rupiah, Sertifikat Nasional, Trofi', '6a184fa0c1b19_1779978144.jpg', 'Dipublikasikan', '2026-05-19 14:49:22'),
-(132, 21, 3, 'Masterclass React JS untuk Pemula', '2026-09-25 19:00:00', 0, 'Zoom Meeting', 500, 'Belajar membuat website interaktif menggunakan framework React JS dari nol bersama Senior Front-End Developer.', 'Modul Belajar, Recording Kelas, Grup Mentoring', '6a184fd358d4f_1779978195.png', 'Dipublikasikan', '2026-05-19 14:49:22'),
-(134, 21, 4, 'Festival Musik Akhir Tahun', '2026-12-31 19:00:00', 120000, 'Lapangan Rektorat Unila', 2000, 'Konser perayaan akhir tahun yang meriah dengan penampilan dari band-band lokal indie dan artis ibukota.', 'Tiket Fisik Eksklusif, Merchandise, Doorprize', '6a184fe603e27_1779978214.jpg', 'Dipublikasikan', '2026-05-19 14:49:22'),
-(136, 21, 1, 'Volunteer', '2026-05-22 21:17:00', 100000, 'Aula GSG', 100, '1234456', NULL, '6a1065cf92496_1779459535.png', 'Dipublikasikan', '2026-05-22 14:18:55'),
-(137, 21, 4, 'Lampung Cihuyy', '2026-05-01 23:14:00', 0, 'Hutan Amazon', 100, 'Event asik seru menyenangkan', '1000M', '6a131653c016a_1779635795.jpg', 'Dipublikasikan', '2026-05-24 15:16:35');
+(101, 21, 3, ' Webinar Nasional Teknologi AI', '2005-10-19 23:56:00', 50000000, 'GSG Unila', 1, 'Seminar interaktif yang membahas perkembangan AI di industri masa depan dan bagaimana mahasiswa bisa beradaptasi.', 'Uang Tunai 1000M', 'tech-seminar.png', 'Dipublikasikan', '2026-05-17 16:34:20'),
+(102, 102, 3, 'Webinar UI/UX Design Fundamental', '2026-08-20 19:00:00', 0, 'Zoom Meeting', 300, 'Belajar dasar UI/UX untuk pemula bersama expert dari industri teknologi.', 'Ilmu bermanfaat, Grup Telegram Komunitas', 'ui-ux-webinar.png', 'Dipublikasikan', '2026-05-17 16:34:20'),
+(103, 103, 1, 'Volunteer Aksi Bersih Pantai Mutun', '2026-09-01 07:00:00', 0, 'Pantai Mutun, Pesawaran', 50, 'Aksi nyata membersihkan sampah plastik di pesisir pantai bersama pemuda-pemudi peduli lingkungan.', 'Sertifikat Relawan, Makan Siang, Transportasi', 'beach-volunteer.png', 'Dipublikasikan', '2026-05-17 16:34:20'),
+(104, 103, 4, 'Konser Amal Musik Indie', '2026-10-10 18:30:00', 100000, 'Lapangan PKOR Way Halim', 500, 'Konser penggalangan dana untuk korban bencana alam dengan menghadirkan band indie lokal.', 'Tiket Konser Fisik, Donasi', 'music-concert.png', 'Dipublikasikan', '2026-05-17 16:34:20'),
+(127, 21, 4, 'Lampung Vest', '2006-07-12 20:16:00', 300000, 'Lapangan GSG', 1000, 'Acara menyenangkan dengan banyak kegiatan seru di Lampung dengan tamu Artis terkenal yaitu Hindia dan Yungkai', 'Saliman dengan Yungkai', 'music-concert.png', 'Dipublikasikan', '2026-05-19 13:26:18'),
+(130, 21, 2, 'Seminar Nasional Cyber Security 2026', '2026-11-10 08:00:00', 75000, 'Gedung Serba Guna Unila', 200, 'Seminar membahas tren keamanan siber di era digital bersama praktisi industri teknologi terkemuka.', 'Sertifikat, Seminar Kit, Makan Siang, Relasi', 'tech-seminar.png', 'Dipublikasikan', '2026-05-19 14:49:22'),
+(131, 21, 5, 'Hackathon Mahasiswa Nasional (HACKNAS)', '2026-12-01 08:00:00', 150000, 'Lab Komputer Universitas Lampung', 50, 'Kompetisi membuat aplikasi inovatif penyelesaian masalah sosial dalam waktu 48 jam non-stop.', 'Uang Tunai Jutaan Rupiah, Sertifikat Nasional, Trofi', 'tech-seminar.png', 'Dipublikasikan', '2026-05-19 14:49:22'),
+(132, 21, 3, 'Masterclass React JS untuk Pemula', '2026-09-25 19:00:00', 0, 'Zoom Meeting', 500, 'Belajar membuat website interaktif menggunakan framework React JS dari nol bersama Senior Front-End Developer.', 'Modul Belajar, Recording Kelas, Grup Mentoring', 'tech-seminar.png', 'Dipublikasikan', '2026-05-19 14:49:22'),
+(134, 21, 4, 'Festival Musik Akhir Tahun', '2026-12-31 19:00:00', 120000, 'Lapangan Rektorat Unila', 2000, 'Konser perayaan akhir tahun yang meriah dengan penampilan dari band-band lokal indie dan artis ibukota.', 'Tiket Fisik Eksklusif, Merchandise, Doorprize', 'music-concert.png', 'Dipublikasikan', '2026-05-19 14:49:22'),
+(136, 21, 1, 'Volunteer', '2026-05-22 21:17:00', 100000, 'Aula GSG', 100, '1234456', NULL, 'volunteer-malam.png', 'Dipublikasikan', '2026-05-22 14:18:55'),
+(137, 21, 4, 'Lampung Cihuyy', '2026-05-01 23:14:00', 0, 'Hutan Amazon', 100, 'Event asik seru menyenangkan', '1000M', 'volunteer-gerbang-alam.png', 'Dipublikasikan', '2026-05-24 15:16:35');
 
 -- --------------------------------------------------------
 
@@ -261,7 +261,8 @@ INSERT INTO `users` (`id`, `nama_lengkap`, `nama_organisasi`, `email`, `password
 (105, 'Rina Relawan', NULL, 'rina@gmail.com', '$2y$10$8csQK6J/GupWVcyYYaAj5egojPKQzByyixcSnVyeVvKP3a2GIWJQW', 'User'),
 (106, 'Dodi Mahasiswa', NULL, 'dodi@gmail.com', '$2y$10$8csQK6J/GupWVcyYYaAj5egojPKQzByyixcSnVyeVvKP3a2GIWJQW', 'User'),
 (108, 'Abdul Ghodir', NULL, 'pengguna@gmail.com', '$2y$10$PaYbXOdesYVFXKVlI8AWc.3fl7A53t6ONLXACo46d5MArLbkct5k2', 'User'),
-(109, 'Abdul Ghodir Firdiansyah', 'Volunteer Jaya', 'event@gmail.com', '$2y$10$Geapt/JP/q4Y2wRqZnyQTuA8mMAEcr6c.DFQ8eM2.68vEgP.mGENu', 'EO');
+(109, 'Abdul Ghodir Firdiansyah', 'Volunteer Jaya', 'event@gmail.com', '$2y$10$Geapt/JP/q4Y2wRqZnyQTuA8mMAEcr6c.DFQ8eM2.68vEgP.mGENu', 'EO'),
+(110, 'Indriyani Talitha Putri', NULL, 'indritp3@gmail.com', '$2y$10$Sj1q1OkV/ZbRPLYZT0Ke2.7mYpeMem3qX2edLc1VJwD4ZzhdPeNny', 'User');
 
 --
 -- Indexes for dumped tables
@@ -348,7 +349,7 @@ ALTER TABLE `pendaftaran`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- Constraints for dumped tables
