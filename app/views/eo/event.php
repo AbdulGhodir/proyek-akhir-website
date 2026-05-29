@@ -66,9 +66,9 @@
                             </td>
                             <td>
                                 <div class="tombol-aksi">
-                                    <button class="btn-edit">
+                                    <a href="<?= BASEURL; ?>/app/controllers/eo/form_event.php?id_event=<?= $event['id_event'] ?>" class="btn-edit">
                                         <i class="icon" data-lucide="edit"></i>
-                                    </button>
+                                    </a>
                                     
                                     <button class="btn-delete" data-id="<?= $event['id_event'] ?>" data-nama="<?= $event['judul'] ?>">
                                         <i class="icon" data-lucide="trash"></i>

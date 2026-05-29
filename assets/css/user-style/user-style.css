@@ -808,17 +808,11 @@ button,input{
 .card-white{
   background:#fff;
   border-radius:28px;
-  box-shadow:var(--shadow-sm);
+  box-shadow: 1px 5px 5px 1px #979797;
 }
 
 .register-event-form{
   padding:32px;
-}
-
-.form-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
 }
 
 .form-group{
@@ -836,12 +830,18 @@ button,input{
   color:var(--dark);
 }
 
+.form-group label.wajib::after {
+  content: ' *';
+  color: #D63343;
+}
+
 .form-group input,
-.form-group textarea{
+.form-group textarea,
+.form-group select{
   width:100%;
   padding:16px 18px;
-  border:1px solid var(--line);
-  border-radius:16px;
+  border:1px solid var(--muted);
+  border-radius:10px;
   font-size:15px;
   font-family:inherit;
   transition:.25s;
@@ -850,7 +850,8 @@ button,input{
 }
 
 .form-group input:focus,
-.form-group textarea:focus{
+.form-group textarea:focus,
+.form-group select:focus {
   border-color:var(--primary);
   box-shadow:0 0 0 4px rgba(28,171,226,.12);
   background:#fff;

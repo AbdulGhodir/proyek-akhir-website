@@ -1,10 +1,18 @@
+<?php
+    /** @var array $listKategori */
+    /** @var array $listPertanyaan */
+    /** @var array $tipePertanyaan */
+    /** @var array $opsiDropdown */
+    /** @var array $wajibDiisi */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Event Baru</title>
+    <title><?= $isEdit ? 'Edit Event' : 'Tambah Event Baru'; ?></title>
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/global.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/form_event.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/navbar.css">
@@ -20,65 +28,63 @@
     <section>
         <div class="header">
             <div class="header-title">
-                <span>Buat Event Baru</span>
+                <span><?= $isEdit ? 'Edit Event' : 'Buat Event Baru'; ?></span>
                 <span>Lengkapi detail dan rancang form pendaftaran sesuai kebutuhan.</span>
             </div>
         </div>
 
-        <form class="form-event-baru" action="<?= BASEURL; ?>/app/controllers/eo/form_event.php" method="POST" enctype="multipart/form-data">
+        <form class="form-event-baru" method="POST" enctype="multipart/form-data">
             <div class="form-event">
                 <span class="header-form">Detail Event</span>
     
                 <div class="detail-form-event">
                     <div class="input-group">
                         <label for="nama_event" class="wajib-diisi">Nama Event</label>
-                        <input type="text" id="nama_event" name="nama_event" placeholder="Contoh: Webinar Cyber Security" required>
+                        <input value="<?= $namaEvent; ?>" type="text" id="nama_event" name="nama_event" placeholder="Contoh: Webinar Cyber Security" required>
                     </div>
     
                     <div class="input-group">
                         <label for="deskripsi" class="wajib-diisi">Deskripsi</label>
-                        <textarea id="deskripsi" name="deskripsi" placeholder="Jelaskan detail event..." required></textarea>
+                        <textarea id="deskripsi" name="deskripsi" placeholder="Jelaskan detail event..." required><?= $deskripsiEvent; ?></textarea>
                     </div>
     
                     <div class="input-row">
                         <div class="input-group-row">
                             <label for="kategori" class="wajib-diisi">Kategori</label>
-                            <select name="kategori" id="kategori" required>
-                                <option value="1">Volunteer</option>
-                                <option value="2">Seminar</option>
-                                <option value="3">Webinar</option>
-                                <option value="4">Konser</option>
-                                <option value="5">Lomba</option>
+                            <select  name="kategori" id="kategori" required>
+                                <?php foreach ($listKategori as $kategori) : ?>
+                                    <option <?= $kategori['id_kategori'] == $kategoriEvent ? 'selected' : ''; ?> value="<?= $kategori['id_kategori'] ?>"><?= $kategori['kategori'] ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
     
                         <div class="input-group-row">
                             <label for="tanggal" class="wajib-diisi">Tanggal & Waktu</label>
-                            <input type="datetime-local" id="tanggal" name="tanggal" required>
+                            <input value="<?= $tanggalEvent; ?>" type="datetime-local" id="tanggal" name="tanggal" required>
                         </div>
                     </div>
     
                     <div class="input-row">
                         <div class="input-group-row">
                             <label for="harga" class="wajib-diisi">Biaya</label>
-                            <input type="text" id="biaya" name="biaya" placeholder="Rp 0 (Gratis) atau Harga" required>
+                            <input value="<?= $biayaEvent; ?>" type="number" id="biaya" name="biaya" placeholder="Rp 0 (Gratis) atau Harga" required>
                         </div>
     
                         <div class="input-group-row">
                             <label for="lokasi" class="wajib-diisi">Lokasi / Link Platform</label>
-                            <input type="text" id="lokasi" name="lokasi" placeholder="Contoh: Aula Unila / Link Zoom" required>
+                            <input value="<?= $lokasiEvent; ?>" type="text" id="lokasi" name="lokasi" placeholder="Contoh: Aula Unila / Link Zoom" required>
                         </div>
                     </div>
     
                     <div class="input-row">
                         <div class="input-group-row">
                             <label for="benefit">Benefit</label>
-                            <textarea name="benefit" id="benefit" placeholder="Contoh: E-sertifikat, Doorprize, dll"></textarea>
+                            <textarea name="benefit" id="benefit" placeholder="Contoh: E-sertifikat, Doorprize, dll"><?= $benefitEvent; ?></textarea>
                         </div>
                         <div class="input-group-column">
                             <div class="input-group">
                                 <label for="kuota" class="wajib-diisi">Kuota / Kapasitas Peserta</label>
-                                <input type="number" id="kuota" name="kuota" placeholder="Contoh: 150" required>
+                                <input value="<?= $kuotaEvent; ?>" type="number" id="kuota" name="kuota" placeholder="Contoh: 150" required>
                             </div>
         
                             <div class="input-group">
@@ -97,53 +103,95 @@
                 </div>
     
                 <div class="detail-form-pendaftaran">
-                    <div class="input-group-pendaftaran">
-                        <div class="row-pertanyaan">
-                            <input type="text" name="pertanyaan[0]" placeholder="Masukkan Pertanyaan" required>
-                            <select name="tipe_pertanyaan[0]" class="dropdown-tipe-pertanyaan" onchange="aktifkanOpsiDropdown(this)">
-                                <option value="teks">Jawaban Singkat</option>
-                                <option value="paragraf">Paragraf</option>
-                                <option value="dropdown">Dropdown</option>
-                                <option value="tanggal">Tanggal</option>
-                                <option value="angka">Angka</option>
-                                <option value="file">File Upload</option>
-                            </select>
-                        </div>
-                        
-                        <div class="opsi-dropdown">
-                            <span>Masukkan Pilihan:</span>
-                            <div class="input-opsi-dropdown-group">
-                                <div class="input-opsi-dropdown-item">
-                                    <input type="text" name="opsi[0][]" value="Opsi 1" required>
-                                    <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove()"></i>
+                    <?php if (!$isEdit) : ?>
+                        <div class="input-group-pendaftaran">
+                            <div class="row-pertanyaan">
+                                <input type="text" name="pertanyaan[0]" placeholder="Masukkan Pertanyaan" required>
+                                <select name="tipe_pertanyaan[0]" class="dropdown-tipe-pertanyaan" onchange="aktifkanOpsiDropdown(this)">
+                                    <option value="teks">Jawaban Singkat</option>
+                                    <option value="paragraf">Paragraf</option>
+                                    <option value="dropdown">Dropdown</option>
+                                    <option value="tanggal">Tanggal</option>
+                                    <option value="angka">Angka</option>
+                                    <option value="file">File Upload</option>
+                                </select>
+                            </div>
+                            
+                            <div class="opsi-dropdown">
+                                <span>Masukkan Pilihan:</span>
+                                <div class="input-opsi-dropdown-group">
+                                    <div class="input-opsi-dropdown-item">
+                                        <input type="text" name="opsi[0][]" value="Opsi 1" required>
+                                        <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove()"></i>
+                                    </div>
+                                    <div class="input-opsi-dropdown-item">
+                                        <input type="text" name="opsi[0][]" value="Opsi 2" required>
+                                        <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove()"></i>
+                                    </div>
                                 </div>
-                                <div class="input-opsi-dropdown-item">
-                                    <input type="text" name="opsi[0][]" value="Opsi 2" required>
-                                    <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove()"></i>
+                                <button type="button" onclick="tambahOpsi(this, 0)" class="tambah-opsi">+ Tambah Opsi</button>
+                            </div>
+        
+                            <div class="bottom-menu-form">
+                                <div class="checkbox-wajib">
+                                    <input type="checkbox" name="wajib[0]">
+                                    <label for="wajib" class="wajib-diisi">Wajib Diisi</label>
+                                </div>
+                                <i class="icon" data-lucide="trash-2" onclick="this.parentElement.parentElement.remove()"></i>
+                            </div>
+                        </div>
+                    <?php else : ?>
+                        <?php for ($i = 0; $i < count($listPertanyaan); $i++) : ?>
+                            <div class="input-group-pendaftaran">
+                                <div class="row-pertanyaan">
+                                    <input type="text" name="pertanyaan[<?= $i ?>]" placeholder="Masukkan Pertanyaan" value="<?= $listPertanyaan[$i] ?>" required>
+                                    <select name="tipe_pertanyaan[<?= $i ?>]" class="dropdown-tipe-pertanyaan" onchange="aktifkanOpsiDropdown(this)">
+                                        <option <?= $tipePertanyaan[$i] == 'teks' ? 'selected' : '' ?> value="teks">Jawaban Singkat</option>
+                                        <option <?= $tipePertanyaan[$i] == 'paragraf' ? 'selected' : '' ?> value="paragraf">Paragraf</option>
+                                        <option <?= $tipePertanyaan[$i] == 'dropdown' ? 'selected' : '' ?> value="dropdown">Dropdown</option>
+                                        <option <?= $tipePertanyaan[$i] == 'tanggal' ? 'selected' : '' ?> value="tanggal">Tanggal</option>
+                                        <option <?= $tipePertanyaan[$i] == 'angka' ? 'selected' : '' ?> value="angka">Angka</option>
+                                        <option <?= $tipePertanyaan[$i] == 'file' ? 'selected' : '' ?> value="file">File Upload</option>
+                                    </select>
+                                </div>
+
+                                <?php if ($tipePertanyaan[$i] == 'dropdown') : ?>
+                                    <div class="opsi-dropdown active">
+                                        <span>Masukkan Pilihan:</span>
+                                        <div class="input-opsi-dropdown-group">
+                                            <?php for ($j = 0; $j < count($opsiDropdown[$i]); $j++) : ?>
+                                                <div class="input-opsi-dropdown-item">
+                                                    <input type="text" name="opsi[<?= $i ?>][<?= $j ?>]" value="<?= $opsiDropdown[$i][$j] ?>" required>
+                                                    <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove()"></i>
+                                                </div>
+                                            <?php endfor; ?>
+                                        </div>
+                                        <button type="button" onclick="tambahOpsi(this, <?= $i ?>)" class="tambah-opsi">+ Tambah Opsi</button>
+                                    </div>
+                                <?php endif; ?>
+
+                                <div class="bottom-menu-form">
+                                    <div class="checkbox-wajib">
+                                        <input <?= $wajibDiisi[$i] == 1 ? 'checked' : '' ?> type="checkbox" name="wajib[<?= $i ?>]">
+                                        <label for="wajib" class="wajib-diisi">Wajib Diisi</label>
+                                    </div>
+                                    <i class="icon" data-lucide="trash-2" onclick="this.parentElement.parentElement.remove()"></i>
                                 </div>
                             </div>
-                            <button type="button" onclick="tambahOpsi(this, 0)" class="tambah-opsi">+ Tambah Opsi</button>
-                        </div>
-    
-                        <div class="bottom-menu-form">
-                            <div class="checkbox-wajib">
-                                <input type="checkbox" name="wajib[0]">
-                                <label for="wajib" class="wajib-diisi">Wajib Diisi</label>
-                            </div>
-                            <i class="icon" data-lucide="trash-2" onclick="this.parentElement.parentElement.remove()"></i>
-                        </div>
-                    </div>
-    
+                        <?php endfor; ?>
+                    <?php endif; ?>
+                    
                     <button type="button" class="tambah-pertanyaan">
                         <i class="icon" data-lucide="plus-circle"></i>
                         <span>Tambah Pertanyaan</span>
                     </button>
                 </div>
+
             </div>
     
             <div class="button-submit">
-                <a href="<?= BASEURL; ?>/app/views/eo/event.php">Batal</a>
-                <button type="submit" name="tambah_event_baru">Simpan</button>
+                <a href="<?= BASEURL; ?>/app/controllers/eo/event.php">Batal</a>
+                <button type="submit" name="<?= $isEdit ? 'edit_event' : 'tambah_event_baru'; ?>"><?= $isEdit ? 'Simpan Perubahan' : 'Simpan'; ?></button>
             </div>
         </form>
     </section>

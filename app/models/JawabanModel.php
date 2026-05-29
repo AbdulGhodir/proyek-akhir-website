@@ -14,4 +14,13 @@
         
         return $data;
     }
+
+    function insertJawabanPendaftar(mysqli $conn, int $id_pendaftaran, int $id_form, string $jawaban) {
+        $query = $conn->prepare("
+            INSERT INTO jawaban_pendaftar (id_pendaftaran, id_form, jawaban)
+            VALUES (?, ?, ?);
+        ");
+        $query->bind_param("iis", $id_pendaftaran, $id_form, $jawaban);
+        $query->execute();
+    }
 ?>

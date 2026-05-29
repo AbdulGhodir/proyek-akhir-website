@@ -15,7 +15,7 @@
         }
 
         if ($_SESSION['role'] == "User") {
-            header("Location: " . BASEURL . "/app/views/user/dashboard.php");
+            header("Location: " . BASEURL . "/app/controllers/user/dashboard.php");
             exit();
         }
     }
