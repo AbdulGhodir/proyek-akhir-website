@@ -1,18 +1,34 @@
 <?php
-function getAllEvent(mysqli $conn) {
-    $query = $conn->prepare("
-        SELECT event.*, users.nama_lengkap, kategori.kategori
-        FROM `event`
-        JOIN users ON event.id_user = users.id
-        JOIN kategori ON event.id_kategori = kategori.id_kategori
-        ORDER BY event.waktu_pelaksanaan ASC
-    ");
-    $query->execute();
-    $result = $query->get_result();
-    $data = $result->fetch_all(MYSQLI_ASSOC);
-    
-    return $data;
-}
+    function getAllEvent(mysqli $conn) {
+        $query = $conn->prepare("
+            SELECT event.*, users.nama_lengkap, kategori.kategori
+            FROM `event`
+            JOIN users ON event.id_user = users.id
+            JOIN kategori ON event.id_kategori = kategori.id_kategori
+            ORDER BY event.waktu_pelaksanaan ASC
+        ");
+        $query->execute();
+        $result = $query->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        
+        return $data;
+    }
+
+    function getAllEventPublis(mysqli $conn) {
+        $query = $conn->prepare("
+            SELECT event.*, users.nama_lengkap, kategori.kategori
+            FROM `event`
+            JOIN users ON event.id_user = users.id
+            JOIN kategori ON event.id_kategori = kategori.id_kategori
+            WHERE event.status_publikasi = 'Dipublikasikan'
+            ORDER BY event.waktu_pelaksanaan ASC
+        ");
+        $query->execute();
+        $result = $query->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC);
+        
+        return $data;
+    }
 
     function getDataEventByID(mysqli $conn, int $idEvent) {
         $query = $conn->prepare("
@@ -143,5 +159,23 @@ function getAllEvent(mysqli $conn) {
         $data = $result->fetch_all(MYSQLI_ASSOC);
         
         return $data;
+    }
+
+    function getFeaturedEvent(mysqli $conn) {
+        $query = $conn->prepare("
+            SELECT event.*, users.nama_lengkap, kategori.kategori
+            FROM `event`
+            JOIN users ON event.id_user = users.id
+            JOIN kategori ON event.id_kategori = kategori.id_kategori
+            WHERE event.status_publikasi = 'Dipublikasikan'
+            AND event.waktu_pelaksanaan >= NOW()
+            ORDER BY event.waktu_pelaksanaan ASC
+            LIMIT 1
+        ");
+
+        $query->execute();
+        $result = $query->get_result();
+
+        return $result->fetch_assoc();
     }
 ?>

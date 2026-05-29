@@ -10,6 +10,7 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] != 'User') {
 
 $pageTitle = "Jelajahi Event | Eventify";
 
-$events = getAllEvent($conn);
+$events = getAllEventPublis($conn);
+$featuredEvent = getFeaturedEvent($conn);
 
 require_once '../../views/user/dashboard.php';

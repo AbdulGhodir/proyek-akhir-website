@@ -1,6 +1,7 @@
 <?php
 /** @var string $pageTitle */
 /** @var array $events */
+/** @var array|null $featuredEvent */
 ?>
 
 <!DOCTYPE html>
@@ -49,34 +50,78 @@
       </div>
       
       <div class="featured">
-        <div class="feature-card">
-          <div class="feature-badge">Featured Event</div>
-          <h3 class="feature-title">Tech Future Summit 2026</h3>
-          <p class="feature-desc">Seminar teknologi terbesar di Bandar Lampung yang membahas Artificial Intelligence, Cyber Security, dan Future Digital Industry.</p>
-          <div class="feature-meta">
-            <span><i class='bx bx-calendar'></i> 18 Mei 2026</span>
-            <span><i class='bx bx-map'></i> Swiss-Belhotel Lampung</span>
+        <?php if ($featuredEvent) : ?>
+          <div 
+            class="feature-card"
+            style="
+              background:
+                linear-gradient(135deg, rgba(6, 42, 69, 0.92), rgba(11, 116, 185, 0.88)),
+                url('<?= BASEURL; ?>/assets/images/uploads/<?= $featuredEvent['cover_image']; ?>');
+              background-size: cover;
+              background-position: center;
+            "
+          >
+
+            <div class="feature-badge">Featured Event</div>
+
+            <h3 class="feature-title"><?= $featuredEvent['judul']; ?></h3>
+
+            <p class="feature-desc">
+              <?= $featuredEvent['deskripsi']; ?>
+            </p>
+
+            <div class="feature-meta">
+              <span>
+                <i class='bx bx-calendar'></i>
+                <?= formatTanggalIndo($featuredEvent['waktu_pelaksanaan']); ?>
+              </span>
+
+              <span>
+                <i class='bx bx-map'></i>
+                <?= $featuredEvent['lokasi']; ?>
+              </span>
+
+              <span>
+                <i class='bx bx-buildings'></i>
+                <?= $featuredEvent['nama_lengkap']; ?>
+              </span>
+            </div>
+
+            <a 
+              href="<?= BASEURL; ?>/app/controllers/user/detail-event.php?id=<?= $featuredEvent['id_event']; ?>" 
+              class="feature-btn"
+            >
+              Lihat Detail Event
+            </a>
           </div>
-          <a href="<?= BASEURL; ?>/app/controllers/user/detail-event.php?id=1" class="feature-btn">Lihat Detail Event</a>
-        </div>
+        <?php else : ?>
+          <div class="feature-card">
+            <div class="feature-badge">Featured Event</div>
+            <h3 class="feature-title">Belum Ada Event Terdekat</h3>
+            <p class="feature-desc">
+              Saat ini belum ada event yang akan datang. Silakan cek kembali nanti.
+            </p>
+          </div>
+        <?php endif; ?>
 
         <div class="feature-mini">
           <h3>Event Highlights</h3>
           <div class="highlight-list">
             <div class="highlight-item">
-              <h4>Sertifikat Resmi</h4>
-              <p>Dapatkan e-certificate resmi.</p>
+              <h4>UI/UX Basics</h4>
+              <p>Pahami dasar desain yang nyaman digunakan.</p>
             </div>
             <div class="highlight-item">
-              <h4>Networking</h4>
-              <p>Bangun relasi profesional.</p>
+              <h4>Beginner Friendly</h4>
+              <p>Cocok untuk kamu yang baru mulai belajar UI/UX.</p>
             </div>
             <div class="highlight-item">
-              <h4>Expert Speaker</h4>
-              <p>Materi langsung dari ahlinya.</p>
+              <h4>Practical Insight</h4>
+              <p>Dapatkan insight desain yang relevan dan mudah diterapkan.</p>
             </div>
           </div>
         </div>
+
       </div>
 
       <div class="section-head">
