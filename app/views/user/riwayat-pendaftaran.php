@@ -55,7 +55,11 @@
       : BASEURL . '/assets/images/image.png';
 ?>
 
-<div class="history-card" data-status="<?= $status_filter; ?>">
+<div 
+  class="history-card" 
+  data-status="<?= $status_filter; ?>"
+  data-search="<?= strtolower($item['judul'] . ' ' . $item['kategori'] . ' ' . $item['lokasi'] . ' ' . $status_text); ?>"
+>
 
   <img src="<?= $gambar; ?>" alt="<?= $item['judul']; ?>">
 
@@ -86,6 +90,7 @@
 
   </div>
 </div>
+
 <?php endforeach; ?>
 
     </div>
@@ -93,33 +98,7 @@
   </div>
 </section>
 
-<script>
-  function filterRiwayat(status) {
-      const cards = document.querySelectorAll('.history-card');
-      const pills = document.querySelectorAll('.filter-pill');
-
-      pills.forEach(btn => {
-          btn.classList.remove('active');
-          if (btn.innerText.toLowerCase() === status || (status === 'semua' && btn.innerText === 'Semua')) {
-              btn.classList.add('active');
-          }
-      });
-
-      cards.forEach(card => {
-          const statusCard = card.getAttribute('data-status').toLowerCase();
-
-          if (status === 'semua') {
-              card.style.display = '';
-          } else {
-              if (statusCard === status) {
-                  card.style.display = '';
-              } else {
-                  card.style.display = 'none';
-              }
-          }
-      });
-  }
-</script>
+<script src="<?= BASEURL; ?>/assets/js/user/riwayat_pendaftaran.js"></script>
 
 </body>
 </html>
