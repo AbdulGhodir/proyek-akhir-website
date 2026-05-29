@@ -21,11 +21,28 @@
     }
 
     function formatRupiah($angka) {
-    if ($angka == 0) {
-        return "Gratis";
+        if ($angka == 0) {
+            return "Gratis";
+        }
+        
+        $hasil_rupiah = "Rp" . number_format($angka, 0, ',', '.') . ",-";
+        return $hasil_rupiah;
     }
-    
-    $hasil_rupiah = "Rp" . number_format($angka, 0, ',', '.') . ",-";
-    return $hasil_rupiah;
-}
+
+    function formatWaktuRelatif(string $datetime) {
+        $timestamp = strtotime($datetime);
+        $selisih = time() - $timestamp;
+
+        if ($selisih < 60) {
+            return "Baru saja";
+        } elseif ($selisih < 3600) {
+            return floor($selisih / 60) . " menit yang lalu";
+        } elseif ($selisih < 86400) {
+            return floor($selisih / 3600) . " jam yang lalu";
+        } elseif ($selisih < 172800) {
+            return "Kemarin";
+        } else {
+            return formatTanggalIndo($datetime);
+        }
+    }
 ?>

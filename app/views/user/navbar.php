@@ -1,3 +1,15 @@
+<?php
+require_once __DIR__ . '/../../models/PendaftaranModel.php';
+
+$notifNavbar = [];
+
+if (isset($conn) && isset($_SESSION['id'])) {
+    $notifNavbar = getNotifikasiUser($conn, (int)$_SESSION['id'], 3);
+}
+
+$jumlahNotif = count($notifNavbar);
+?>
+
 <nav class="navbar">
   <div class="container nav-wrap">
     
@@ -13,7 +25,9 @@
       <div class="notification-wrapper">
         <button class="icon-btn bell-btn" onclick="toggleNotif(event)">
           <i class='bx bx-bell'></i>
-          <span class="notif-badge">3</span>
+            <?php if ($jumlahNotif > 0): ?>
+              <span class="notif-badge"><?= $jumlahNotif; ?></span>
+            <?php endif; ?>
         </button>
 
         <div class="notif-dropdown" id="notifDropdown">
@@ -24,34 +38,54 @@
           
           <div class="notif-body">
             
-            <a href="<?= BASEURL; ?>/app/controllers/user/riwayat-pendaftaran.php" class="notif-item unread">
-              <div class="notif-icon"><i class='bx bxs-check-circle' style="color: #10B981;"></i></div>
-              <div class="notif-text">
-                <p>Hore! Pendaftaran <b>Tech Future Summit 2026</b> telah <b>Diterima</b>. Cek tiketmu sekarang!</p>
-                <span>10 menit yang lalu</span>
+            <?php if (empty($notifNavbar)): ?>
+              <div class="notif-item">
+                <div class="notif-icon">
+                  <i class='bx bx-bell'></i>
+                </div>
+                <div class="notif-text">
+                  <p>Belum ada notifikasi baru.</p>
+                  <span>Eventify</span>
+                </div>
               </div>
-            </a>
+              <?php else: ?>
 
-            <a href="<?= BASEURL; ?>/app/controllers/user/riwayat-pendaftaran.php" class="notif-item unread">
-              <div class="notif-icon"><i class='bx bxs-time-five' style="color: #F59E0B;"></i></div>
-              <div class="notif-text">
-                <p>Pendaftaran <b>Digital Marketing for Beginner</b> sedang <b>Menunggu Verifikasi</b> panitia.</p>
-                <span>1 jam yang lalu</span>
-              </div>
-            </a>
+                <?php foreach ($notifNavbar as $notif): ?>
+                  <?php
+                    $status = $notif['status_pendaftaran'];
+                    if ($status == 'diterima') {
+                        $icon = "bxs-check-circle";
+                        $warna = "#10B981";
+                        $pesan = "Hore! Pendaftaran <b>" . $notif['judul'] . "</b> telah <b>Diterima</b>. Cek tiketmu sekarang!";
+                        $link = BASEURL . "/app/controllers/user/tiket-detail.php?id=" . $notif['id_pendaftaran'];
+                    } elseif ($status == 'ditolak') {
+                        $icon = "bxs-x-circle";
+                        $warna = "#EF4444";
+                        $pesan = "Mohon maaf, pendaftaran <b>" . $notif['judul'] . "</b> telah <b>Ditolak</b>.";
+                        $link = BASEURL . "/app/controllers/user/riwayat-pendaftaran.php";
+                    } else {
+                        $icon = "bxs-time-five";
+                        $warna = "#F59E0B";
+                        $pesan = "Pendaftaran <b>" . $notif['judul'] . "</b> sedang <b>Menunggu Verifikasi</b> panitia.";
+                        $link = BASEURL . "/app/controllers/user/riwayat-pendaftaran.php";
+                    }
+                  ?>
 
-            <a href="<?= BASEURL; ?>/app/views/user/profile.php" class="notif-item">
-              <div class="notif-icon"><i class='bx bxs-user-check'></i></div>
-              <div class="notif-text">
-                <p>Perubahan <b>Profil Saya</b> berhasil disimpan.</p>
-                <span>Kemarin</span>
-              </div>
-            </a>
-
-          </div>
+                  <a href="<?= $link; ?>" class="notif-item unread">
+                    <div class="notif-icon">
+                      <i class='bx <?= $icon; ?>' style="color: <?= $warna; ?>;"></i>
+                    </div>
+                    <div class="notif-text">
+                      <p><?= $pesan; ?></p>
+                      <span><?= formatWaktuRelatif($notif['tanggal_daftar']); ?></span>
+                    </div>
+                  </a>
+                <?php endforeach; ?>
+              <?php endif; ?>
+            </div>
           
           <div class="notif-footer">
-              <a href="<?= BASEURL; ?>/app/views/user/notifikasi.php">Lihat Semua Notifikasi</a>
+              <a href="<?= BASEURL; ?>/app/controllers/user/notifikasi.php">Lihat Semua Notifikasi</a>
           </div>
         </div>
       </div>

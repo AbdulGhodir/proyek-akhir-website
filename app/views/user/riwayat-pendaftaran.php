@@ -92,7 +92,7 @@
 
               <div class="history-action">
                 <?php if($status_asli == 'diterima'): ?>
-                  <a href="<?= BASEURL; ?>/app/views/user/tiket_detail.php?id=<?= $item['id_pendaftaran']; ?>" class="btn-primary" style="text-decoration: none; width: max-content; padding: 0 24px; display: inline-flex; align-items: center;">Lihat Tiket</a>
+                  <a href="<?= BASEURL; ?>/app/controllers/user/tiket-detail.php?id=<?= $item['id_pendaftaran']; ?>" class="btn-primary" style="text-decoration: none; width: max-content; padding: 0 24px; display: inline-flex; align-items: center;">Lihat Tiket</a>
                 <?php elseif($status_asli == 'menunggu'): ?>
                   <button class="btn-secondary" disabled>Sedang Diverifikasi</button>
                 <?php else: ?>

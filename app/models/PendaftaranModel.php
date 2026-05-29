@@ -109,4 +109,58 @@
         $result = $query->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    function getNotifikasiUser(mysqli $conn, int $idUser, int $limit = 5) {
+        $query = $conn->prepare("
+            SELECT 
+                pendaftaran.id_pendaftaran,
+                pendaftaran.id_user,
+                pendaftaran.id_event,
+                pendaftaran.status_pendaftaran,
+                pendaftaran.tanggal_daftar,
+                event.judul,
+                event.waktu_pelaksanaan,
+                event.lokasi,
+                kategori.kategori
+            FROM pendaftaran
+            JOIN event ON pendaftaran.id_event = event.id_event
+            JOIN kategori ON event.id_kategori = kategori.id_kategori
+            WHERE pendaftaran.id_user = ?
+            ORDER BY pendaftaran.tanggal_daftar DESC
+            LIMIT ?
+        ");
+
+        $query->bind_param("ii", $idUser, $limit);
+        $query->execute();
+
+        $result = $query->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    function getTiketByPendaftaranId(mysqli $conn, int $idPendaftaran, int $idUser) {
+        $query = $conn->prepare("
+            SELECT 
+                pendaftaran.id_pendaftaran,
+                pendaftaran.status_pendaftaran,
+                pendaftaran.tanggal_daftar,
+                event.judul,
+                event.waktu_pelaksanaan,
+                event.lokasi,
+                kategori.kategori,
+                users.nama_lengkap
+            FROM pendaftaran
+            JOIN event ON pendaftaran.id_event = event.id_event
+            JOIN kategori ON event.id_kategori = kategori.id_kategori
+            JOIN users ON pendaftaran.id_user = users.id
+            WHERE pendaftaran.id_pendaftaran = ?
+            AND pendaftaran.id_user = ?
+            AND pendaftaran.status_pendaftaran = 'diterima'
+        ");
+
+        $query->bind_param("ii", $idPendaftaran, $idUser);
+        $query->execute();
+
+        $result = $query->get_result();
+        return $result->fetch_assoc();
+    }
 ?>
