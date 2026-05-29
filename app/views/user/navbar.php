@@ -19,7 +19,7 @@
         <div class="notif-dropdown" id="notifDropdown">
           <div class="notif-header">
             <h4>Notifikasi</h4>
-            <a href="#">Tandai dibaca</a>
+            <a href="#" onclick="tandaiSemuaDibaca(event)">Tandai dibaca</a>
           </div>
           
           <div class="notif-body">
@@ -50,7 +50,9 @@
 
           </div>
           
-          <a href="#" class="notif-footer">Lihat Semua Notifikasi</a>
+          <div class="notif-footer">
+              <a href="<?= BASEURL; ?>/app/views/user/notifikasi.php">Lihat Semua Notifikasi</a>
+          </div>
         </div>
       </div>
 
@@ -95,6 +97,37 @@
   function toggleNotif(event) {
       event.stopPropagation(); 
       document.getElementById('notifDropdown').classList.toggle('show');
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+      if (sessionStorage.getItem('notif_dibaca') === 'true') {
+          eksekusiVisualDibaca();
+      }
+  });
+
+  function tandaiSemuaDibaca(event) {
+      event.preventDefault(); 
+
+      sessionStorage.setItem('notif_dibaca', 'true');
+
+      eksekusiVisualDibaca();
+  }
+
+  function eksekusiVisualDibaca() {
+      const badge = document.querySelector('.notif-badge');
+      if (badge) {
+          badge.style.display = 'none';
+      }
+
+      const unreadItems = document.querySelectorAll('.notif-item.unread');
+      unreadItems.forEach(item => {
+          item.classList.remove('unread');
+          
+          const dot = item.querySelector('.notif-dot');
+          if (dot) {
+              dot.style.display = 'none';
+          }
+      });
   }
 
   window.addEventListener('click', function(e) {

@@ -66,8 +66,8 @@ if (!$tiket) {
 
 <section class="ticket-page">
     <div class="ticket-container">
-        <a href="javascript:history.back()" class="btn-back-ticket">
-            <i class='bx bx-left-arrow-alt'></i> Kembali
+        <a href="<?= BASEURL; ?>/app/controllers/user/riwayat-pendaftaran.php" class="btn-back" style="margin-bottom: 24px;">
+            <i class='bx bx-arrow-back'></i> Kembali
         </a>
 
         <?php if ($tiket): ?>
