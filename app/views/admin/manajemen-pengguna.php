@@ -35,10 +35,10 @@ $c_eo   = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fet
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Manajemen Pengguna | Eventify Admin</title>
     <meta name="description" content="Kelola pengguna dan event organizer di platform Eventify.">
-    <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/admin/admin-style.css">
+    <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/global.css">
 </head>
 
-<body>
+<body class="admin-page">
 
     <?php include 'sidebar.php'; ?>
 

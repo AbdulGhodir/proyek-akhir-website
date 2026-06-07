@@ -1,4 +1,4 @@
-<nav>
+<nav class="eo-navbar">
     <div class="top-navbar">
         <div class="logo">
             <?php include '../../views/components/logo.php'; ?>
@@ -45,3 +45,6 @@
         </div>
     </div>
 </nav>
+
+<script>const BASEURL = "<?= BASEURL; ?>";</script>
+<script src="<?= BASEURL; ?>/assets/js/session_timer.js"></script>

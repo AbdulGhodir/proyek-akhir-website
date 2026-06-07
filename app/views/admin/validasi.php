@@ -80,10 +80,10 @@ if ($q_all) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Validasi Event | Eventify Admin</title>
     <meta name="description" content="Tinjau dan validasi event yang diajukan EO di platform Eventify.">
-    <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/admin/admin-style.css">
+    <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/global.css">
 </head>
 
-<body>
+<body class="admin-page">
 
     <?php include 'sidebar.php'; ?>
 

@@ -163,4 +163,18 @@
         $result = $query->get_result();
         return $result->fetch_assoc();
     }
+
+    function getTotalPendaftar(mysqli $conn, int $idUser) {
+        $query = $conn->prepare("
+            SELECT COUNT(p.id_pendaftaran) AS total_pendaftar
+            FROM pendaftaran p
+            JOIN event e ON p.id_event = e.id_event
+            WHERE e.id_user = ?
+        ");
+        $query->bind_param("i", $idUser);
+        $query->execute();
+        $result = $query->get_result();
+        $data = $result->fetch_assoc();
+        return $data['total_pendaftar'];
+    }
 ?>

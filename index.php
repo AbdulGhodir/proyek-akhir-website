@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/global.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/landing.css">
 </head>
-<body>
+<body class="landing-page">
     <header>
         <?php include 'app/views/components/logo.php'; ?>
 

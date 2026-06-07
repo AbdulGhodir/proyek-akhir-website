@@ -104,7 +104,7 @@ $jumlahNotif = count($notifNavbar);
         <i class='bx bx-chevron-down'></i>
 
         <div class="profile-menu">
-          <a href="<?= BASEURL; ?>/app/views/user/profile.php">
+          <a href="<?= BASEURL; ?>/app/controllers/user/profile.php">
             <i class='bx bx-user'></i>
             <span>Profil Saya</span>
           </a>

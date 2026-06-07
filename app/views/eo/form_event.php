@@ -14,12 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $isEdit ? 'Edit Event' : 'Tambah Event Baru'; ?></title>
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/global.css">
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/form_event.css">
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/navbar.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body>
+<body class="eo-form-event-page">
     <?php
         $halamanAktif = 'event';
         include 'navbar.php';

@@ -9,11 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manajemen Event</title>
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/global.css">
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/event.css">
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/navbar.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
+<body class="eo-event-page">
     <?php
         $halamanAktif = 'event';
         include 'navbar.php';
@@ -95,7 +93,7 @@
         </div>
     </div>
 
-    <script src="<?= BASEURL; ?>/assets /js/global.js"></script>
+    <script src="<?= BASEURL; ?>/assets/js/global.js"></script>
     <script src="<?= BASEURL; ?>/assets/js/eo/event.js"></script>
 </body>
 </html>

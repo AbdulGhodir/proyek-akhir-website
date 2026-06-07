@@ -11,9 +11,9 @@
     <title><?= $pageTitle; ?></title>
     
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/user-style/user-style.css?v=<?= time(); ?>">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/global.css?v=<?= time(); ?>">
 </head>
-<body>
+<body class="user-page">
 
 <?php include 'navbar.php'; ?>
 

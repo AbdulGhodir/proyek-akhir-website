@@ -124,10 +124,10 @@ $cat_emoji = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard Admin | Eventify</title>
-    <meta name="description" content="Command center admin Eventify – pantau pengguna, EO, dan event pending.">
-    <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/admin/admin-style.css">
+    <meta name="description" content="Command center admin Eventify - pantau pengguna, EO, dan event pending.">
+    <link rel="stylesheet" href="<?= BASEURL ?>/assets/css/global.css">
 </head>
-<body>
+<body class="admin-page">
 
 <?php include 'sidebar.php'; ?>
 

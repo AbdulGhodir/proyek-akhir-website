@@ -1,29 +1,11 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-session_start();
-
-require '../../config/config.php';
-require '../../../koneksi/koneksi.php';
-
-$sukses_update = false;
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $_SESSION['nama_lengkap'] = $_POST['nama'] ?? $_SESSION['nama_lengkap'];
-    $_SESSION['instansi'] = $_POST['instansi'] ?? '';
-    $_SESSION['gender'] = $_POST['gender'] ?? '';
-    $_SESSION['interest'] = $_POST['interest'] ?? [];
-    $_SESSION['linkedin'] = $_POST['linkedin'] ?? '';
-    
-    $sukses_update = true;
-}
-
-$nama = $_SESSION['nama_lengkap'] ?? 'User';
-$inisial = strtoupper(substr($nama, 0, 1));
-$instansi = $_SESSION['instansi'] ?? '';
-$gender = $_SESSION['gender'] ?? '';
-$interest = $_SESSION['interest'] ?? [];
-$linkedin = $_SESSION['linkedin'] ?? '';
+/** @var string $nama */
+/** @var string $inisial */
+/** @var string $instansi */
+/** @var string $gender */
+/** @var array $interest */
+/** @var string $linkedin */
+/** @var bool $sukses_update */
 ?>
 
 <!DOCTYPE html>
@@ -33,10 +15,10 @@ $linkedin = $_SESSION['linkedin'] ?? '';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Saya | Eventify</title>
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/components/logo.css">
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/user-style/user-style.css?v=<?= time(); ?>">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/global.css?v=<?= time(); ?>">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<body>
+<body class="user-page">
 
 <?php include 'navbar.php'; ?>
 

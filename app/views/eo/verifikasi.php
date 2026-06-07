@@ -10,11 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verifikasi Pendaftar</title>
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/global.css">
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/verifikasi.css">
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/eo/navbar.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
+<body class="eo-verifikasi-page">
     <?php
         $halamanAktif = 'verifikasi';
         include 'navbar.php';

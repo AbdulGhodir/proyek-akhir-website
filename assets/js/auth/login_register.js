@@ -16,10 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         swapped = true;
     }
 
-    setTimeout(() => {
-        document.body.classList.remove('preload');
-    }, 100);
-
     swapToLeftBtn.addEventListener('click', () => {
         if (!swapped) {
             card.classList.add('animated-left');
