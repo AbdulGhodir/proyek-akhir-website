@@ -52,6 +52,12 @@ $current = basename($_SERVER['PHP_SELF']);
                 <span class="nav-badge"><?= $sidebar_pending ?></span>
             <?php endif; ?>
         </a>
+
+        <a href="<?= BASEURL ?>/app/views/admin/kelola-kategori.php"
+            class="nav-item <?= $current === 'kelola-kategori.php' ? 'active' : '' ?>">
+            <i class='bx bx-category'></i>
+            Kelola Kategori
+        </a>
     </nav>
 
     <div class="sidebar-footer">
