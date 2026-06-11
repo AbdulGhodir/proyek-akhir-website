@@ -259,7 +259,7 @@ $status_badge = [
 
 </main>
 
-<!-- ════ MODAL: Tambah Kategori ══════════════════════════════════════════════ -->
+
 <div class="modal-overlay" id="katModal">
     <div class="modal-box" style="max-width:420px;">
         <form method="POST" action="<?= BASEURL ?>/app/controllers/admin/aksi-kategori.php">
@@ -298,7 +298,7 @@ $status_badge = [
     </div>
 </div>
 
-<!-- ════ MODAL: Tambah Event ══════════════════════════════════════════════════ -->
+
 <div class="modal-overlay" id="addModal">
     <div class="modal-box">
         <form method="POST" action="<?= BASEURL ?>/app/controllers/admin/aksi-kategori.php" enctype="multipart/form-data">
@@ -383,7 +383,7 @@ $status_badge = [
     </div>
 </div>
 
-<!-- ════ MODAL: Edit Event ════════════════════════════════════════════════════ -->
+
 <div class="modal-overlay" id="editModal">
     <div class="modal-box">
         <form method="POST" action="<?= BASEURL ?>/app/controllers/admin/aksi-kategori.php" enctype="multipart/form-data">
@@ -471,11 +471,11 @@ $status_badge = [
 </div>
 
 <script>
-    // Flash toast auto-fade
+
     const toast = document.getElementById('flashToast');
     if (toast) setTimeout(() => toast.style.opacity = '0', 3500);
 
-    // ── Modal helpers ────────────────────────────────────────────
+   
     function openModal(id) {
         document.getElementById(id).classList.add('open');
         document.body.style.overflow = 'hidden';
@@ -485,14 +485,14 @@ $status_badge = [
         document.body.style.overflow = '';
     }
 
-    // Close on overlay click
+
     document.querySelectorAll('.modal-overlay').forEach(el => {
         el.addEventListener('click', function(e) {
             if (e.target === this) closeModal(this.id);
         });
     });
 
-    // Close on Escape
+    
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape')
             document.querySelectorAll('.modal-overlay.open').forEach(el => closeModal(el.id));

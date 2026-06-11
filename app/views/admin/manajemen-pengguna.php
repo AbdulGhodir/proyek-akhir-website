@@ -116,8 +116,8 @@ $c_eo   = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fet
                                 }
                             ?>
                             <tr>
-                                <td style="color:var(--muted);font-size:13px;"><?= $no++ ?></td>
-                                <td>
+                                <td data-label="#" style="color:var(--muted);font-size:13px;"><?= $no++ ?></td>
+                                <td data-label="Pengguna">
                                     <div class="av-cell">
                                         <div class="av-init <?= $av_cls ?>"><?= $init ?></div>
                                         <div>
@@ -128,11 +128,11 @@ $c_eo   = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fet
                                         </div>
                                     </div>
                                 </td>
-                                <td style="font-size:13px;color:var(--muted);"><?= htmlspecialchars($u['email']) ?></td>
-                                <td>
+                                <td data-label="Email" style="font-size:13px;color:var(--muted);"><?= htmlspecialchars($u['email']) ?></td>
+                                <td data-label="Role">
                                     <span class="badge <?= $role_badge ?>"><?= $u['role'] ?></span>
                                 </td>
-                                <td>
+                                <td data-label="Event">
                                     <?php if ($is_eo): ?>
                                         <a href="<?= BASEURL ?>/app/views/admin/validasi.php?tab=Pending"
                                             style="font-size:13px;color:var(--primary);font-weight:600;">
@@ -142,9 +142,8 @@ $c_eo   = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fet
                                         <span style="font-size:13px;color:var(--muted);">—</span>
                                     <?php endif; ?>
                                 </td>
-                                <td>
+                                <td data-label="Aksi">
                                     <div class="action-group">
-                                  
                                         <form method="POST"
                                             action="<?= BASEURL ?>/app/controllers/admin/delete-user.php"
                                             onsubmit="return confirm('Hapus pengguna <?= htmlspecialchars(addslashes($u['nama_lengkap'])) ?> secara permanen? Semua data terkait akan ikut terhapus.')">
