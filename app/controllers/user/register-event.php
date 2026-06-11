@@ -25,16 +25,38 @@ if (isset($_POST['daftar_event'])) {
     $status = "menunggu";
 
     $idFormDijawab = $_POST['id_form'];
-    $jawaban = $_POST['jawaban'];
 
     insertDataPendaftar($conn, $idUser, $event['id_event'], $status);
     $idPendaftaran = $conn->insert_id;
 
     for ($i=0; $i < count($idFormDijawab); $i++) {
-        insertJawabanPendaftar($conn, $idPendaftaran, $idFormDijawab[$i], $jawaban[$i]);
+        $jawaban_user = "";
+
+        if (isset($_POST['jawaban'][$i])) {
+            $jawaban_user = $_POST['jawaban'][$i];
+        } else if (isset($_FILES['jawaban']['name'][$i])) {
+            $nama_img = $_FILES['jawaban']['name'][$i];
+            $ukuran_img = $_FILES['jawaban']['size'][$i];
+            $tmp_img = $_FILES['jawaban']['tmp_name'][$i];
+            $error_img = $_FILES['jawaban']['error'][$i];
+
+            if ($error_img === 0) {
+                $ekstensi_file = pathinfo($nama_img, PATHINFO_EXTENSION);
+                $nama_file_baru = uniqid() . '_' . time() . '.' . $ekstensi_file;
+
+                $folder_tujuan = '../../../assets/images/uploads/' . $nama_file_baru;
+
+                if (move_uploaded_file($tmp_img, $folder_tujuan)) {
+                    $jawaban_user = $nama_file_baru;
+                }
+            }
+        }
+
+        insertJawabanPendaftar($conn, $idPendaftaran, $idFormDijawab[$i], $jawaban_user);
     }
 
-    header("Location: " . BASEURL . "/app/controllers/user/detail-event.php?id=" . $event['id_event']);
+    echo "<script>alert('Pendaftaran event berhasil!')</script>";
+    echo "<script>window.location.href = '" . BASEURL . "/app/controllers/user/detail-event.php?id=". $event['id_event'] . "';</script>";
     exit();
 }
 
@@ -57,6 +79,7 @@ foreach ($formEvent as $row) {
     } else {
         $opsiDropdown[] = $row['opsi_pilihan'];
     }
+
     $wajibDiisi[] = $row['wajib_diisi'];
 }
 

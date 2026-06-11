@@ -120,11 +120,11 @@
                                 <div class="input-opsi-dropdown-group">
                                     <div class="input-opsi-dropdown-item">
                                         <input type="text" name="opsi[0][]" value="Opsi 1" required>
-                                        <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove()"></i>
+                                        <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove(); updateTombolHapusIsiDropdown();"></i>
                                     </div>
                                     <div class="input-opsi-dropdown-item">
                                         <input type="text" name="opsi[0][]" value="Opsi 2" required>
-                                        <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove()"></i>
+                                        <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove(); updateTombolHapusIsiDropdown();"></i>
                                     </div>
                                 </div>
                                 <button type="button" onclick="tambahOpsi(this, 0)" class="tambah-opsi">+ Tambah Opsi</button>
@@ -135,7 +135,7 @@
                                     <input type="checkbox" name="wajib[0]">
                                     <label for="wajib" class="wajib-diisi">Wajib Diisi</label>
                                 </div>
-                                <i class="icon" data-lucide="trash-2" onclick="this.parentElement.parentElement.remove()"></i>
+                                <i class="icon" data-lucide="trash-2" onclick="this.parentElement.parentElement.remove(); updateTombolHapus();"></i>
                             </div>
                         </div>
                     <?php else : ?>
@@ -153,27 +153,36 @@
                                     </select>
                                 </div>
 
-                                <?php if ($tipePertanyaan[$i] == 'dropdown') : ?>
-                                    <div class="opsi-dropdown active">
-                                        <span>Masukkan Pilihan:</span>
-                                        <div class="input-opsi-dropdown-group">
+                                <div class="opsi-dropdown <?= $tipePertanyaan[$i] == 'dropdown' ? 'active' : '' ?>">
+                                    <span>Masukkan Pilihan:</span>
+                                    <div class="input-opsi-dropdown-group">
+                                        <?php if ($tipePertanyaan[$i] == 'dropdown') : ?>
                                             <?php for ($j = 0; $j < count($opsiDropdown[$i]); $j++) : ?>
                                                 <div class="input-opsi-dropdown-item">
-                                                    <input type="text" name="opsi[<?= $i ?>][<?= $j ?>]" value="<?= $opsiDropdown[$i][$j] ?>" required>
-                                                    <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove()"></i>
+                                                    <input type="text" name="opsi[<?= $i ?>][]" value="<?= $opsiDropdown[$i][$j] ?>" required>
+                                                    <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove(); updateTombolHapusIsiDropdown();"></i>
                                                 </div>
                                             <?php endfor; ?>
-                                        </div>
-                                        <button type="button" onclick="tambahOpsi(this, <?= $i ?>)" class="tambah-opsi">+ Tambah Opsi</button>
+                                        <?php else : ?>
+                                            <div class="input-opsi-dropdown-item">
+                                                <input type="text" name="opsi[<?= $i ?>][]" value="Opsi 1" required>
+                                                <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove(); updateTombolHapusIsiDropdown();"></i>
+                                            </div>
+                                            <div class="input-opsi-dropdown-item">
+                                                <input type="text" name="opsi[<?= $i ?>][]" value="Opsi 2" required>
+                                                <i class="icon" data-lucide="trash-2" onclick="this.parentElement.remove(); updateTombolHapusIsiDropdown();"></i>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
-                                <?php endif; ?>
+                                    <button type="button" onclick="tambahOpsi(this, <?= $i ?>)" class="tambah-opsi">+ Tambah Opsi</button>
+                                </div>
 
                                 <div class="bottom-menu-form">
                                     <div class="checkbox-wajib">
                                         <input <?= $wajibDiisi[$i] == 1 ? 'checked' : '' ?> type="checkbox" name="wajib[<?= $i ?>]">
                                         <label for="wajib" class="wajib-diisi">Wajib Diisi</label>
                                     </div>
-                                    <i class="icon" data-lucide="trash-2" onclick="this.parentElement.parentElement.remove()"></i>
+                                    <i class="icon" data-lucide="trash-2" onclick="this.parentElement.parentElement.remove(); updateTombolHapus();"></i>
                                 </div>
                             </div>
                         <?php endfor; ?>

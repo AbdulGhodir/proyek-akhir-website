@@ -24,17 +24,25 @@
         $nama = trim($_POST['nama']);
         $namaOrganisasi = trim($_POST['nama_organisasi']) == '' ? NULL : trim($_POST['nama_organisasi']);
         $email = trim($_POST['email']);
-        $password = password_hash(trim($_POST['password']), PASSWORD_BCRYPT);
+        $password = trim($_POST['password']);
         $konfirmasiPassword = trim($_POST['konfirmasi_password']);
         $role = $_POST['role'];
         
+        if ($password !== $konfirmasiPassword) {
+            echo "<script>alert('Password tidak cocok');</script>";
+            echo "<script>window.location.href = '" . BASEURL . "/app/controllers/auth/register.php';</script>";
+            exit();
+        }
+
+        $password_hashed = password_hash($password, PASSWORD_BCRYPT);
+
         $cekUser = getDataUserByEmail($conn, $email);
 
         if ($cekUser) {
             echo "email_terdaftar";
             exit();
         } else {
-            insertDataUser($conn, $nama, $namaOrganisasi, $email, $password, $role);
+            insertDataUser($conn, $nama, $namaOrganisasi, $email, $password_hashed, $role);
             echo "sukses";
             exit();
         }

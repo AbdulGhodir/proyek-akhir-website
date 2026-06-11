@@ -1,5 +1,4 @@
 <?php
-    // define('BASEURL', 'http://proyek-akhir-website.test');
     define('BASEURL', 'http://localhost/proyek-akhir-website');
 
     if (session_status() == PHP_SESSION_NONE) {
@@ -16,7 +15,6 @@
         $tahun = date('Y', $timestamp);
         $jam_menit = date('H:i', $timestamp);
 
-        // return $hari . ' ' . $bulan[$bulan_angka] . ' ' . $tahun . ' pukul ' . $jam_menit;
         return $hari . ' ' . $bulan[$bulan_angka] . ' ' . $tahun;
     }
 

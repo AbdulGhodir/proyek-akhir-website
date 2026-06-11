@@ -34,24 +34,24 @@
       <p>Lengkapi data diri untuk mengikuti event pilihanmu.</p>
     </div>
 
-    <form class="register-event-layout" method="POST">
+    <form class="register-event-layout" method="POST" enctype="multipart/form-data">
       <div class="register-event-form card-white">
         <?php for($i = 0; $i < count($listPertanyaan); $i++): ?>
           <div class="form-group">
             <label class="<?= $wajibDiisi[$i] == true ? 'wajib' : ''; ?>"><?= $listPertanyaan[$i]; ?></label>
-            <input type="hidden" value="<?= $idForm[$i]; ?>" name="id_form[]">
+            <input type="hidden" value="<?= $idForm[$i]; ?>" name="id_form[<?= $i; ?>]">
             <?php if($tipePertanyaan[$i] == 'teks'): ?>
-              <input type="text" name="jawaban[]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?> placeholder="Masukkan Jawaban">
+              <input type="text" name="jawaban[<?= $i; ?>]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?> placeholder="Masukkan Jawaban">
             <?php elseif($tipePertanyaan[$i] == 'paragraf'): ?>
-              <textarea rows="4" name="jawaban[]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?> placeholder="Masukkan Jawaban"></textarea>
+              <textarea rows="4" name="jawaban[<?= $i; ?>]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?> placeholder="Masukkan Jawaban"></textarea>
             <?php elseif($tipePertanyaan[$i] == 'angka'): ?>
-              <input type="number" name="jawaban[]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?> placeholder="Masukkan Jawaban">
+              <input type="number" name="jawaban[<?= $i; ?>]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?> placeholder="Masukkan Jawaban">
             <?php elseif($tipePertanyaan[$i] == 'tanggal'): ?>
-              <input type="date" name="jawaban[]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?> placeholder="Masukkan Jawaban">
+              <input type="date" name="jawaban[<?= $i; ?>]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?> placeholder="Masukkan Jawaban">
             <?php elseif($tipePertanyaan[$i] == 'file'): ?>
-              <input type="hidden" name="jawaban[]" id="<?= $listPertanyaan[$i]; ?>">
+              <input type="file" name="jawaban[<?= $i; ?>]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?> accept="image/*">
             <?php elseif($tipePertanyaan[$i] == 'dropdown'): ?>
-              <select name="jawaban[]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?>>
+              <select name="jawaban[<?= $i; ?>]" id="<?= $listPertanyaan[$i]; ?>" <?= $wajibDiisi[$i] == true ? 'required' : ''; ?>>
                 <?php foreach($opsiDropdown[$i] as $option): ?>
                   <option value="<?= $option; ?>"><?= $option; ?></option>
                 <?php endforeach; ?>

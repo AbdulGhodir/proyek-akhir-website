@@ -1,5 +1,6 @@
 let timer;
 const batasWaktu = 3600000;
+// const batasWaktu = 10000;
 
 function resetTimer() {
     clearTimeout(timer);
