@@ -5,7 +5,7 @@ require_once '../../models/KategoriModel.php';
 require_once '../../models/EventModel.php';
 
 if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'Admin') {
-    header('Location: ' . BASEURL . '/app/views/auth/login.php');
+    header('Location: ' . BASEURL . '/app/controllers/auth/login.php');
     exit;
 }
 
@@ -17,23 +17,23 @@ if ($aksi === 'tambah-kat') {
 
     if ($nama === '') {
         $_SESSION['flash'] = ['type' => 'error', 'msg' => 'Nama kategori tidak boleh kosong.'];
-        header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php');
+        header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php');
         exit;
     }
     if (strlen($nama) > 50) {
         $_SESSION['flash'] = ['type' => 'error', 'msg' => 'Nama kategori maksimal 50 karakter.'];
-        header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php');
+        header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php');
         exit;
     }
     if (kategoriNameExists($conn, $nama)) {
         $_SESSION['flash'] = ['type' => 'error', 'msg' => 'Kategori "' . htmlspecialchars($nama) . '" sudah ada.'];
-        header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php');
+        header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php');
         exit;
     }
 
     insertKategori($conn, $nama);
     $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Kategori "' . htmlspecialchars($nama) . '" berhasil ditambahkan.'];
-    header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php');
+    header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php');
     exit;
 }
 
@@ -43,7 +43,7 @@ if ($aksi === 'hapus') {
 
     if ($id <= 0) {
         $_SESSION['flash'] = ['type' => 'error', 'msg' => 'ID kategori tidak valid.'];
-        header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php');
+        header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php');
         exit;
     }
 
@@ -55,7 +55,7 @@ if ($aksi === 'hapus') {
             'type' => 'error',
             'msg'  => "Kategori tidak dapat dihapus karena masih memiliki $jumlah event terkait."
         ];
-        header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php');
+        header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php');
         exit;
     }
 
@@ -64,7 +64,7 @@ if ($aksi === 'hapus') {
     deleteKategori($conn, $id);
 
     $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Kategori "' . htmlspecialchars($nama_hapus) . '" berhasil dihapus.'];
-    header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php');
+    header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php');
     exit;
 }
 
@@ -86,7 +86,7 @@ if ($aksi === 'tambah-event') {
 
     if (!$judul || !$tanggal || !$lokasi || $id_kat <= 0) {
         $_SESSION['flash'] = ['type' => 'error', 'msg' => 'Judul, tanggal, dan lokasi wajib diisi.'];
-        header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php?kat=' . $id_kat);
+        header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php?kat=' . $id_kat);
         exit;
     }
 
@@ -106,7 +106,7 @@ if ($aksi === 'tambah-event') {
     insertDataEvent($conn, (int)$_SESSION['id'], $id_kat, $judul, $tanggal, $biaya, $lokasi, $kuota, $deskripsi, $benefit, $gambar, $status);
 
     $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Event "' . htmlspecialchars($judul) . '" berhasil ditambahkan.'];
-    header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php?kat=' . $id_kat);
+    header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php?kat=' . $id_kat);
     exit;
 }
 
@@ -130,7 +130,7 @@ if ($aksi === 'edit-event') {
 
     if ($id_event <= 0 || !$judul || !$tanggal || !$lokasi) {
         $_SESSION['flash'] = ['type' => 'error', 'msg' => 'Data tidak lengkap, silakan coba lagi.'];
-        header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php?kat=' . $id_kat);
+        header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php?kat=' . $id_kat);
         exit;
     }
 
@@ -163,7 +163,7 @@ if ($aksi === 'edit-event') {
     $stmt->execute();
 
     $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Event "' . htmlspecialchars($judul) . '" berhasil diperbarui.'];
-    header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php?kat=' . $id_kat);
+    header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php?kat=' . $id_kat);
     exit;
 }
 
@@ -174,7 +174,7 @@ if ($aksi === 'hapus-event') {
 
     if ($id_event <= 0) {
         $_SESSION['flash'] = ['type' => 'error', 'msg' => 'ID event tidak valid.'];
-        header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php?kat=' . $id_kat);
+        header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php?kat=' . $id_kat);
         exit;
     }
 
@@ -184,10 +184,10 @@ if ($aksi === 'hapus-event') {
     deleteDataEvent($conn, $id_event);
 
     $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Event "' . htmlspecialchars($judul_ev) . '" berhasil dihapus.'];
-    header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php?kat=' . $id_kat);
+    header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php?kat=' . $id_kat);
     exit;
 }
 
 // Fallback
-header('Location: ' . BASEURL . '/app/views/admin/kelola-kategori.php');
+header('Location: ' . BASEURL . '/app/controllers/admin/kelola-kategori.php');
 exit;

@@ -1,32 +1,15 @@
 <?php
-require_once '../../config/config.php';
-require_once '../../../koneksi/koneksi.php';
-
-if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'Admin') {
-    header('Location: ' . BASEURL . '/app/views/auth/login.php');
-    exit;
-}
-
-$search = trim($_GET['q'] ?? '');
-$filter = $_GET['filter'] ?? 'semua';
-
-$flash = $_SESSION['flash'] ?? null;
-unset($_SESSION['flash']);
-
-$where = "WHERE role != 'Admin'";
-if ($filter === 'user') $where .= " AND role = 'User'";
-if ($filter === 'eo')   $where .= " AND role = 'EO'";
-if ($search !== '') {
-    $s = $conn->real_escape_string($search);
-    $where .= " AND (nama_lengkap LIKE '%$s%' OR email LIKE '%$s%' OR nama_organisasi LIKE '%$s%')";
-}
-
-$q_users = $conn->query("SELECT * FROM users $where ORDER BY id DESC");
-
-$c_all  = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role != 'Admin'")->fetch_assoc()['t'];
-$c_user = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'User'")->fetch_assoc()['t'];
-$c_eo   = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fetch_assoc()['t'];
+/**
+ * @var array $flash
+ * @var string $search
+ * @var string $filter
+ * @var mysqli_result $q_users
+ * @var int $c_all
+ * @var int $c_user
+ * @var int $c_eo
+ */
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -134,7 +117,7 @@ $c_eo   = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fet
                                 </td>
                                 <td>
                                     <?php if ($is_eo): ?>
-                                        <a href="<?= BASEURL ?>/app/views/admin/validasi.php?tab=Pending"
+                                        <a href="<?= BASEURL ?>/app/controllers/admin/validasi.php?tab=Pending"
                                             style="font-size:13px;color:var(--primary);font-weight:600;">
                                             <?= $ev_count ?> event
                                         </a>
@@ -150,7 +133,7 @@ $c_eo   = $conn->query("SELECT COUNT(*) AS t FROM users WHERE role = 'EO'")->fet
                                             onsubmit="return confirm('Hapus pengguna <?= htmlspecialchars(addslashes($u['nama_lengkap'])) ?> secara permanen? Semua data terkait akan ikut terhapus.')">
                                             <input type="hidden" name="id" value="<?= $u['id'] ?>">
                                             <input type="hidden" name="redirect"
-                                                value="<?= BASEURL ?>/app/views/admin/manajemen-pengguna.php?filter=<?= $filter ?>">
+                                                value="<?= BASEURL ?>/app/controllers/admin/manajemen-pengguna.php?filter=<?= $filter ?>">
                                             <button type="submit" class="btn btn-danger" title="Hapus Pengguna">
                                                 <i class='bx bx-trash'></i> Hapus
                                             </button>

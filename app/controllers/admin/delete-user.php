@@ -4,18 +4,18 @@ require_once '../../../koneksi/koneksi.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ' . BASEURL . '/app/views/admin/manajemen-pengguna.php');
+    header('Location: ' . BASEURL . '/app/controllers/admin/manajemen-pengguna.php');
     exit;
 }
 
 
 if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'Admin') {
-    header('Location: ' . BASEURL . '/app/views/auth/login.php');
+    header('Location: ' . BASEURL . '/app/controllers/auth/login.php');
     exit;
 }
 
 $id       = (int)($_POST['id'] ?? 0);
-$redirect = $_POST['redirect'] ?? BASEURL . '/app/views/admin/manajemen-pengguna.php';
+$redirect = $_POST['redirect'] ?? BASEURL . '/app/controllers/admin/manajemen-pengguna.php';
 
 if ($id <= 0) {
     header('Location: ' . $redirect);
@@ -36,10 +36,19 @@ if (!$qr) {
 
 $stmt = $conn->prepare("DELETE FROM users WHERE id = ? AND role != 'Admin'");
 $stmt->bind_param('i', $id);
-$stmt->execute();
-$stmt->close();
 
-$_SESSION['flash'] = ['type' => 'success', 'msg' => 'Pengguna "' . htmlspecialchars($qr['nama_lengkap']) . '" berhasil dihapus.'];
+try {
+    $stmt->execute();
+    if ($stmt->affected_rows > 0) {
+        $_SESSION['flash'] = ['type' => 'success', 'msg' => 'Pengguna "' . htmlspecialchars($qr['nama_lengkap']) . '" berhasil dihapus.'];
+    } else {
+        $_SESSION['flash'] = ['type' => 'error', 'msg' => 'Pengguna "' . htmlspecialchars($qr['nama_lengkap']) . '" tidak dapat dihapus data tidak ditemukan.'];
+    }
+} catch (\Exception $e) {
+    $_SESSION['flash'] = ['type' => 'error', 'msg' => 'Gagal menghapus pengguna karena masih memiliki data event atau pendaftaran. Hapus data terkait terlebih dahulu.'];
+}
+
+$stmt->close();
 
 header('Location: ' . $redirect);
 exit;

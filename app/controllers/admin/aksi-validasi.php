@@ -3,24 +3,24 @@ require_once '../../config/config.php';
 require_once '../../../koneksi/koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ' . BASEURL . '/app/views/admin/validasi.php');
+    header('Location: ' . BASEURL . '/app/controllers/admin/validasi.php');
     exit;
 }
 
 if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'Admin') {
-    header('Location: ' . BASEURL . '/app/views/auth/login.php');
+    header('Location: ' . BASEURL . '/app/controllers/auth/login.php');
     exit;
 }
 
 $id     = (int)($_POST['id'] ?? 0);
 $aksi   = $_POST['aksi'] ?? '';          
 $alasan = trim($_POST['alasan'] ?? '');
-$redirect = $_POST['redirect'] ?? BASEURL . '/app/views/admin/validasi.php';
+$redirect = $_POST['redirect'] ?? BASEURL . '/app/controllers/admin/validasi.php';
 
-//if ($id <= 0 || !in_array($aksi, ['setujui', 'tolak', 'pending', 'suspend'])) {
-//   header('Location: ' . $redirect);
-//    exit;
-//}
+if ($id <= 0 || !in_array($aksi, ['setujui', 'tolak', 'pending', 'suspend'])) {
+  header('Location: ' . $redirect);
+   exit;
+}
 
 if ($aksi === 'setujui') {
     

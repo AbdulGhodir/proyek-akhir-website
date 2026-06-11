@@ -1,47 +1,13 @@
 <?php
-require_once '../../config/config.php';
-require_once '../../../koneksi/koneksi.php';
-require_once '../../models/KategoriModel.php';
-
-if (!isset($_SESSION['id']) || $_SESSION['role'] !== 'Admin') {
-    header('Location: ' . BASEURL . '/app/views/auth/login.php');
-    exit;
-}
-
-$flash = $_SESSION['flash'] ?? null;
-unset($_SESSION['flash']);
-
-$semua_kategori  = getAllKategori($conn);
-
-$kat_selected    = null;
-$events_in_kat   = [];
-$kat_id_selected = (int)($_GET['kat'] ?? 0);
-
-if ($kat_id_selected > 0) {
-    $kat_selected  = getKategoriById($conn, $kat_id_selected);
-    $events_in_kat = getEventByKategori($conn, $kat_id_selected);
-}
-
-$badge_color = [
-    'Volunteer' => 'green',
-    'Seminar'   => 'blue',
-    'Webinar'   => 'yellow',
-    'Konser'    => 'purple',
-    'Lomba'     => 'red',
-];
-$badge_emoji = [
-    'Volunteer' => '🤝',
-    'Seminar'   => '🎓',
-    'Webinar'   => '💻',
-    'Konser'    => '🎵',
-    'Lomba'     => '🏆',
-];
-$status_badge = [
-    'Dipublikasikan' => 'green',
-    'Pending'        => 'yellow',
-    'Ditolak'        => 'red',
-];
+/**
+ * @var int|null  $kat_id_selected
+ * @var array|null $kat_selected
+ * @var array     $semua_kategori
+ * @var array     $events_in_kat
+ * @var array     $flash
+ */
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -144,7 +110,7 @@ $status_badge = [
                     <button type="button" onclick="openModal('addModal')" class="btn btn-primary-grad" style="font-size:13px;padding:8px 15px;">
                         <i class='bx bx-plus'></i> Tambah Event
                     </button>
-                    <a href="<?= BASEURL ?>/app/views/admin/kelola-kategori.php"
+                    <a href="<?= BASEURL ?>/app/controllers/admin/kelola-kategori.php"
                        style="font-size:13px;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:3px;">
                         <i class='bx bx-x'></i> Tutup
                     </a>
@@ -221,7 +187,7 @@ $status_badge = [
                                     <div class="act-group">
                                         <!-- Edit -->
                                         <button type="button" class="btn-xs edit"
-                                            onclick='openEditModal(<?= json_encode([
+                                            onclick='openEditModal(<?= htmlspecialchars(json_encode([
                                                 "id"        => $ev["id_event"],
                                                 "judul"     => $ev["judul"],
                                                 "tanggal"   => $tgl_input,
@@ -232,7 +198,7 @@ $status_badge = [
                                                 "benefit"   => $ev["benefit"] ?? "",
                                                 "gambar"    => $ev["cover_image"],
                                                 "status"    => $ev["status_publikasi"],
-                                            ]) ?>)'>
+                                            ], JSON_HEX_APOS | JSON_HEX_QUOT), ENT_QUOTES, "UTF-8") ?>)'>
                                             <i class='bx bx-edit'></i> Edit
                                         </button>
 

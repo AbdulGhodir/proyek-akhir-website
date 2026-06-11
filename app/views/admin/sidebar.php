@@ -1,9 +1,6 @@
 <?php
-
-
 $admin_nama = $_SESSION['nama_lengkap'] ?? 'Admin';
 $admin_init = strtoupper(substr($admin_nama, 0, 2));
-
 
 $admin_email = 'admin@eventify.id';
 if (isset($conn) && isset($_SESSION['id'])) {
@@ -12,7 +9,6 @@ if (isset($conn) && isset($_SESSION['id'])) {
         $admin_email = $re->fetch_assoc()['email'];
     }
 }
-
 
 $sidebar_pending = 0;
 if (isset($conn)) {
@@ -26,25 +22,25 @@ $current = basename($_SERVER['PHP_SELF']);
 <div class="sidebar">
 
     <div class="sidebar-brand">
-        <?php include '../components/logo.php'; ?>
+        <?php include '../../views/components/logo.php'; ?>
     </div>
 
     <p class="sidebar-label">Menu Utama</p>
 
     <nav class="sidebar-nav">
-        <a href="<?= BASEURL ?>/app/views/admin/dashboard.php"
+        <a href="<?= BASEURL ?>/app/controllers/admin/dashboard.php"
             class="nav-item <?= $current === 'dashboard.php' ? 'active' : '' ?>">
             <i class='bx bxs-dashboard'></i>
             Dashboard
         </a>
 
-        <a href="<?= BASEURL ?>/app/views/admin/manajemen-pengguna.php"
+        <a href="<?= BASEURL ?>/app/controllers/admin/manajemen-pengguna.php"
             class="nav-item <?= $current === 'manajemen-pengguna.php' ? 'active' : '' ?>">
             <i class='bx bxs-group'></i>
             Manajemen Pengguna
         </a>
 
-        <a href="<?= BASEURL ?>/app/views/admin/validasi.php"
+        <a href="<?= BASEURL ?>/app/controllers/admin/validasi.php"
             class="nav-item <?= $current === 'validasi.php' ? 'active' : '' ?>">
             <i class='bx bx-check-shield'></i>
             Validasi Event
@@ -53,7 +49,7 @@ $current = basename($_SERVER['PHP_SELF']);
             <?php endif; ?>
         </a>
 
-        <a href="<?= BASEURL ?>/app/views/admin/kelola-kategori.php"
+        <a href="<?= BASEURL ?>/app/controllers/admin/kelola-kategori.php"
             class="nav-item <?= $current === 'kelola-kategori.php' ? 'active' : '' ?>">
             <i class='bx bx-category'></i>
             Kelola Kategori

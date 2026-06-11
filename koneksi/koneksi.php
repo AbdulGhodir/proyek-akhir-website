@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $user = "root";
-$password = "Informatika_1991";
+$password = "";
 $database = "db_eventify";
 
 $conn = new mysqli($host, $user, $password, $database);
