@@ -35,7 +35,9 @@
                 <i class='bx bx-bell empty-icon'></i>
                 <h3>Belum Ada Notifikasi</h3>
                 <p>Saat ini belum ada pembaruan atau aktivitas baru untukmu. Jelajahi event dan mulai mendaftar!</p>
-                <a href="<?= BASEURL; ?>/app/controllers/user/dashboard.php" class="btn-primary" style="display: inline-block; text-decoration: none;">Cari Event Sekarang</a>
+                <a href="<?= BASEURL; ?>/app/controllers/user/dashboard.php" class="btn-primary empty-action-btn">
+                    Cari Event Sekarang
+                </a>
             </div>
 
         <?php else: ?>
