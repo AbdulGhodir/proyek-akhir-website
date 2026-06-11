@@ -1,3 +1,12 @@
+<header class="eo-mobile-header">
+    <div class="logo">
+        <?php include '../../views/components/logo.php'; ?>
+    </div>
+    <button id="btn-hamburger" class="hamburger-menu">
+        <i data-lucide="menu" style="width: 2rem; height: 2rem;"></i>
+    </button>
+</header>
+
 <nav class="eo-navbar">
     <div class="top-navbar">
         <div class="logo">
@@ -46,5 +55,17 @@
     </div>
 </nav>
 
-<script>const BASEURL = "<?= BASEURL; ?>";</script>
+<script>window.BASEURL = "<?= BASEURL; ?>";</script>
 <script src="<?= BASEURL; ?>/assets/js/session_timer.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const btnHamburger = document.getElementById('btn-hamburger');
+        const eoNavbar = document.querySelector('.eo-navbar');
+        if (btnHamburger && eoNavbar) {
+            btnHamburger.addEventListener('click', () => {
+                eoNavbar.classList.toggle('active');
+            });
+        }
+    });
+</script>

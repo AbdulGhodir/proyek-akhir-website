@@ -28,19 +28,21 @@
                     <label>Password</label>
                     <div class="input-field">
                         <i data-lucide="lock" class="icon-field" style="width: 1.25rem; height: 1.25rem; color: gray;"></i>
-                        <input type="password" name="password" placeholder="Masukkan Password" required>
+                        <input id="password-login" type="password" name="password" placeholder="Masukkan Password" required>
+                        <i data-lucide="eye" id="password-icon-login" class="icon-eye-password" style="width: 1.25rem; height: 1.25rem; color: gray;" onclick="tampilkanPassword('password-login', 'password-icon-login')"></i>
                     </div>
                 </div>
 
                 <div class="remember-forgot">
-                    <div class="remember-me">
+                    <div class="remember-me" style="visibility: hidden;">
                         <input type="checkbox" style="cursor: pointer;">
                         <span>Ingat Saya</span>
                     </div>
     
-                    <a href="">Lupa Password</a>
+                    <a href="<?= BASEURL; ?>/app/controllers/auth/lupa_password.php">Lupa Password</a>
                 </div>
                 <button id="btn-masuk" type="submit" class="submit-button">Masuk</button>
+                <p class="mobile-swap-mode" style="display: none;">Belum punya akun? <a href="<?= BASEURL; ?>/app/controllers/auth/register.php">Daftar</a></p>
             </form>
         </div>
 
@@ -98,6 +100,7 @@
                             <div class="input-field">
                                 <i data-lucide="lock" class="icon-field" style="width: 1.25rem; height: 1.25rem; color: gray;"></i>
                                 <input id="password-daftar" type="password" name="password" placeholder="••••••••••" required>
+                                <i data-lucide="eye" id="password-icon-daftar" class="icon-eye-password" style="width: 1.25rem; height: 1.25rem; color: gray;" onclick="tampilkanPassword('password-daftar', 'password-icon-daftar')"></i>
                             </div>
                         </div>
                         <div class="input">
@@ -105,12 +108,14 @@
                             <div class="input-field">
                                 <i data-lucide="lock" class="icon-field" style="width: 1.25rem; height: 1.25rem; color: gray;"></i>
                                 <input id="konfirmasi-password-daftar" type="password" name="konfirmasi_password" placeholder="••••••••••" required>
+                                <i data-lucide="eye" id="konfirmasi-password-icon-daftar" class="icon-eye-password" style="width: 1.25rem; height: 1.25rem; color: gray;" onclick="tampilkanPassword('konfirmasi-password-daftar', 'konfirmasi-password-icon-daftar')"></i>
                             </div>
                         </div>
                     </div>
                 </div>
     
                 <button id="btn-daftar" class="submit-button" type="submit">Daftar Sekarang</button>
+                <p class="mobile-swap-mode" style="display: none;">Sudah punya akun? <a href="<?= BASEURL; ?>/app/controllers/auth/login.php">Masuk</a></p>
             </form>
         </div>
 

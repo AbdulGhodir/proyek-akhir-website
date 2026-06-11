@@ -1,7 +1,7 @@
 <?php
     function getAllJawabanByPendaftaran(mysqli $conn, int $id_pendaftaran) {
         $query = $conn->prepare("
-            SELECT jawaban_pendaftar.*, event_form.pertanyaan
+            SELECT jawaban_pendaftar.*, event_form.tipe_input, event_form.pertanyaan
             FROM jawaban_pendaftar
             JOIN pendaftaran ON jawaban_pendaftar.id_pendaftaran = pendaftaran.id_pendaftaran
             JOIN event_form ON jawaban_pendaftar.id_form = event_form.id_form 

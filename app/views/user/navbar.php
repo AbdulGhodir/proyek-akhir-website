@@ -127,6 +127,9 @@ $jumlahNotif = count($notifNavbar);
   </div>
 </nav>
 
+<script>window.BASEURL = "<?= BASEURL; ?>";</script>
+<script src="<?= BASEURL; ?>/assets/js/session_timer.js"></script>
+
 <script>
   function toggleNotif(event) {
       event.stopPropagation(); 

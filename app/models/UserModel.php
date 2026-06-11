@@ -23,4 +23,10 @@
         $query->bind_param("sssss", $nama_lengkap, $nama_organisasi, $email, $hashed_password, $role);
         $query->execute();
     }
+
+    function updatePasswordUser(mysqli $conn, string $email, string $hashed_password) {
+        $query = $conn->prepare("UPDATE users SET password = ? WHERE email = ?");
+        $query->bind_param("ss", $hashed_password, $email);
+        $query->execute();
+    }
 ?>

@@ -70,3 +70,6 @@ $current = basename($_SERVER['PHP_SELF']);
     </div>
 
 </div>
+
+<script>window.BASEURL = "<?= BASEURL; ?>";</script>
+<script src="<?= BASEURL; ?>/assets/js/session_timer.js"></script>

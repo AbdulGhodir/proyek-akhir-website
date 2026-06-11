@@ -35,11 +35,11 @@
                 <span class="description">Eventify adalah wadah terpusat untuk menemukan, mendaftar, dan menyelenggarakan kegiatan Volunteer, Seminar, dan Webinar di Kota Bandar Lampung. Mari berkontribusi untuk lingkungan dan masyarakat!</span>
                 
                 <div class="button">
-                    <a href="<?= BASEURL; ?>/app/controllers/user/dashboard.php">
+                    <a href="<?= BASEURL; ?>/app/controllers/auth/login.php">
                         Mulai Jelajahi
                         <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i>
                     </a>
-                    <a href="<?= BASEURL; ?>/app/controllers/user/dashboard.php">Lihat Event</a>
+                    <a href="#daftar-event-halaman-awal">Lihat Event</a>
                 </div>
             </div>
 
@@ -76,19 +76,19 @@
                 </div>
             </div>
 
-            <div class="preview-event">
+            <div class="preview-event" id="daftar-event-halaman-awal">
                 <div class="preview-event-header">
                     <div class="content-title">
                         <span>Event-Event Terbaru</span>
                         <span>Jangan sampai ketinggalan acara-acara seru di Bandar Lampung!</span>
                     </div>
-                    <a href="">Lihat Semua <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i></a>
+                    <a href="<?= BASEURL; ?>/app/controllers/auth/login.php">Lihat Semua <i data-lucide="arrow-right" style="width: 1rem; height: 1rem;"></i></a>
                 </div>
 
                 <div class="card">
                     <?php foreach ($eventTerbaru as $event): ?>
-                        <div class="event-card">
-                            <img src="<?= BASEURL; ?>/assets/images/image.png" alt="">
+                        <a href="<?= BASEURL; ?>/app/controllers/auth/login.php" class="event-card">
+                            <img src="<?= BASEURL; ?>/assets/images/uploads/<?= $event['cover_image']; ?>" alt="">
                             <div class="event-info">
                                 <div class="event-type">
                                     <span class="kategori"><?= $event['kategori']; ?></span>
@@ -106,7 +106,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     <?php endforeach; ?>
                 </div>
             </div>

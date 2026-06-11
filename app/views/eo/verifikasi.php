@@ -142,12 +142,21 @@
                     .then(response => response.json())
                     .then(data => {
                         data.forEach(jawaban => {
-                            listJawaban.innerHTML += `
-                                <div class="jawaban-item">
-                                    <span class="pertanyaan">${jawaban.pertanyaan}</span>
-                                    <span class="jawaban">${jawaban.jawaban}</span>
-                                </div>
-                            `;
+                            if (jawaban.tipe_input === "file") {
+                                listJawaban.innerHTML += `
+                                    <div class="jawaban-item">
+                                        <span class="pertanyaan">${jawaban.pertanyaan}</span>
+                                        <img src="<?= BASEURL; ?>/assets/images/uploads/${jawaban.jawaban}" alt="${jawaban.jawaban}">
+                                    </div>
+                                `;
+                            } else {
+                                listJawaban.innerHTML += `
+                                    <div class="jawaban-item">
+                                        <span class="pertanyaan">${jawaban.pertanyaan}</span>
+                                        <span class="jawaban">${jawaban.jawaban}</span>
+                                    </div>
+                                `;
+                            }
                         });
 
                         overlay.classList.add('active');

@@ -1,3 +1,18 @@
+function tampilkanPassword(inputId, iconId) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(iconId);
+
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.setAttribute('data-lucide', 'eye-off');
+    } else {
+        input.type = 'password';
+        icon.setAttribute('data-lucide', 'eye');
+    }
+
+    lucide.createIcons();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const card = document.querySelector('.card-login');
     const swapToLeftBtn = document.querySelector('#tombol-daftar');
@@ -8,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pilihanEO = document.querySelector('#pilihan-eo');
     const registerContent = document.querySelector('.register-form');
     const roleInput = document.querySelector('#role_input');
-
+    
     let swapped = false;
 
     if (card.classList.contains('swapped')) {
