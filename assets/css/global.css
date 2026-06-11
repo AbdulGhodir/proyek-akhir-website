@@ -5098,18 +5098,88 @@ nav.eo-navbar .logo {
 }
 
 @media (max-width: 640px) {
+  .admin-page .main {
+    padding: 16px 14px;
+  }
+
   .admin-page .stat-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .admin-page .dash-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .admin-page .hero-banner {
-    padding: 28px;
+    padding: 22px 18px;
+    margin-bottom: 18px;
   }
 
   .admin-page .hero-banner h2 {
     font-size: 22px;
   }
+
+  .admin-page .hero-banner p {
+    font-size: 14px;
+  }
+
+  .admin-page .card-head {
+    padding: 16px 18px 0;
+  }
+
+  .admin-page .feed-list {
+    padding: 12px 18px 18px;
+  }
+
+  .admin-page .feed-item {
+    padding-left: 10px;
+    margin-left: -10px;
+  }
 }
+
+@media (max-width: 480px) {
+  .admin-page .page-header h1 {
+    font-size: 22px;
+  }
+
+  .admin-page .page-header p {
+    font-size: 13px;
+  }
+
+  .admin-page .hero-label {
+    font-size: 10px;
+    padding: 5px 12px;
+  }
+
+  .admin-page .stat-card {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .admin-page .stat-val {
+    font-size: 28px;
+  }
+
+  .admin-page .stat-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .admin-page .card-head h3 {
+    font-size: 15px;
+  }
+
+  .admin-page .feed-title {
+    font-size: 13px;
+  }
+
+  .admin-page .table-wrap {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 
 .admin-page .flash-toast {
   position: fixed;
@@ -5422,9 +5492,7 @@ nav.eo-navbar .logo {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   Kelola Kategori Page
-   ═══════════════════════════════════════════════════════════ */
+/*Kelola Kategori --------------------------------------------*/
 
 .kat-grid {
   display: grid;
